@@ -88,6 +88,7 @@ export function registeredSite(): string | undefined {
  * Every deployed host has one and registers under its own site.
  */
 export function checkinBody(liveGames: number): CheckinBody | null {
+  if (ServerEnv.selfHosted()) return null;
   const host = ServerEnv.publicHost();
   if (host === undefined) return null;
   const machine = ServerEnv.machine();

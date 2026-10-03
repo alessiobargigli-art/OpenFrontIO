@@ -1,0 +1,12 @@
+node_modules
+static
+out
+.git
+.env*
+coverage*
+tests
+proprietary
+map-generator
+helm-charts
+.vscode
+.idea

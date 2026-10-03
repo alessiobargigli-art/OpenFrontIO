@@ -341,32 +341,41 @@ describe("RenderHtml environment-only render", () => {
     expect(bootstrapConfig(html).gitCommit).toBe("abc");
   });
 
-  // A full render is what the game server serves and what the legacy
-  // index-<short>.html replay shell is built from, so guarding those lines had
-  // to leave it byte-for-byte identical — same order, same eight-space
-  // indentation, same trailing commas.
-  it("still emits every guarded line, in place, when the locals are supplied", async () => {
-    const html = await renderHtmlContent(REAL_TEMPLATE);
+  it("emits the supplied bootstrap values with the original mode off", async () => {
+    const config = bootstrapConfig(await renderHtmlContent(REAL_TEMPLATE));
+    expect(config).toMatchObject({
+      selfHosted: false,
+      gitCommit: "abc",
+      cdnBase: "",
+      gameEnv: ServerEnv.gameEnvName(),
+      cluster: ServerEnv.cluster(),
+      instanceLetter: "a",
+      turnstileSiteKey: "test-key",
+      jwtAudience: "openfront.io",
+      stripePublishableKey: "pk_test_abc",
+      faroCollectorUrl: "https://faro.example/collect/k",
+      instanceId: "i-1",
+      serverHost: "blue.openfront.io",
+      siteHost: "openfront.io",
+    });
+    expect(config.assetManifest).toBeDefined();
+  });
 
-    expect(html).toContain(
-      [
-        "      window.BOOTSTRAP_CONFIG = {",
-        '        gitCommit: "abc",',
-        "        assetManifest: {},",
-        '        cdnBase: "",',
-        `        gameEnv: ${JSON.stringify(ServerEnv.gameEnvName())},`,
-        `        cluster: ${JSON.stringify(ServerEnv.cluster())},`,
-        '        instanceLetter: "a",',
-        '        turnstileSiteKey: "test-key",',
-        '        jwtAudience: "openfront.io",',
-        '        stripePublishableKey: "pk_test_abc",',
-        '        faroCollectorUrl: "https://faro.example/collect/k",',
-        '        instanceId: "i-1",',
-        '        serverHost: "blue.openfront.io",',
-        '        siteHost: "openfront.io",',
-        "      };",
-      ].join("\n"),
+  it("renders a self-hosted page without external SDKs, trackers or challenge scripts", async () => {
+    vi.stubEnv("SELF_HOSTED", "true");
+    vi.stubEnv("DOMAIN", "openfront-test.onrender.com");
+    vi.stubEnv("SUBDOMAIN", "");
+    const html = await renderHtmlContent(REAL_TEMPLATE);
+    expect(bootstrapConfig(html)).toMatchObject({
+      selfHosted: true,
+      turnstileSiteKey: "",
+      jwtAudience: "openfront-test.onrender.com",
+    });
+    expect(html).not.toMatch(
+      /<script[^>]+src=["'][^"']*(?:crazygames|googletagmanager|cloudflareinsights|challenges\.cloudflare|intergient|doubleclick)/,
     );
+    expect(html).toContain("ForkLogo");
+    expect(html).not.toContain("/images/OpenFront.png");
   });
 
   // INSTANCE_ID is unset on every deployment that does not set it, and

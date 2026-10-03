@@ -40,6 +40,13 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 app.use(express.json());
+// Unsupported account endpoints stay local and never fall through to the SPA.
+app.use("/selfhost", (_req, res) => {
+  res.setHeader("Cache-Control", "no-store");
+  res.status(404).json({
+    error: "Accounts and commercial APIs are disabled on this server",
+  });
+});
 
 // Serve the shared app shell for the root document.
 app.use(async (req, res, next) => {

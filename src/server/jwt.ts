@@ -22,6 +22,11 @@ type TokenVerificationResult =
 export async function verifyClientToken(
   token: string,
 ): Promise<TokenVerificationResult> {
+  if (ServerEnv.selfHosted()) {
+    return PersistentIdSchema.safeParse(token).success
+      ? { type: "success", persistentId: token, claims: null }
+      : { type: "error", message: "A valid guest token is required" };
+  }
   if (PersistentIdSchema.safeParse(token).success) {
     if (ServerEnv.env() === GameEnv.Dev) {
       return { type: "success", persistentId: token, claims: null };

@@ -422,6 +422,17 @@ export class GameServer {
       }
 
       case "update_game_config": {
+        if (
+          ServerEnv.selfHosted() &&
+          (stamped.config.trusted ||
+            stamped.config.rankedType ||
+            stamped.config.allowedPublicIds?.length)
+        ) {
+          return finish({
+            status: 400,
+            error: "Account-only lobby settings are disabled",
+          });
+        }
         this.updateGameConfig(stamped.config);
         return finish({ status: 200 });
       }

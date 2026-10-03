@@ -29,6 +29,9 @@ export class ServerEnv {
   // read from different sources (process.env vs window.BOOTSTRAP_CONFIG) but
   // the derived logic is identical. Consolidate into a shared helper that
   // takes a source so we don't have to keep them in sync by hand.
+  static selfHosted(): boolean {
+    return process.env.SELF_HOSTED === "true";
+  }
   static env(): GameEnv {
     return ServerEnv.gameEnv;
   }
@@ -60,6 +63,7 @@ export class ServerEnv {
     return n;
   }
   static turnstileSiteKey(): string {
+    if (ServerEnv.selfHosted()) return "";
     const v = process.env.TURNSTILE_SITE_KEY;
     if (!v) {
       throw new Error("TURNSTILE_SITE_KEY not set");
@@ -82,6 +86,15 @@ export class ServerEnv {
     return v;
   }
   static jwtAudience(): string {
+    if (ServerEnv.selfHosted()) {
+      for (const host of [
+        process.env.DOMAIN,
+        process.env.RENDER_EXTERNAL_HOSTNAME,
+      ]) {
+        if (host) return host;
+      }
+      return "localhost";
+    }
     const v = process.env.DOMAIN;
     if (!v) {
       throw new Error("DOMAIN not set");
@@ -106,6 +119,8 @@ export class ServerEnv {
     return process.env.CDN_BASE ?? "";
   }
   static jwtIssuer(): string {
+    if (ServerEnv.selfHosted())
+      throw new Error("External account API is disabled in self-hosted mode");
     const audience = ServerEnv.jwtAudience();
     return audience === "localhost"
       ? "http://localhost:8787"
@@ -168,7 +183,9 @@ export class ServerEnv {
 
   // Server-only env values
   static domain(): string {
-    return process.env.DOMAIN ?? "";
+    return ServerEnv.selfHosted()
+      ? ServerEnv.jwtAudience()
+      : (process.env.DOMAIN ?? "");
   }
   static subdomain(): string {
     return process.env.SUBDOMAIN ?? "";
@@ -213,6 +230,7 @@ export class ServerEnv {
   // SUBDOMAIN and GAME_DOMAIN alone. The derivation below is the standalone
   // shape and stays for env files written by hand.
   static publicHost(): string | undefined {
+    if (ServerEnv.selfHosted()) return undefined;
     const explicit = process.env.GAME_HOST;
     if (explicit && explicit.length > 0) return explicit;
     const subdomain = ServerEnv.subdomain();
@@ -275,7 +293,9 @@ export class ServerEnv {
   // so a deploy that doesn't set it is unchanged on the wire. "off" exists
   // so a GitHub environment can override a repo-level "api" explicitly.
   static lobbyCoordinator(): "api" | "off" {
-    return process.env.LOBBY_COORDINATOR === "api" ? "api" : "off";
+    return !ServerEnv.selfHosted() && process.env.LOBBY_COORDINATOR === "api"
+      ? "api"
+      : "off";
   }
   // The machine this container runs on — `falk2`, `nbg2`, `staging`: the
   // second argument to deploy.sh, which writes it into the container's env as
@@ -322,7 +342,9 @@ export class ServerEnv {
     return process.env.OTEL_AUTH_HEADER ?? "";
   }
   static gitCommit(): string {
-    const v = process.env.GIT_COMMIT;
+    const v = process.env.RENDER_GIT_COMMIT?.length
+      ? process.env.RENDER_GIT_COMMIT
+      : process.env.GIT_COMMIT;
     if (!v) {
       throw new Error("GIT_COMMIT not set");
     }

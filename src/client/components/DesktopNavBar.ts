@@ -1,6 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement } from "lit/decorators.js";
 import { assetUrl } from "../../core/AssetUrls";
+import { ClientEnv } from "../ClientEnv";
 import "./NavAccountMenu";
 import { NavNotificationsController } from "./NavNotificationsController";
 import "./NavUtilityIcons";
@@ -58,7 +59,11 @@ export class DesktopNavBar extends LitElement {
           <div class="h-8">
             <img
               class="block h-full aspect-[1364/259]"
-              src=${assetUrl("images/OpenFrontLogo.svg")}
+              src=${assetUrl(
+                ClientEnv.selfHosted()
+                  ? "images/ForkLogo.svg"
+                  : "images/OpenFrontLogo.svg",
+              )}
               alt="OpenFront"
             />
           </div>

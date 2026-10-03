@@ -1,6 +1,7 @@
 import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { assetUrl } from "../../core/AssetUrls";
+import { ClientEnv } from "../ClientEnv";
 import { composeVersionDisplay, desktopVersion } from "../DesktopShell";
 import { currentGameVersion } from "../GameVersion";
 import "./SteamWishlistButton";
@@ -44,7 +45,9 @@ export class Footer extends LitElement {
             class="flex items-center justify-center gap-4 lg:gap-6 pt-2 w-full relative"
           >
             <a
-              href="https://github.com/openfrontio/OpenFrontIO"
+              href=${ClientEnv.selfHosted()
+                ? `https://github.com/alessiobargigli-art/OpenFrontIO${/^[a-f0-9]{40}$/i.test(ClientEnv.gitCommit()) ? `/tree/${ClientEnv.gitCommit()}` : ""}`
+                : "https://github.com/openfrontio/OpenFrontIO"}
               target="_blank"
               rel="noopener noreferrer"
               class="opacity-60 hover:opacity-100 hover:scale-110 transition-all"

@@ -689,7 +689,11 @@ export class GameModeSelector extends LitElement {
               </div>`
             : nothing}
         </div>
-        <div class="grid grid-cols-3 gap-4 h-14 sm:col-span-2 sm:row-start-4">
+        <div
+          class="grid ${ClientEnv.selfHosted()
+            ? "grid-cols-2"
+            : "grid-cols-3"} gap-4 h-14 sm:col-span-2 sm:row-start-4"
+        >
           ${this.renderSmallActionCard(
             translateText("main.create"),
             this.openHostLobby,
@@ -697,13 +701,15 @@ export class GameModeSelector extends LitElement {
             undefined,
             true,
           )}
-          ${this.renderSmallActionCard(
-            translateText("mode_selector.ranked_title"),
-            this.openRankedMenu,
-            SECONDARY_ACTION,
-            undefined,
-            true,
-          )}
+          ${ClientEnv.selfHosted()
+            ? nothing
+            : this.renderSmallActionCard(
+                translateText("mode_selector.ranked_title"),
+                this.openRankedMenu,
+                SECONDARY_ACTION,
+                undefined,
+                true,
+              )}
           ${this.renderSmallActionCard(
             translateText("main.join"),
             this.openJoinLobby,

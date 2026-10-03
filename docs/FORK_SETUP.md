@@ -65,7 +65,11 @@ Type-check e bundle passano; il passaggio hash e il server sono stati
 verificati separatamente usando `node --import tsx` invece della CLI `tsx`.
 Non è stata verificata una partita completa da browser né un deploy pubblico.
 
-## Render: destinazione possibile, adattamento ancora da fare
+## Render: requisiti rilevati sulla base originale
+
+La configurazione successiva del fork è descritta in [RENDER.md](RENDER.md).
+La sezione seguente registra i requisiti riscontrati sulla base originale;
+non rappresenta lo stato attuale del branch preparato per Render.
 
 Render supporta Docker e WebSocket per i **Web Service**. La soluzione iniziale
 proposta è un solo servizio Docker, con Nginx come ingresso pubblico e master

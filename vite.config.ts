@@ -207,12 +207,20 @@ export default defineConfig(({ mode }) => {
   });
   const resourcesDir = getResourcesDir(__dirname);
   const proprietaryDir = getProprietaryDir(__dirname);
-  const sourceDirs = [resourcesDir, proprietaryDir];
+  const selfHosted = env.SELF_HOSTED === "true";
+  const sourceDirs = selfHosted
+    ? [resourcesDir]
+    : [resourcesDir, proprietaryDir];
+  const image = (path: string) => (selfHosted ? "images/ForkLogo.svg" : path);
   const assetManifest: AssetManifest = isProduction
     ? buildPublicAssetManifest(sourceDirs)
     : {};
   const cdnBase = env.CDN_BASE ?? "";
   const htmlAssetData = {
+    selfHosted: JSON.stringify(selfHosted),
+    canonicalUrl: selfHosted
+      ? "http://localhost:9000/"
+      : "https://openfront.io/",
     assetManifest: JSON.stringify(assetManifest),
     cdnBase: JSON.stringify(cdnBase),
     gameEnv: JSON.stringify(env.GAME_ENV ?? "dev"),
@@ -229,23 +237,31 @@ export default defineConfig(({ mode }) => {
       : undefined,
     instanceId: JSON.stringify(env.INSTANCE_ID ?? "DEV_ID"),
     manifestHref: buildAssetUrl("manifest.json", assetManifest, cdnBase),
-    faviconHref: buildAssetUrl("images/Favicon.svg", assetManifest, cdnBase),
+    faviconHref: buildAssetUrl(
+      image("images/Favicon.svg"),
+      assetManifest,
+      cdnBase,
+    ),
     gameplayScreenshotUrl: buildAssetUrl(
-      "images/GameplayScreenshot.png",
+      image("images/GameplayScreenshot.png"),
       assetManifest,
       cdnBase,
     ),
     backgroundImageUrl: buildAssetUrl(
-      "images/background.webp",
+      image("images/background.webp"),
       assetManifest,
       cdnBase,
     ),
     desktopLogoImageUrl: buildAssetUrl(
-      "images/OpenFront.png",
+      image("images/OpenFront.png"),
       assetManifest,
       cdnBase,
     ),
-    mobileLogoImageUrl: buildAssetUrl("images/OF.png", assetManifest, cdnBase),
+    mobileLogoImageUrl: buildAssetUrl(
+      image("images/OF.png"),
+      assetManifest,
+      cdnBase,
+    ),
   };
 
   // Vite's HTML transform replaces the source <script src="/src/client/Main.ts">
@@ -367,7 +383,9 @@ export default defineConfig(({ mode }) => {
       ...(!isProduction
         ? [
             serveRootPublicDir(getPublicDir(resourcesDir)),
-            serveProprietaryDir(proprietaryDir, resourcesDir),
+            ...(!selfHosted
+              ? [serveProprietaryDir(proprietaryDir, resourcesDir)]
+              : []),
             randomWorkerCreateProxy(devNumWorkers),
             steamLinkAliasRedirect(),
           ]

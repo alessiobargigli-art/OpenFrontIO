@@ -16,6 +16,13 @@ This is a fork/rewrite of WarFront.io. Credit to https://github.com/WarFrontIO.
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
 [![Assets: CC BY-SA 4.0](https://img.shields.io/badge/Assets-CC%20BY--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-sa/4.0/)
 
+## Deploy di questo fork su Render
+
+La configurazione autonoma è in [`render.yaml`](render.yaml), con
+[`Dockerfile.render`](Dockerfile.render). La [guida Render](docs/RENDER.md)
+descrive deploy, variabili e verifiche. In questa modalità si gioca come
+ospiti; account, negozio e classifiche del servizio originale sono disabilitati.
+
 ## License
 
 OpenFront source code is licensed under the **GNU Affero General Public License v3.0**

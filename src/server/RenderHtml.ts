@@ -43,6 +43,8 @@ export async function renderHtmlContent(
   const htmlContent = await fs.readFile(htmlPath, "utf-8");
   const assetManifest = await getRuntimeAssetManifest();
   const cdnBase = ServerEnv.cdnBase();
+  const image = (path: string) =>
+    ServerEnv.selfHosted() ? "images/ForkLogo.svg" : path;
   // Omitted entirely (not set to a falsy string) when perServer is false: the
   // template guards each of these with `typeof x !== "undefined" && x`, so an
   // absent local drops the whole line, indentation and trailing comma
@@ -78,6 +80,10 @@ export async function renderHtmlContent(
     : {};
   return ejs.render(htmlContent, {
     ...perServerLocals,
+    selfHosted: JSON.stringify(ServerEnv.selfHosted()),
+    canonicalUrl: ServerEnv.selfHosted()
+      ? `https://${ServerEnv.domain()}/`
+      : "https://openfront.io/",
     gitCommit: JSON.stringify(ServerEnv.gitCommit()),
     assetManifest: JSON.stringify(assetManifest),
     cdnBase: JSON.stringify(cdnBase),
@@ -102,23 +108,31 @@ export async function renderHtmlContent(
         ? undefined
         : JSON.stringify(ServerEnv.faroCollectorUrl()),
     manifestHref: buildAssetUrl("manifest.json", assetManifest, cdnBase),
-    faviconHref: buildAssetUrl("images/Favicon.svg", assetManifest, cdnBase),
+    faviconHref: buildAssetUrl(
+      image("images/Favicon.svg"),
+      assetManifest,
+      cdnBase,
+    ),
     gameplayScreenshotUrl: buildAssetUrl(
-      "images/GameplayScreenshot.png",
+      image("images/GameplayScreenshot.png"),
       assetManifest,
       cdnBase,
     ),
     backgroundImageUrl: buildAssetUrl(
-      "images/background.webp",
+      image("images/background.webp"),
       assetManifest,
       cdnBase,
     ),
     desktopLogoImageUrl: buildAssetUrl(
-      "images/OpenFront.png",
+      image("images/OpenFront.png"),
       assetManifest,
       cdnBase,
     ),
-    mobileLogoImageUrl: buildAssetUrl("images/OF.png", assetManifest, cdnBase),
+    mobileLogoImageUrl: buildAssetUrl(
+      image("images/OF.png"),
+      assetManifest,
+      cdnBase,
+    ),
   });
 }
 

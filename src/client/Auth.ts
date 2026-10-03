@@ -384,6 +384,7 @@ export function isSessionActive(sub: string): boolean {
 export async function userAuth(
   shouldRefresh: boolean = true,
 ): Promise<UserAuth> {
+  if (ClientEnv.selfHosted()) return false;
   try {
     const jwt = __jwt;
     if (!jwt) {

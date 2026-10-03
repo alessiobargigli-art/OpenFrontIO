@@ -135,14 +135,14 @@
     </style>
 
     <!-- SEO -->
-    <link rel="canonical" href="https://openfront.io/" />
+    <link rel="canonical" href="<%= canonicalUrl %>" />
     <meta
       name="description"
       content="Conquer the world in this multiplayer battle royale! Expand your nation, eliminate opponents, and dominate the map in this fast-paced IO game."
     />
 
     <!-- Open Graph -->
-    <meta property="og:url" content="https://openfront.io/" />
+    <meta property="og:url" content="<%= canonicalUrl %>" />
     <meta property="og:title" content="OpenFront - Battle Royale" />
     <meta
       property="og:description"
@@ -169,6 +169,7 @@
     -->
     <script>
       window.BOOTSTRAP_CONFIG = {
+        selfHosted: <%- typeof selfHosted !== "undefined" ? selfHosted : "false" %>,
         gitCommit: <%- gitCommit %>,
         assetManifest: <%- assetManifest %>,
         cdnBase: <%- cdnBase %>,
@@ -200,6 +201,7 @@
       );
     </script>
 
+    <!-- <% if (typeof selfHosted === "undefined" || selfHosted !== "true") { %> -->
     <!-- CrazyGames SDK -->
     <script
       src="https://sdk.crazygames.com/crazygames-sdk-v3.js"
@@ -255,6 +257,29 @@
 
       gtag("config", "G-WQGQQ8RDN4");
     </script>
+    <!-- <% } %> -->
+    <!-- <% if (typeof selfHosted !== "undefined" && selfHosted === "true") { %> -->
+    <style>
+      [data-page="page-item-store"],
+      [data-page="page-inventory"],
+      [data-page="page-leaderboard"],
+      [data-page="page-clan"],
+      [data-page="page-ranked"],
+      nav-account-menu,
+      nav-notifications,
+      steam-wishlist-button,
+      news-box,
+      streaming-panel,
+      ranked-modal,
+      [data-page="page-news"],
+      featured-stream,
+      streaming-now,
+      [data-i18n="main.ranked"],
+      [data-i18n="main.store"] {
+        display: none !important;
+      }
+    </style>
+    <!-- <% } %> -->
   </head>
 
   <body
@@ -591,13 +616,16 @@
       });
     </script>
 
+    <!-- <% if (typeof selfHosted === "undefined" || selfHosted !== "true") { %> -->
     <!-- Analytics -->
     <script
       defer
       src="https://static.cloudflareinsights.com/beacon.min.js"
       data-cf-beacon='{"token": "03d93e6fefb349c28ee69b408fa25a13"}'
     ></script>
+    <!-- <% } %> -->
     <script type="module" src="/src/client/Main.ts"></script>
+    <!-- <% if (typeof selfHosted === "undefined" || selfHosted !== "true") { %> -->
     <footer>
       <script
         data-cfasync="false"
@@ -605,5 +633,6 @@
         src="//cdn.intergient.com/1025558/75940/ramp.js"
       ></script>
     </footer>
+    <!-- <% } %> -->
   </body>
 </html>
