@@ -1,5 +1,13 @@
 #!/bin/sh
 set -eu
+# Render's entrypoint always has production defaults, even when dashboard
+# overrides are empty. Explicit non-empty values still take precedence.
+export SELF_HOSTED="${SELF_HOSTED:-true}"
+export GAME_ENV="${GAME_ENV:-prod}"
+export PORT="${PORT:-10000}"
+export NUM_WORKERS="${NUM_WORKERS:-1}"
+export INSTANCE_LETTER="${INSTANCE_LETTER:-a}"
+export LOBBY_COORDINATOR="${LOBBY_COORDINATOR:-off}"
 case "${PORT:-10000}" in
     '' | *[!0-9]*)
         echo 'PORT must be a number' >&2

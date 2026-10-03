@@ -3,6 +3,9 @@
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
 import { randomUUID } from "node:crypto";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
 import WebSocket from "ws";
 import {
@@ -20,22 +23,45 @@ import {
 } from "../src/core/ZbinWire";
 
 const commit = "selfhost-smoke";
+const repoRoot = path.resolve(import.meta.dirname, "..");
+const config = {
+  SELF_HOSTED: "true",
+  GAME_ENV: "prod",
+  NUM_WORKERS: "2",
+  INSTANCE_LETTER: "a",
+  GIT_COMMIT: commit,
+  RENDER_GIT_COMMIT: commit,
+  DOMAIN: "localhost",
+  LOBBY_COORDINATOR: "off",
+};
+const envFileMode = process.argv.includes("--env-file");
+const envDir = envFileMode
+  ? mkdtempSync(path.join(tmpdir(), "openfront-env-"))
+  : undefined;
+const childEnv: NodeJS.ProcessEnv = { ...process.env, ...config };
+if (envDir) {
+  // Only the .env file can supply these values: inherited test configuration
+  // must not hide the import-order regression this mode checks.
+  for (const key of Object.keys(config)) delete childEnv[key];
+  childEnv.DOTENV_CONFIG_PATH = path.join(envDir, ".env");
+  writeFileSync(
+    path.join(envDir, ".env"),
+    Object.entries(config)
+      .map(([key, value]) => `${key}=${value}`)
+      .join("\n"),
+  );
+}
 const child = spawn(
   process.execPath,
-  ["--import", "tsx", "src/server/Server.ts"],
+  [
+    "--import",
+    path.join(repoRoot, "node_modules/tsx/dist/loader.mjs"),
+    path.join(repoRoot, "src/server/Server.ts"),
+  ],
   {
+    cwd: repoRoot,
     detached: true,
-    env: {
-      ...process.env,
-      SELF_HOSTED: "true",
-      GAME_ENV: "prod",
-      NUM_WORKERS: "2",
-      INSTANCE_LETTER: "a",
-      GIT_COMMIT: commit,
-      RENDER_GIT_COMMIT: commit,
-      DOMAIN: "localhost",
-      LOBBY_COORDINATOR: "off",
-    },
+    env: childEnv,
     stdio: ["ignore", "pipe", "pipe"],
   },
 );
@@ -139,6 +165,8 @@ async function peer(
 
 try {
   await until(async () => {
+    if (child.exitCode !== null)
+      throw new Error(`Server exited with code ${child.exitCode}`);
     try {
       return (await fetch("http://127.0.0.1:3000/api/health")).ok;
     } catch {
@@ -250,7 +278,7 @@ try {
     /External account API is disabled|Failed to start server/,
   );
   console.log(
-    "Self-hosted production smoke passed (master + 2 workers, HTTP + WebSockets)",
+    `Self-hosted production smoke passed (master + 2 workers, HTTP + WebSockets, ${envFileMode ? ".env file" : "process environment"})`,
   );
 } catch (e) {
   console.error(logs.slice(-12_000));
@@ -264,5 +292,8 @@ try {
       /* already stopped */
     }
   }
-  await new Promise<void>((resolve) => child.once("exit", () => resolve()));
+  if (child.exitCode === null && child.signalCode === null) {
+    await new Promise<void>((resolve) => child.once("exit", () => resolve()));
+  }
+  if (envDir) rmSync(envDir, { recursive: true, force: true });
 }

@@ -59,6 +59,20 @@ questo servizio multiplayer.
 
 ## Verifiche dopo il deploy
 
+Se i log riportano `unsupported game env: undefined`, Node non sta ricevendo
+`GAME_ENV`. In **Settings** verificare il branch `setup/fork-baseline` e il
+Dockerfile `./Dockerfile.render`: `main` non contiene queste modifiche prima
+del merge della PR #1. In **Environment** impostare le sei variabili della
+tabella, poi usare **Save, rebuild, and deploy**. Il Dockerfile originale non
+imposta `GAME_ENV`. L'entrypoint dedicato Render applica ora i valori predefiniti
+anche quando una variabile è assente o vuota; il server carica `.env` prima di
+valutare la configurazione.
+
+Lo stesso controllo vale per `NUM_WORKERS not set`: impostare `NUM_WORKERS=1`
+e usare il Dockerfile dedicato. I valori nel solo file `render.yaml` vengono
+applicati dal Blueprint; un Web Service creato manualmente va configurato nel
+dashboard.
+
 1. Aprire `/api/health`: deve rispondere 200 con `status: "ok"`.
 2. Aprire il gioco e verificare il caricamento delle mappe.
 3. Creare una lobby privata, copiarne il link e aprirlo in un secondo browser
@@ -105,12 +119,15 @@ node --import tsx scripts/buildAssetHashes.ts
 node node_modules/typescript/bin/tsc --noEmit
 node node_modules/vitest/vitest.mjs run tests/server/SelfHosted.test.ts tests/client/SelfHosted.test.ts tests/server/RenderHtml.test.ts
 node --import tsx scripts/selfHostedSmoke.ts
+node --import tsx scripts/selfHostedSmoke.ts --env-file
 ```
 
 Lo smoke test avvia un master e due worker in produzione e verifica HTTP,
 creazione/join, autorità dell'host, avvio, inoltro di turni binari e
 riconnessione. Richiede le porte 3000–3002 libere. Non sostituisce la prova
 del container Docker e della partita completa da browser su Render.
+Con `--env-file` passa la configurazione soltanto tramite un `.env` temporaneo,
+per verificare che venga caricato prima degli import del server.
 
 Per verificare anche il container, in un ambiente con Docker:
 
