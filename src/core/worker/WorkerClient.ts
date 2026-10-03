@@ -1,4 +1,4 @@
-import { getCdnBase } from "../AssetUrls";
+import { getAssetBaseUrl, getCdnBase } from "../AssetUrls";
 import {
   BuildableUnit,
   Cell,
@@ -96,6 +96,7 @@ export class WorkerClient {
         gameStartInfo: this.gameStartInfo,
         clientID: this.clientID,
         cdnBase: getCdnBase(),
+        assetBaseUrl: getAssetBaseUrl(),
         snapshot: this.snapshotToRestore,
       });
 

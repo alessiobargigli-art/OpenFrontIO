@@ -5,6 +5,51 @@ import type {
   WorkerMessage,
 } from "../../../src/core/worker/WorkerMessages";
 
+const inlineWorker = vi.hoisted(() => ({
+  postMessage: vi.fn(),
+  addEventListener: vi.fn(),
+}));
+
+vi.mock("../../../src/core/worker/Worker.worker.ts?worker&inline", () => ({
+  default: class {
+    postMessage = inlineWorker.postMessage;
+    addEventListener = inlineWorker.addEventListener;
+  },
+}));
+
+describe("WorkerClient initialization", () => {
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
+    vi.clearAllMocks();
+  });
+
+  it("passes the owning page URL to the inline game worker", async () => {
+    vi.useFakeTimers();
+    vi.stubGlobal("window", {
+      location: { href: "https://my-game.onrender.com/room/abcd" },
+      BOOTSTRAP_CONFIG: { cdnBase: "" },
+    });
+    inlineWorker.postMessage.mockImplementation((message) => {
+      const listener = inlineWorker.addEventListener.mock.calls[0][1];
+      listener({ data: { type: "initialized", id: message.id } });
+    });
+    const gameStartInfo = {} as never;
+    const client = new WorkerClient(gameStartInfo, undefined);
+    await client.initialize();
+    expect(inlineWorker.postMessage).toHaveBeenCalledWith({
+      type: "init",
+      id: expect.any(String),
+      gameStartInfo,
+      clientID: undefined,
+      cdnBase: "",
+      assetBaseUrl: "https://my-game.onrender.com/room/abcd",
+      snapshot: undefined,
+    });
+    client.start(() => {});
+  });
+});
+
 type MockWorker = {
   postMessage: (message: unknown) => void;
 };

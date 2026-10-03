@@ -78,6 +78,7 @@ export function buildAssetUrl(
 declare global {
   var __ASSET_MANIFEST__: AssetManifest | undefined;
   var __CDN_BASE__: string | undefined;
+  var __ASSET_BASE_URL__: string | undefined;
 }
 
 export function getAssetManifest(): AssetManifest {
@@ -105,7 +106,20 @@ export function getCdnBase(): string {
 }
 
 export function assetUrl(path: string): string {
-  return buildAssetUrl(path, getAssetManifest(), getCdnBase());
+  const url = buildAssetUrl(path, getAssetManifest(), getCdnBase());
+  // Inline workers run from blob: URLs, which cannot resolve /maps/... or
+  // /_assets/... in fetch(). Resolve against the owning page, including
+  // manifest misses that intentionally use the page's origin instead of CDN.
+  const baseUrl = globalThis.__ASSET_BASE_URL__;
+  return typeof window === "undefined" && baseUrl
+    ? new URL(url, baseUrl).href
+    : url;
+}
+
+export function getAssetBaseUrl(): string {
+  return typeof window !== "undefined"
+    ? window.location.href
+    : (globalThis.__ASSET_BASE_URL__ ?? "");
 }
 
 // Rewrites Vite's emitted /assets/... references in the built index.html to

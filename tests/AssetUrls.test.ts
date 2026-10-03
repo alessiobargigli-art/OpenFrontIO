@@ -1,5 +1,73 @@
-import { describe, expect, test } from "vitest";
-import { buildAssetUrl, rewriteAssetsForCdn } from "../src/core/AssetUrls";
+import { afterEach, describe, expect, test, vi } from "vitest";
+import {
+  assetUrl,
+  buildAssetUrl,
+  getAssetBaseUrl,
+  rewriteAssetsForCdn,
+} from "../src/core/AssetUrls";
+
+afterEach(() => vi.unstubAllGlobals());
+
+describe("inline worker asset URLs", () => {
+  const pageUrl = "https://my-game.onrender.com/room/abcd";
+  const manifest = {
+    "maps/world/manifest.json":
+      "/_assets/maps/world/manifest.1b343dbd3527.json",
+  };
+
+  function worker(cdnBase = "") {
+    vi.stubGlobal("window", undefined);
+    vi.stubGlobal("__ASSET_MANIFEST__", manifest);
+    vi.stubGlobal("__CDN_BASE__", cdnBase);
+    vi.stubGlobal("__ASSET_BASE_URL__", pageUrl);
+    vi.stubGlobal("location", {
+      href: "blob:https://my-game.onrender.com/uuid",
+    });
+  }
+
+  test("resolves hashed map URLs against the page, not the Blob worker", () => {
+    worker();
+    expect(assetUrl("maps/world/manifest.json")).toBe(
+      "https://my-game.onrender.com/_assets/maps/world/manifest.1b343dbd3527.json",
+    );
+  });
+
+  test("resolves unversioned map binaries on the page origin", () => {
+    worker("https://cdn.example.com/game");
+    expect(assetUrl("maps/world/map.bin")).toBe(
+      "https://my-game.onrender.com/maps/world/map.bin",
+    );
+  });
+
+  test.each([
+    ["https://cdn.example.com/game/", "https://cdn.example.com/game"],
+    ["/game-assets", "https://my-game.onrender.com/game-assets"],
+    ["app://openfront", "app://openfront"],
+  ])("preserves the configured CDN base %s", (cdnBase, expectedBase) => {
+    worker(cdnBase);
+    expect(assetUrl("maps/world/manifest.json")).toBe(
+      `${expectedBase}/_assets/maps/world/manifest.1b343dbd3527.json`,
+    );
+  });
+
+  test("preserves already absolute URLs", () => {
+    worker();
+    expect(assetUrl("https://other.example.com/map.bin")).toBe(
+      "https://other.example.com/map.bin",
+    );
+  });
+
+  test("captures the page URL while retaining relative URLs on the main thread", () => {
+    vi.stubGlobal("window", {
+      location: { href: pageUrl },
+      BOOTSTRAP_CONFIG: { assetManifest: manifest, cdnBase: "" },
+    });
+    expect(getAssetBaseUrl()).toBe(pageUrl);
+    expect(assetUrl("maps/world/manifest.json")).toBe(
+      "/_assets/maps/world/manifest.1b343dbd3527.json",
+    );
+  });
+});
 
 describe("AssetUrls", () => {
   test("returns hashed URLs for direct asset matches", () => {

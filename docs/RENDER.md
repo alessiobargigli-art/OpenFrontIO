@@ -86,6 +86,13 @@ worker e che `NUM_WORKERS=1` sia identico nel proxy e nel server. Una risposta
 503 dall'health check significa che il cluster non è pronto. Un errore
 `version_mismatch` richiede di ricaricare la pagina dopo un deploy.
 
+Se la partita rimane su **Game starting** con `Failed to parse URL from
+/_assets/maps/...`, aggiornare il deploy all'ultima versione del branch e
+ricaricare la pagina. I worker inline partono da URL `blob:`: ora ricevono
+l'URL della pagina e lo usano per risolvere gli asset relativi, anche con
+`CDN_BASE` vuoto. La correzione vale anche per i replay; non serve impostare
+un CDN per aggirare l'errore.
+
 ## Comportamento e limiti
 
 Il server mantiene partite e lobby in memoria: un riavvio, redeploy o
@@ -107,6 +114,13 @@ Non è un sistema di account o di moderazione persistente.
 Il Dockerfile dedicato esclude la cartella `proprietary` e usa un logo del fork.
 Le risorse aperte mantengono le licenze e le attribuzioni originali; il footer
 conserva il copyright e collega il sorgente del fork.
+
+Il nome/logo provvisorio **OpenFront Fork** va sostituito con un nome proprio
+prima di una release: i termini aggiuntivi in `LICENSE` vietano l'uso di
+OpenFront come titolo principale delle versioni modificate senza permesso.
+Il codice resta AGPL v3 e le risorse aperte CC BY-SA 4.0; distribuendo il
+fork, anche come servizio online, offrire il sorgente completo della versione
+in uso e conservare licenze, crediti e indicazioni delle modifiche.
 
 ## Verifica locale della modalità autonoma
 
