@@ -93,6 +93,12 @@ l'URL della pagina e lo usano per risolvere gli asset relativi, anche con
 `CDN_BASE` vuoto. La correzione vale anche per i replay; non serve impostare
 un CDN per aggirare l'errore.
 
+## Tema Flower Power
+
+Il gioco usa il tema grafico [Flower Power](FLOWER_POWER.md): cuori e fiori per
+i missili, casette floreali, serre, scudi della pace e mezzi decorati. Gli atlas
+e le icone sono inclusi nella build; non servono cataloghi o skin a pagamento.
+
 ## Spectator God
 
 La modalità **God spectator mode** è attiva per impostazione predefinita nelle

@@ -40,13 +40,13 @@ import { SpawnBarVisibleEvent } from "./SpawnTimer";
 const soldierIconAquarius = assetUrl("images/SoldierIconAquarius.svg");
 const allianceIcon = assetUrl("images/AllianceIcon.svg");
 const traitorIcon = assetUrl("images/TraitorIcon.svg");
-const warshipIcon = assetUrl("images/BattleshipIconWhite.svg");
-const cityIcon = assetUrl("images/CityIconWhite.svg");
-const factoryIcon = assetUrl("images/FactoryIconWhite.svg");
+const warshipIcon = assetUrl("sprites/warship.png");
+const cityIcon = assetUrl("images/flower-power/city.png");
+const factoryIcon = assetUrl("images/flower-power/factory.png");
 const goldCoinIcon = assetUrl("images/GoldCoinIcon.svg");
-const missileSiloIcon = assetUrl("images/MissileSiloIconWhite.svg");
-const portIcon = assetUrl("images/PortIcon.svg");
-const samLauncherIcon = assetUrl("images/SamLauncherIconWhite.svg");
+const missileSiloIcon = assetUrl("images/flower-power/missileSilo.png");
+const portIcon = assetUrl("images/flower-power/port.png");
+const samLauncherIcon = assetUrl("images/flower-power/samLauncher.png");
 const soldierIcon = assetUrl("images/SoldierIcon.svg");
 
 function euclideanDistWorld(

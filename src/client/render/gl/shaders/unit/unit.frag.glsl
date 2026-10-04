@@ -142,6 +142,7 @@ void main() {
   float u = (vOwnerID + 0.5) / float(PALETTE_SIZE);
   vec3 territoryColor = texture(uPalette, vec2(u, 0.25)).rgb;
   vec3 borderColor    = texture(uPalette, vec2(u, 0.75)).rgb;
+  bool spriteEffectActive = false;
 
   // warship cosmetic: recolor the warship's territory-color bands with the
   // owner's effect (raw catalog colors, like trails). The border band keeps
@@ -153,6 +154,7 @@ void main() {
     float dn = (vCellUV.x + vCellUV.y) * 0.5; // sprite diagonal, 0..1
     if (spriteEffectColor(WARSHIP_EFFECT_ROW_BASE, int(vOwnerID + 0.5), dn, true, effectRGB)) {
       territoryColor = effectRGB;
+      spriteEffectActive = true;
     }
   }
 
@@ -171,6 +173,7 @@ void main() {
     if (spriteEffectColor(TRAIN_EFFECT_ROW_BASE, int(vOwnerID + 0.5), diag, false, effectRGB)) {
       territoryColor = effectRGB;
       borderColor = effectRGB * 0.6;
+      spriteEffectActive = true;
     }
   }
 
@@ -218,5 +221,21 @@ void main() {
     color = borderColor;
   }
 
+  // Flower Power keeps saturated sprite artwork. Neutral outlines still use
+  // the owner palette above, and affiliation view keeps its solid colors.
+  float maxRGB = max(texel.r, max(texel.g, texel.b));
+  float minRGB = min(texel.r, min(texel.g, texel.b));
+  if (maxRGB > 0.01 && (maxRGB - minRGB) / maxRGB > 0.3) {
+    color = spriteEffectActive ? mix(texel.rgb, territoryColor, 0.6) : texel.rgb;
+    // Preserve combat/readiness signals on the colored artwork too.
+    if (abs(vFlags - FLAG_ANGRY) < 0.1) {
+      color = mix(color, uAngryColor, 0.8);
+    } else if (abs(vFlags - FLAG_RETREATING) < 0.1) {
+      color *= mix(1.0, 0.25, retreatBlink);
+    } else if (abs(vFlags - FLAG_FLICKER) < 0.1 ||
+               abs(vFlags - FLAG_FLICKER_UNTARGETABLE) < 0.1) {
+      color = mix(color, territoryColor, 0.25);
+    }
+  }
   fragColor = vec4(color, texel.a * alphaMul);
 }

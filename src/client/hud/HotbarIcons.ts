@@ -1,16 +1,16 @@
 import { assetUrl } from "../../core/AssetUrls";
 
-export const warshipIcon = assetUrl("images/BattleshipIconWhite.svg");
-export const cityIcon = assetUrl("images/CityIconWhite.svg");
-export const factoryIcon = assetUrl("images/FactoryIconWhite.svg");
+export const warshipIcon = assetUrl("sprites/warship.png");
+export const cityIcon = assetUrl("images/flower-power/city.png");
+export const factoryIcon = assetUrl("images/flower-power/factory.png");
 export const goldCoinIcon = assetUrl("images/GoldCoinIcon.svg");
-export const mirvIcon = assetUrl("images/MIRVIcon.svg");
-export const missileSiloIcon = assetUrl("images/MissileSiloIconWhite.svg");
-export const hydrogenBombIcon = assetUrl("images/MushroomCloudIconWhite.svg");
-export const atomBombIcon = assetUrl("images/NukeIconWhite.svg");
-export const portIcon = assetUrl("images/PortIcon.svg");
-export const samLauncherIcon = assetUrl("images/SamLauncherIconWhite.svg");
-export const defensePostIcon = assetUrl("images/ShieldIconWhite.svg");
+export const mirvIcon = assetUrl("sprites/mirv2.png");
+export const missileSiloIcon = assetUrl("images/flower-power/missileSilo.png");
+export const hydrogenBombIcon = assetUrl("sprites/hydrogenbomb.png");
+export const atomBombIcon = assetUrl("sprites/atombomb.png");
+export const portIcon = assetUrl("images/flower-power/port.png");
+export const samLauncherIcon = assetUrl("images/flower-power/samLauncher.png");
+export const defensePostIcon = assetUrl("images/flower-power/defensePost.png");
 export const soldierIcon = assetUrl("images/SoldierIcon.svg");
 export const claimIcon = assetUrl("images/ClaimIcon.svg");
 export const profileIcon = assetUrl("images/ProfileIcon.svg");

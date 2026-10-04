@@ -1,0 +1,94 @@
+{
+  "name": "Flower Power",
+  "cellPixels": 128,
+  "unitWorldSize": 13,
+  "units": [
+    {
+      "column": 0,
+      "source": "sprites/transportship.png",
+      "worldSize": 5
+    },
+    {
+      "column": 1,
+      "source": "sprites/tradeship.png",
+      "worldSize": 5
+    },
+    {
+      "column": 2,
+      "source": "sprites/warship.png",
+      "worldSize": 11
+    },
+    {
+      "column": 3,
+      "source": "sprites/atombomb.png",
+      "worldSize": 7
+    },
+    {
+      "column": 4,
+      "source": "sprites/hydrogenbomb.png",
+      "worldSize": 9
+    },
+    {
+      "column": 5,
+      "source": "sprites/mirv2.png",
+      "worldSize": 13
+    },
+    {
+      "column": 6,
+      "source": "sprites/samMissile.png",
+      "worldSize": 3
+    },
+    {
+      "column": 7,
+      "source": "sprites/shell.png",
+      "worldSize": 1
+    },
+    {
+      "column": 8,
+      "source": "sprites/mirvWarhead.png",
+      "worldSize": 3
+    },
+    {
+      "column": 9,
+      "source": "sprites/trainEngine.png",
+      "worldSize": 5
+    },
+    {
+      "column": 10,
+      "source": "sprites/trainCarriage.png",
+      "worldSize": 5
+    },
+    {
+      "column": 11,
+      "source": "sprites/trainCarriageLoaded.png",
+      "worldSize": 5
+    }
+  ],
+  "structures": [
+    {
+      "column": 0,
+      "source": "images/flower-power/city.png"
+    },
+    {
+      "column": 1,
+      "source": "images/flower-power/port.png"
+    },
+    {
+      "column": 2,
+      "source": "images/flower-power/factory.png"
+    },
+    {
+      "column": 3,
+      "source": "images/flower-power/defensePost.png"
+    },
+    {
+      "column": 4,
+      "source": "images/flower-power/samLauncher.png"
+    },
+    {
+      "column": 5,
+      "source": "images/flower-power/missileSilo.png"
+    }
+  ],
+  "generatedWith": "Built-in image generation; individual sprites cropped, resized and packed with Sharp."
+}

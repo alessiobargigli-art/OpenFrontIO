@@ -1,7 +1,8 @@
 import { LitElement, html, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import { GOD_PLAYER_ID, GodWeapon } from "../../core/GodMode";
 import { UnitType } from "../../core/game/Game";
+import { GOD_PLAYER_ID, GodWeapon } from "../../core/GodMode";
+import { atomBombIcon, hydrogenBombIcon, mirvIcon } from "../hud/HotbarIcons";
 import { translateText } from "../Utils";
 import { GameView } from "../view/GameView";
 
@@ -61,12 +62,12 @@ export class GodToolbar extends LitElement {
       <div class="flex gap-2">
         ${(
           [
-            [UnitType.AtomBomb, "god_mode.atom"],
-            [UnitType.HydrogenBomb, "god_mode.hydrogen"],
-            [UnitType.MIRV, "god_mode.mirv"],
+            [UnitType.AtomBomb, "god_mode.atom", atomBombIcon],
+            [UnitType.HydrogenBomb, "god_mode.hydrogen", hydrogenBombIcon],
+            [UnitType.MIRV, "god_mode.mirv", mirvIcon],
           ] as const
         ).map(
-          ([weapon, label]) =>
+          ([weapon, label, icon]) =>
             html`<button
               type="button"
               data-weapon=${weapon}
@@ -80,6 +81,12 @@ export class GodToolbar extends LitElement {
                 this.selected = this.selected === weapon ? null : weapon;
               }}
             >
+              <img
+                src=${icon}
+                alt=""
+                aria-hidden="true"
+                class="mx-auto mb-1 h-7 w-7 object-contain"
+              />
               ${translateText(label)}
             </button>`,
         )}
