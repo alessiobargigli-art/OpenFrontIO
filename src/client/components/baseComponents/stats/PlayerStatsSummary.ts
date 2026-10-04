@@ -100,15 +100,15 @@ const METRIC_GROUPS = [
 }[];
 
 const UNIT_ICONS = {
-  city: "images/CityIconWhite.svg",
-  port: "images/PortIcon.svg",
-  factory: "images/FactoryIconWhite.svg",
-  defensePost: "images/ShieldIconWhite.svg",
-  transport: "images/BoatIconWhite.svg",
-  tradeShip: "images/TradeShipIconWhite.svg",
+  city: "images/flower-power/city.png",
+  port: "images/flower-power/port.png",
+  factory: "images/flower-power/factory.png",
+  defensePost: "images/flower-power/defensePost.png",
+  transport: "sprites/transportship.png",
+  tradeShip: "sprites/tradeship.png",
   troop: "images/SoldierIcon.svg",
-  nuke: "images/NukeIconWhite.svg",
-  warship: "images/DestroyerIconWhite.svg",
+  nuke: "sprites/atombomb.png",
+  warship: "sprites/warship.png",
   gold: "images/GoldCoinIcon.svg",
 } as const;
 

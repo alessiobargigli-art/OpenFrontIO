@@ -45,6 +45,8 @@ export interface InitMessage extends BaseWorkerMessage {
   gameStartInfo: GameStartInfo;
   clientID: ClientID | undefined;
   cdnBase: string;
+  /** Owning page URL used to resolve relative assets in inline workers. */
+  assetBaseUrl: string;
   /** Resume from this game snapshot instead of starting a new game. */
   snapshot?: Uint8Array;
 }

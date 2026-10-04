@@ -472,7 +472,9 @@ class Client {
     // so rendering the widget there just fails — and replays never
     // send a token anyway (see getTurnstileToken below).
     const turnstilePrefetch =
-      isDesktopShell() || isReplayShellHost(window.location.hostname)
+      ClientEnv.selfHosted() ||
+      isDesktopShell() ||
+      isReplayShellHost(window.location.hostname)
         ? null
         : getTurnstileToken();
     // A prefetch that fails is not an error anyone has asked about yet: the
@@ -693,7 +695,10 @@ class Client {
       const isAdFree =
         userMeResponse !== false && userMeResponse.player?.adfree === true;
       window.adsEnabled =
-        !isAdFree && !crazyGamesSDK.isOnCrazyGames() && !isDesktopShell();
+        !ClientEnv.selfHosted() &&
+        !isAdFree &&
+        !crazyGamesSDK.isOnCrazyGames() &&
+        !isDesktopShell();
       // Ad-eligible users only: paid/adfree users must never load Admiral (its
       // adblock popup fires autonomously once the payload runs). Start watching
       // adblock state; once a blocker is ever detected the in-game ad is
@@ -1963,6 +1968,7 @@ class Client {
     lobby: JoinLobbyEvent,
   ): Promise<string | null> {
     if (
+      ClientEnv.selfHosted() ||
       ClientEnv.env() === GameEnv.Dev ||
       isDesktopShell() ||
       // Single-player and replays: no server to verify a token against (and

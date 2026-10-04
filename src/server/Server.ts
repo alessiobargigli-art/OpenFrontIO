@@ -1,10 +1,8 @@
 import cluster from "cluster";
-import * as dotenv from "dotenv";
+// Evaluate dotenv before Master/Worker import ServerEnv's static configuration.
+import "dotenv/config";
 import { startMaster } from "./Master";
 import { startWorker } from "./Worker";
-
-// Load environment variables before we read configuration values derived from them.
-dotenv.config();
 
 // Main entry point of the application
 async function main() {

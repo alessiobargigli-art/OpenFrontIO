@@ -103,6 +103,96 @@ body.in-game {
   overflow: hidden;
 }
 
+/* Decorative homepage artwork: no controls or animation above the menu. */
+#hex-grid.peace-theme {
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 5% 15%, #325a5359, transparent 50%),
+    radial-gradient(ellipse at 95% 80%, #6b416359, transparent 50%),
+    linear-gradient(135deg, #152534, #171d32 55%, #252039);
+}
+
+.peace-theme #background-layer {
+  inset: 0;
+  opacity: 0.36;
+  filter: none;
+  background-size: 720px 560px;
+  background-repeat: repeat;
+}
+
+.peace-theme::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(10, 22, 40, 0.6),
+    transparent 72%
+  );
+}
+
+.peace-theme .background-logo {
+  display: none;
+}
+
+.peace-slogans {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.peace-slogan {
+  position: absolute;
+  max-width: 7em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 3.2vw, 3.5rem);
+  line-height: 1.05;
+  text-wrap: balance;
+  opacity: 0.44;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, 0.25);
+}
+
+.peace-slogan-love {
+  top: 20%;
+  left: 3%;
+  color: #ffb7ce;
+  transform: rotate(-12deg);
+}
+
+.peace-slogan-together {
+  right: 3%;
+  bottom: 16%;
+  color: #a8e7cb;
+  transform: rotate(10deg);
+}
+
+body.in-game #hex-grid.peace-theme {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .peace-theme #background-layer {
+    background-size: 440px auto;
+  }
+
+  .peace-slogan {
+    font-size: clamp(1.35rem, 4vw, 2rem);
+    opacity: 0.3;
+  }
+
+  .peace-slogan-love {
+    top: 12%;
+    left: 4%;
+  }
+
+  .peace-slogan-together {
+    right: 4%;
+    bottom: 5%;
+  }
+}
+
 /* An inline page (store, settings, leaderboard, ...) is a modal rendered in
    the content area: lock the document so it scrolls inside the modal, and
    stack body children in a column so the content area gets the height left

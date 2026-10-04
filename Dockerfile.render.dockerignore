@@ -1,0 +1,14 @@
+node_modules
+static
+out
+.git
+.env*
+coverage*
+tests
+# Replay development tools import test fixtures excluded from this image.
+scripts/replay
+proprietary
+map-generator
+helm-charts
+.vscode
+.idea

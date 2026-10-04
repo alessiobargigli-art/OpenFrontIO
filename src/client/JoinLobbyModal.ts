@@ -11,6 +11,7 @@ import {
 } from "../client/Utils";
 import { assetUrl } from "../core/AssetUrls";
 import { EventBus } from "../core/EventBus";
+import { godModeEnabled } from "../core/GodMode";
 import {
   ClientInfo,
   GAME_ID_REGEX,
@@ -247,6 +248,8 @@ export class JoinLobbyModal extends BaseModal {
                         class="mt-6"
                         .gameMode=${this.gameConfig?.gameMode ?? GameMode.FFA}
                         .clients=${this.players}
+                        .godMode=${this.gameConfig !== null &&
+                        godModeEnabled(this.gameConfig)}
                         .lobbyCreatorClientID=${hostClientID}
                         .currentClientID=${this.currentClientID}
                         .anonymizeNames=${this.gameConfig?.anonymizeNames ??

@@ -997,7 +997,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/CityIconWhite.svg")}
+                        src=${assetUrl("images/flower-power/city.png")}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1013,7 +1013,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/ShieldIconWhite.svg")}
+                        src=${assetUrl("images/flower-power/defensePost.png")}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1029,7 +1029,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/PortIcon.svg")}
+                        src=${assetUrl("images/flower-power/port.png")}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1045,7 +1045,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/FactoryIconWhite.svg")}
+                        src=${assetUrl("images/flower-power/factory.png")}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1061,7 +1061,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/BattleshipIconWhite.svg")}
+                        src=${assetUrl("sprites/warship.png")}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1077,7 +1077,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/MissileSiloIconWhite.svg")}
+                        src=${assetUrl("images/flower-power/missileSilo.png")}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1093,7 +1093,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/SamLauncherIconWhite.svg")}
+                        src=${assetUrl("images/flower-power/samLauncher.png")}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1109,7 +1109,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/NukeIconWhite.svg")}
+                        src=${assetUrl("sprites/atombomb.png")}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1125,7 +1125,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/MushroomCloudIconWhite.svg")}
+                        src=${assetUrl("sprites/hydrogenbomb.png")}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1141,7 +1141,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/MIRVIcon.svg")}
+                        src=${assetUrl("sprites/mirv2.png")}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>

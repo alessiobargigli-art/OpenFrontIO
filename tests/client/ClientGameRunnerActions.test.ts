@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { EventBus } from "../../src/core/EventBus";
-import { UnitType } from "../../src/core/game/Game";
+import { GameType, UnitType } from "../../src/core/game/Game";
 import { TileRef } from "../../src/core/game/GameMap";
 
 // ClientGameRunner's left-click handling: spawn intents during the spawn
@@ -77,6 +77,7 @@ import { MouseUpEvent } from "../../src/client/InputHandler";
 import {
   SendAttackIntentEvent,
   SendBoatAttackIntentEvent,
+  SendGodLaunchEvent,
   SendSpawnIntentEvent,
 } from "../../src/client/Transport";
 
@@ -90,6 +91,7 @@ function makeRunner(overrides: {
   playerByClientID?: () => unknown;
   actions?: Record<string, unknown>;
   boatDistSquared?: number;
+  godLobby?: { spectator: boolean; enabled?: boolean; replay?: boolean };
 }) {
   const eventBus = new EventBus();
   const myPlayer = {
@@ -97,7 +99,12 @@ function makeRunner(overrides: {
     troops: () => 100,
   };
   const gameView = {
-    config: () => ({ isRandomSpawn: () => false, isReplay: () => false }),
+    config: () => ({
+      isRandomSpawn: () => false,
+      isReplay: () => overrides.godLobby?.replay ?? false,
+      isIntentionalSpectator: () => false,
+    }),
+    units: () => [],
     inSpawnPhase: () => overrides.inSpawnPhase ?? false,
     myPlayer: () => null,
     isValidCoord: () => true,
@@ -110,7 +117,23 @@ function makeRunner(overrides: {
   };
   const input = { initialize: vi.fn(), destroy: vi.fn() };
   const runner = new ClientGameRunner(
-    { gameID: "game1234" } as LobbyConfig,
+    {
+      gameID: "game1234",
+      ...(overrides.godLobby
+        ? {
+            gameStartInfo: {
+              gameID: "game1234",
+              config: {
+                gameType: GameType.Private,
+                godMode: overrides.godLobby.enabled,
+              },
+              players: overrides.godLobby.spectator
+                ? []
+                : [{ clientID: "c0000001" }],
+            },
+          }
+        : {}),
+    } as LobbyConfig,
     "c0000001",
     eventBus,
     {
@@ -145,6 +168,53 @@ beforeEach(() => {
 
 afterEach(() => {
   vi.restoreAllMocks();
+});
+
+describe("automatic God spectator toolbar", () => {
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => {
+    document.querySelectorAll("god-toolbar").forEach((el) => el.remove());
+    vi.clearAllTimers();
+    vi.useRealTimers();
+  });
+
+  it("shows registered controls for a spectator even without a local spectator flag or grant", async () => {
+    const { runner, eventBus } = makeRunner({ godLobby: { spectator: true } });
+    const toolbar = document.querySelector(
+      "god-toolbar",
+    ) as import("../../src/client/components/GodToolbar").GodToolbar;
+    expect(toolbar).not.toBeNull();
+    await toolbar.updateComplete;
+    const button = toolbar.querySelector<HTMLButtonElement>(
+      `[data-weapon="${UnitType.MIRV}"]`,
+    );
+    expect(button).not.toBeNull();
+    const launches: SendGodLaunchEvent[] = [];
+    const spawns: SendSpawnIntentEvent[] = [];
+    eventBus.on(SendGodLaunchEvent, (e) => launches.push(e));
+    eventBus.on(SendSpawnIntentEvent, (e) => spawns.push(e));
+    button!.click();
+    await toolbar.updateComplete;
+    eventBus.emit(new MouseUpEvent(CLICK.x, CLICK.y));
+    expect(launches).toHaveLength(1);
+    expect(launches[0]).toEqual(new SendGodLaunchEvent(UnitType.MIRV, TILE));
+    expect(spawns).toHaveLength(0);
+    runner.stop();
+    expect(document.querySelector("god-toolbar")).toBeNull();
+  });
+
+  it.each([
+    { spectator: false },
+    { spectator: true, enabled: false },
+    { spectator: true, replay: true },
+  ])(
+    "keeps controls absent for owner, disabled mode and replay (%j)",
+    (godLobby) => {
+      const { runner } = makeRunner({ godLobby });
+      expect(document.querySelector("god-toolbar")).toBeNull();
+      runner.stop();
+    },
+  );
 });
 
 describe("left click", () => {

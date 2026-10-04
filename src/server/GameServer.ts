@@ -20,6 +20,7 @@ import {
   assignTeamsLobbyPreview,
   resolveTeamsList,
 } from "../core/game/TeamAssignment";
+import { isGodSpectator } from "../core/GodMode";
 import {
   ClientID,
   ClientMessage,
@@ -388,6 +389,20 @@ export class GameServer {
     }
 
     switch (stamped.type) {
+      case "god_launch": {
+        const client = this.clients.get(actor.clientID);
+        const start = this.gameStartInfo;
+        if (!this.hasStarted() || !start || this.ended)
+          return finish({ status: 409, error: "game not running" });
+        if (!client?.spectator || !isGodSpectator(start, actor.clientID)) {
+          return finish({
+            status: 403,
+            error: "God spectator permission required",
+          });
+        }
+        if (!this.paused) this.addIntent(stamped);
+        return finish({ status: 200 }, this.paused ? "paused" : undefined);
+      }
       case "kick_player": {
         // Resolve the target to a clientID: an explicit clientID, or an account
         // publicId matched against everyone who ever joined (a superset of the
@@ -422,6 +437,17 @@ export class GameServer {
       }
 
       case "update_game_config": {
+        if (
+          ServerEnv.selfHosted() &&
+          (stamped.config.trusted ||
+            stamped.config.rankedType ||
+            stamped.config.allowedPublicIds?.length)
+        ) {
+          return finish({
+            status: 400,
+            error: "Account-only lobby settings are disabled",
+          });
+        }
         this.updateGameConfig(stamped.config);
         return finish({ status: 200 });
       }

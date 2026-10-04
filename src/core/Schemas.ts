@@ -54,7 +54,10 @@ export type Intent =
   | KickPlayerIntent
   | TogglePauseIntent
   | UpdateGameConfigIntent
-  | ToggleGameStartTimer;
+  | ToggleGameStartTimer
+  | GodLaunchIntent;
+
+export type GodLaunchIntent = z.infer<typeof GodLaunchIntentSchema>;
 
 export type AttackIntent = z.infer<typeof AttackIntentSchema>;
 export type CancelAttackIntent = z.infer<typeof CancelAttackIntentSchema>;
@@ -528,6 +531,8 @@ export const PoolConfigSchema = z
 export type PoolConfig = z.infer<typeof PoolConfigSchema>;
 
 export const GameConfigSchema = z.object({
+  // Missing means enabled for every spectator in a private game.
+  godMode: z.boolean().optional(),
   gameMap: z.enum(GameMapType),
   difficulty: z.enum(Difficulty),
   donateGold: z.boolean(), // Configures donations to humans only
@@ -818,6 +823,12 @@ export const ToggleGameStartTimerIntentSchema = z.object({
   type: z.literal("toggle_game_start_timer"),
 });
 
+export const GodLaunchIntentSchema = z.object({
+  type: z.literal("god_launch"),
+  weapon: z.enum([UnitType.AtomBomb, UnitType.HydrogenBomb, UnitType.MIRV]),
+  tile: zb.uint(),
+});
+
 export const IntentSchema = z.discriminatedUnion("type", [
   AttackIntentSchema,
   CancelAttackIntentSchema,
@@ -844,6 +855,7 @@ export const IntentSchema = z.discriminatedUnion("type", [
   TogglePauseIntentSchema,
   UpdateGameConfigIntentSchema,
   ToggleGameStartTimerIntentSchema,
+  GodLaunchIntentSchema,
 ]);
 
 // StampedIntent = Intent with server-stamped clientID (used in turns and execution)

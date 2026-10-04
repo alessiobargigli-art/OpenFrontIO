@@ -191,9 +191,10 @@ void main() {
 
   vec4 bgColor = mix(borderColor, fillColor, borderMask);
 
-  // Sample icon from atlas (white on transparent)
+  // Sample icon from atlas (colored artwork on transparent)
   // Only show icon detail when zoomed in enough
   float iconAlpha = 0.0;
+  vec3 iconRGB = vec3(1.0);
   if (vZoom > uDotsThreshold) {
     // Clamp UV to this atlas column to prevent bleeding into neighbours
     // when uIconFill shrinks the icon (expanding UV range beyond column).
@@ -201,6 +202,7 @@ void main() {
     float colEnd = (vAtlasIdx + 1.0) / float(ATLAS_COLS);
     vec2 safeUV = vec2(clamp(vAtlasUV.x, colStart, colEnd), clamp(vAtlasUV.y, 0.0, 1.0));
     vec4 iconSample = texture(uAtlas, safeUV);
+    iconRGB = iconSample.rgb;
     // Zero out icon outside the valid UV region (clamped pixels would repeat the edge)
     float inBounds = step(colStart, vAtlasUV.x) * step(vAtlasUV.x, colEnd)
                    * step(0.0, vAtlasUV.y) * step(vAtlasUV.y, 1.0);
@@ -227,6 +229,13 @@ void main() {
       glyphColor =
         fillLum < 0.25 ? uIconColor : darken(fillColor.rgb, uIconDarken);
     }
+  }
+  // Colored Flower Power icons retain their artwork inside the owner-colored
+  // frame. Monochrome icons, affiliation view and construction keep tinting.
+  float iconChroma = max(iconRGB.r, max(iconRGB.g, iconRGB.b))
+                   - min(iconRGB.r, min(iconRGB.g, iconRGB.b));
+  if (uAltView == 0 && vUnderConstruction < 0.5 && iconChroma > 0.02) {
+    glyphColor = iconRGB;
   }
   vec3 finalRGB = mix(bgColor.rgb, glyphColor, iconAlpha);
 

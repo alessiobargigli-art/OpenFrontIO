@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: openfront-alessio
+    runtime: docker
+    plan: free
+    region: frankfurt
+    numInstances: 1
+    dockerfilePath: ./Dockerfile.render
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeployTrigger: "off"
+    envVars:
+      - key: SELF_HOSTED
+        value: "true"
+      - key: GAME_ENV
+        value: prod
+      - key: PORT
+        value: "10000"
+      - key: NUM_WORKERS
+        value: "1"
+      - key: INSTANCE_LETTER
+        value: a
+      - key: LOBBY_COORDINATOR
+        value: "off"

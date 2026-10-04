@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { GOD_PLAYER_ID } from "../GodMode";
 import { PseudoRandom } from "../PseudoRandom";
 import { ClientID } from "../Schemas";
 import {
@@ -1394,7 +1395,8 @@ export class PlayerImpl implements Player {
     spawnTile: TileRef,
     params: UnitParams<T>,
   ): Unit {
-    if (this.mg.config().isUnitDisabled(type)) {
+    const godWeapon = this.id() === GOD_PLAYER_ID;
+    if (!godWeapon && this.mg.config().isUnitDisabled(type)) {
       throw new Error(
         `Attempted to build disabled unit ${type} at tile ${spawnTile} by player ${this.name()}`,
       );
@@ -1412,7 +1414,7 @@ export class PlayerImpl implements Player {
     this._units.push(b);
     this._myUnitsVersion++;
     this.recordUnitConstructed(type);
-    this.removeGold(cost);
+    if (!godWeapon) this.removeGold(cost);
     this.removeTroops("troops" in params ? (params.troops ?? 0) : 0);
     this.mg.addUpdate(b.toUpdate());
     this.mg.addUnit(b);

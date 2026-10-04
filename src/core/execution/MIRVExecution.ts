@@ -9,6 +9,7 @@ import {
   UnitType,
 } from "../game/Game";
 import { TileRef } from "../game/GameMap";
+import { GOD_PLAYER_ID, godLaunchTile } from "../GodMode";
 import { UniversalPathFinding } from "../pathfinding/PathFinder";
 import {
   ParabolaUniversalPathFinder,
@@ -93,7 +94,10 @@ export class MirvExecution implements Execution {
 
   tick(ticks: number): void {
     if (this.nuke === null) {
-      const spawn = this.player.canBuild(UnitType.MIRV, this.dst);
+      const spawn =
+        this.player.id() === GOD_PLAYER_ID
+          ? godLaunchTile(this.mg, this.dst)
+          : this.player.canBuild(UnitType.MIRV, this.dst);
       if (spawn === false) {
         console.warn(`cannot build MIRV`);
         this.active = false;
@@ -104,7 +108,7 @@ export class MirvExecution implements Execution {
         targetTile: this.dst,
         targetPlayer: this.targetPlayer,
       });
-      this.mg.recordMirvLaunch();
+      if (this.player.id() !== GOD_PLAYER_ID) this.mg.recordMirvLaunch();
       this.mg.stats().bombLaunch(this.player, this.targetPlayer, UnitType.MIRV);
 
       // Betrayal on launch — only once the missile has actually spawned, so
@@ -120,7 +124,10 @@ export class MirvExecution implements Execution {
         }
       }
       const x = Math.floor((this.baseX + this.mg.x(this.nuke.tile())) / 2);
-      const y = Math.max(0, this.baseY - 500) + 50;
+      const y = Math.min(
+        this.mg.height() - 1,
+        Math.max(0, this.baseY - 500) + 50,
+      );
       this.separateDst = this.mg.ref(x, y);
 
       this.speed = this.calculateDeterministicSpeed(
@@ -145,13 +152,15 @@ export class MirvExecution implements Execution {
         );
       }
 
-      this.mg.displayIncomingUnit(
-        this.nuke.id(),
-        // TODO TranslateText
-        `⚠️⚠️⚠️ ${this.player.displayName()} - MIRV INBOUND ⚠️⚠️⚠️`,
-        MessageType.MIRV_INBOUND,
-        this.targetPlayer.id(),
-      );
+      if (this.targetPlayer.isPlayer()) {
+        this.mg.displayIncomingUnit(
+          this.nuke.id(),
+          // TODO TranslateText
+          `⚠️⚠️⚠️ ${this.player.displayName()} - MIRV INBOUND ⚠️⚠️⚠️`,
+          MessageType.MIRV_INBOUND,
+          this.targetPlayer.id(),
+        );
+      }
 
       // after sending a nuke set the missilesilo on cooldown
       const silo = this.player
@@ -206,7 +215,10 @@ export class MirvExecution implements Execution {
   private finalizeDestinations(additionalAttempts = 500): void {
     // Re-check target tile ownership at tick 10
     this.stagedTargets = this.stagedTargets.filter(
-      (tile) => tile === this.dst || this.mg.owner(tile) === this.targetPlayer,
+      (tile) =>
+        this.player.id() === GOD_PLAYER_ID ||
+        tile === this.dst ||
+        this.mg.owner(tile) === this.targetPlayer,
     );
 
     // Top-up loop using specified attempt budget if targets were lost or not yet filled
@@ -278,7 +290,10 @@ export class MirvExecution implements Execution {
         continue;
       }
 
-      if (this.mg.owner(tile) !== this.targetPlayer) {
+      if (
+        this.player.id() !== GOD_PLAYER_ID &&
+        this.mg.owner(tile) !== this.targetPlayer
+      ) {
         continue;
       }
 
@@ -314,7 +329,7 @@ export class MirvExecution implements Execution {
   }
 
   activeDuringSpawnPhase(): boolean {
-    return false;
+    return this.player.id() === GOD_PLAYER_ID;
   }
 
   private calculateDeterministicSpeed(

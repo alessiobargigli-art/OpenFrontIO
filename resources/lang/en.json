@@ -1330,6 +1330,8 @@
     "login_steam": "Login with Steam",
     "menu": "Menu",
     "news": "News",
+    "peace_message": "Peace & love",
+    "peace_slogan": "Make love, not war",
     "play": "Play",
     "privacy_policy": "Privacy Policy",
     "quit": "Exit game",
@@ -2437,5 +2439,14 @@
     "you_won": "You Won!",
     "your_team": "Your team won!",
     "youtube_tutorial": "Need some help?"
+  },
+  "god_mode": {
+    "enabled": "God spectator mode",
+    "title": "God Spectator",
+    "atom": "Atomic bomb",
+    "hydrogen": "Hydrogen bomb",
+    "mirv": "MIRV",
+    "mirv_busy": "MIRV active: wait until all warheads finish",
+    "target_hint": "Select a weapon, then click or tap the map. Select it again to cancel."
   }
 }

@@ -26,17 +26,17 @@ import {
 import { UIState } from "../../UIState";
 import { renderNumber } from "../../Utils";
 import { GameView } from "../../view";
-const warshipIcon = assetUrl("images/BattleshipIconWhite.svg");
-const cityIcon = assetUrl("images/CityIconWhite.svg");
-const factoryIcon = assetUrl("images/FactoryIconWhite.svg");
+const warshipIcon = assetUrl("sprites/warship.png");
+const cityIcon = assetUrl("images/flower-power/city.png");
+const factoryIcon = assetUrl("images/flower-power/factory.png");
 const goldCoinIcon = assetUrl("images/GoldCoinIcon.svg");
-const mirvIcon = assetUrl("images/MIRVIcon.svg");
-const missileSiloIcon = assetUrl("images/MissileSiloIconWhite.svg");
-const hydrogenBombIcon = assetUrl("images/MushroomCloudIconWhite.svg");
-const atomBombIcon = assetUrl("images/NukeIconWhite.svg");
-const portIcon = assetUrl("images/PortIcon.svg");
-const samlauncherIcon = assetUrl("images/SamLauncherIconWhite.svg");
-const shieldIcon = assetUrl("images/ShieldIconWhite.svg");
+const mirvIcon = assetUrl("sprites/mirv2.png");
+const missileSiloIcon = assetUrl("images/flower-power/missileSilo.png");
+const hydrogenBombIcon = assetUrl("sprites/hydrogenbomb.png");
+const atomBombIcon = assetUrl("sprites/atombomb.png");
+const portIcon = assetUrl("images/flower-power/port.png");
+const samlauncherIcon = assetUrl("images/flower-power/samLauncher.png");
+const shieldIcon = assetUrl("images/flower-power/defensePost.png");
 
 export interface BuildItemDisplay {
   unitType: PlayerBuildableUnitType;

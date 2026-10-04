@@ -55,6 +55,13 @@ export class ClientEnv {
     picked: string | null;
   } | null = null;
 
+  static selfHosted(): boolean {
+    return (
+      typeof window !== "undefined" &&
+      window.BOOTSTRAP_CONFIG?.selfHosted === true
+    );
+  }
+
   /** Test-only. */
   static reset(): void {
     ClientEnv.values = null;

@@ -59,6 +59,28 @@ function handlers() {
 const RECORD = { info: { gameID: "abcd1234" } } as unknown as GameRecord;
 
 describe("processInBrowser", () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  test("passes the owning page URL to the inline replay worker", async () => {
+    vi.stubGlobal("window", {
+      location: { href: "https://my-game.onrender.com/replay/abcd" },
+      BOOTSTRAP_CONFIG: { cdnBase: "" },
+    });
+    const worker = new FakeWorker();
+    const processing = processInBrowser(
+      RECORD,
+      handlers().h,
+      async () => worker as unknown as Worker,
+    );
+    await vi.waitFor(() => expect(worker.posted).toHaveLength(1));
+    expect(worker.posted[0]).toEqual({
+      record: RECORD,
+      cdnBase: "",
+      assetBaseUrl: "https://my-game.onrender.com/replay/abcd",
+    });
+    processing.cancel();
+  });
+
   test("passes the record on, then relays what the worker says", async () => {
     const worker = new FakeWorker();
     const { h, calls } = handlers();

@@ -87,33 +87,34 @@ export async function startWorker() {
   const lobbyService = new WorkerLobbyService(server, wss, gm, log);
   const singleplayerPresence = new SingleplayerPresence();
 
-  setTimeout(
-    () => {
-      // The ranked loop follows the deployment-active flag the master pushes
-      // to this worker (OPE-469): a draining, standby or fenced server keeps
-      // the games it has but stops offering new matches.
-      startRankedCheckinLoops({
-        gm,
-        playlist,
-        workerId,
-        log,
-        isActive: () => lobbyService.isDeploymentActive(),
-      });
-    },
-    1000 + Math.random() * 2000,
-  );
+  if (!ServerEnv.selfHosted())
+    setTimeout(
+      () => {
+        // The ranked loop follows the deployment-active flag the master pushes
+        // to this worker (OPE-469): a draining, standby or fenced server keeps
+        // the games it has but stops offering new matches.
+        startRankedCheckinLoops({
+          gm,
+          playlist,
+          workerId,
+          log,
+          isActive: () => lobbyService.isDeploymentActive(),
+        });
+      },
+      1000 + Math.random() * 2000,
+    );
 
   if (ServerEnv.otelEnabled()) {
     initWorkerMetrics(gm, lobbyService, singleplayerPresence);
   }
 
   const privilegeRefresher = new PrivilegeRefresher(
-    ServerEnv.jwtIssuer() + "/cosmetics.json",
+    ServerEnv.selfHosted() ? "" : ServerEnv.jwtIssuer() + "/cosmetics.json",
     ServerEnv.apiKey(),
-    ServerEnv.jwtIssuer() + "/reserved_clan_tags",
+    ServerEnv.selfHosted() ? "" : ServerEnv.jwtIssuer() + "/reserved_clan_tags",
     log,
   );
-  privilegeRefresher.start();
+  if (!ServerEnv.selfHosted()) privilegeRefresher.start();
 
   // Ahead of everything that can reject a request — the worker-prefix check
   // below and the rate limiter further down — so that a 404 or a 429 still
@@ -186,6 +187,14 @@ export async function startWorker() {
       return res.status(400).json({ error: z.prettifyError(parsed.error) });
     }
     const gc = parsed.data;
+    if (
+      ServerEnv.selfHosted() &&
+      (gc?.trusted || gc?.rankedType || gc?.allowedPublicIds?.length)
+    ) {
+      return res
+        .status(400)
+        .json({ error: "Account-only lobby settings are disabled" });
+    }
     // Public games are scheduled by the master over IPC, never created here.
     if (gc?.gameType === GameType.Public) {
       return res
@@ -270,6 +279,10 @@ export async function startWorker() {
   // Creator-only; listing requires an active subscription (checked fresh
   // against the API) and is limited to one listed lobby per creator.
   app.post("/api/game/:id/listing", async (req, res) => {
+    if (ServerEnv.selfHosted())
+      return res
+        .status(404)
+        .json({ error: "This account feature is disabled" });
     const authHeader = req.headers.authorization;
     if (!authHeader?.startsWith("Bearer ")) {
       return res.status(400).json({ error: "Authorization header required" });
@@ -388,6 +401,10 @@ export async function startWorker() {
   // host's token) to put it in the public Special queue, right behind the
   // lobby that's counting down.
   app.post("/api/game/:id/queue", async (req, res) => {
+    if (ServerEnv.selfHosted())
+      return res
+        .status(404)
+        .json({ error: "This account feature is disabled" });
     const authHeader = req.headers.authorization;
     if (!authHeader?.startsWith("Bearer ")) {
       return res.status(400).json({ error: "Authorization header required" });
@@ -615,7 +632,7 @@ export async function startWorker() {
         // API. Runs before the rejoin attempt so a pre-start identity
         // change on refresh is screened before it is applied.
         let verifySkipped = false;
-        if (ServerEnv.env() !== GameEnv.Dev) {
+        if (!ServerEnv.selfHosted() && ServerEnv.env() !== GameEnv.Dev) {
           const game = gm.game(clientMsg.gameID);
           const stored = game?.storedIdentity(persistentId) ?? null;
           const isReadmit = game?.wasAdmitted(persistentId) ?? false;
@@ -719,7 +736,7 @@ export async function startWorker() {
 
         const allowedFlares = ServerEnv.allowedFlares();
         if (claims === null) {
-          if (allowedFlares !== undefined) {
+          if (!ServerEnv.selfHosted() && allowedFlares !== undefined) {
             log.warn("Unauthorized: Anonymous user attempted to join game");
             ws.close(CloseCode.Unauthorized, CloseReason.LoginRequired);
             return;
@@ -772,6 +789,7 @@ export async function startWorker() {
         }
         const resolvedClanTag = resolution.tag;
 
+        if (ServerEnv.selfHosted()) clientMsg.cosmetics = {};
         const cosmeticResult = privilegeRefresher
           .get()
           .isAllowed(flares ?? [], clientMsg.cosmetics ?? {});

@@ -1,6 +1,7 @@
 import { html, LitElement, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { assetUrl } from "../../core/AssetUrls";
+import { ClientEnv } from "../ClientEnv";
 import { steamSDK } from "../SteamSDK";
 import { translateText } from "../Utils";
 import { steamStoreUrl } from "./SteamWishlist";
@@ -37,7 +38,11 @@ export class SteamWishlistButton extends LitElement {
         class="group flex w-full items-center justify-center gap-3 rounded border-t border-l border-[#424c5c] bg-[linear-gradient(130deg,#3b4351,#282e39)] px-3 py-2 shadow-md transition-shadow hover:shadow-lg xl:justify-start"
       >
         <img
-          src=${assetUrl("images/OpenFrontLogo.svg")}
+          src=${assetUrl(
+            ClientEnv.selfHosted()
+              ? "images/ForkLogo.svg"
+              : "images/OpenFrontLogo.svg",
+          )}
           alt=""
           class="hidden h-7 w-auto max-w-[120px] shrink-0 object-contain pointer-events-none min-[1600px]:block"
           draggable="false"

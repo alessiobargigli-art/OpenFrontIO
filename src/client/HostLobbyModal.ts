@@ -96,6 +96,7 @@ export class HostLobbyModal extends BaseModal {
   @state() private overtimeStartMinutes: number | undefined = undefined;
   @state() private anonymizeNames: boolean = false;
   @state() private nameReveals: string[] = [];
+  @state() private godMode = true;
   @state() private whitelistEnabled: boolean = false;
   @state() private allowedPublicIds: string = "";
   @state() private waterNukes: boolean = false;
@@ -631,6 +632,7 @@ export class HostLobbyModal extends BaseModal {
                   disabledKey: "common.disabled",
                 },
                 toggles: [
+                  { labelKey: "god_mode.enabled", checked: this.godMode },
                   {
                     labelKey: "game_settings.instant_build",
                     checked: this.instantBuild,
@@ -736,6 +738,7 @@ export class HostLobbyModal extends BaseModal {
               ? undefined
               : (clientID: string) => this.toggleNameReveal(clientID)}
             .nameReveals=${this.nameReveals}
+            .godMode=${this.godMode}
             .anonymizeNames=${this.anonymizeNames}
           ></lobby-player-view>
         </div>
@@ -996,6 +999,7 @@ export class HostLobbyModal extends BaseModal {
     this.overtimeStartMinutes = undefined;
     this.anonymizeNames = false;
     this.nameReveals = [];
+    this.godMode = true;
     this.whitelistEnabled = false;
     this.allowedPublicIds = "";
     this.waterNukes = false;
@@ -1073,6 +1077,10 @@ export class HostLobbyModal extends BaseModal {
     const { labelKey, checked } = customEvent.detail;
 
     switch (labelKey) {
+      case "god_mode.enabled":
+        this.godMode = checked;
+        this.putGameConfig();
+        break;
       case "game_settings.instant_build":
         this.handleInstantBuildChange(checked);
         break;
@@ -1593,6 +1601,7 @@ export class HostLobbyModal extends BaseModal {
               : { enabled: false },
             anonymizeNames: this.anonymizeNames,
             nameReveals: this.nameReveals,
+            godMode: this.godMode,
             allowedPublicIds: this.whitelistEnabled
               ? (this.parseAllowedPublicIds() ?? [])
               : [],

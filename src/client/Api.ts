@@ -2288,6 +2288,7 @@ export async function fetchTribeLeaderboard(): Promise<
 }
 
 export async function getNews(): Promise<NewsItem[]> {
+  if (ClientEnv.selfHosted()) return [];
   try {
     const res = await fetch(`${getApiBase()}/news.json`, {
       headers: { Accept: "application/json" },
@@ -2318,6 +2319,7 @@ async function getServedConfig<T>(
   schema: z.ZodType<T>,
   fallback: unknown,
 ): Promise<T> {
+  if (ClientEnv.selfHosted()) return schema.parse(fallback);
   try {
     const res = await fetch(`${getApiBase()}/${name}`, {
       headers: { Accept: "application/json" },

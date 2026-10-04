@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit";
+import { LitElement, html, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { repeat } from "lit/directives/repeat.js";
 import {
@@ -41,6 +41,7 @@ export class LobbyTeamView extends LitElement {
   @property({ type: Function }) onKickPlayer?: (clientID: string) => void;
   @property({ type: Function }) onToggleNameReveal?: (clientID: string) => void;
   @property({ type: Array }) nameReveals: string[] = [];
+  @property({ type: Boolean }) godMode = false;
   @property({ type: Boolean }) anonymizeNames: boolean = false;
   @property({ type: Number }) nationCount: number = 0;
   @property({ type: Boolean }) isPublicGame: boolean = false;
@@ -173,6 +174,11 @@ export class LobbyTeamView extends LitElement {
                   >${this.getClientDisplayName(client)}
                   ${this.renderVerifiedBadge(client)}</span
                 >
+                ${this.godMode
+                  ? html` <span class="ml-2 text-xs text-amber-300">
+                      ${translateText("god_mode.title")}
+                    </span>`
+                  : nothing}
               </span>`,
           )}
         </div>

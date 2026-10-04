@@ -6,6 +6,7 @@ import {
   SharedWaterCache,
   SharedWaterCacheSnapshot,
 } from "../execution/nation/SharedWaterCache";
+import { GOD_PLAYER_ID } from "../GodMode";
 import { AbstractGraph } from "../pathfinding/algorithms/AbstractGraph";
 import { WaterPathFinder } from "../pathfinding/PathFinder";
 import { PathFinder } from "../pathfinding/types";
@@ -721,7 +722,9 @@ export class GameImpl implements Game {
       this.nextPlayerID,
       playerInfo,
       this.config().startManpower(playerInfo),
-      team ?? this.maybeAssignTeam(playerInfo),
+      playerInfo.id === GOD_PLAYER_ID
+        ? null
+        : (team ?? this.maybeAssignTeam(playerInfo)),
     );
     this._playersBySmallID.push(player);
     this.nextPlayerID++;
