@@ -96,18 +96,20 @@ un CDN per aggirare l'errore.
 ## Spectator God
 
 La modalità **God spectator mode** è attiva per impostazione predefinita nelle
-lobby private. Prima di avviare, il creatore può selezionare **Join as spectator
-(God mode)** e autorizzare altri spettatori nella lista della lobby. I permessi
-vengono fissati all'avvio; la modalità resta esclusa da partite pubbliche e ranked.
+lobby private. Il creatore la può attivare o disattivare nelle impostazioni
+prima dell'avvio e rimane un giocatore normale. Quando è attiva, tutti gli
+spettatori ricevono automaticamente God mode, anche entrando a partita iniziata.
+Non servono autorizzazioni individuali. La modalità resta esclusa da partite
+pubbliche e ranked.
 
-Gli spettatori autorizzati vedono la barra **God Spectator**: scegliere una bomba
+Gli spettatori vedono subito la barra **God Spectator**: scegliere una bomba
 atomica, all'idrogeno o un MIRV e cliccare/toccare il bersaglio sulla mappa.
 Selezionare di nuovo l'arma per annullare. Non servono territorio, oro o silos.
 I colpi sono sincronizzati e causano gli effetti reali del gioco; lo spettatore
 non conquista territori e non partecipa alla vittoria.
 
 È consentito **un solo MIRV God alla volta per partita**, condiviso da tutti gli
-spettatori autorizzati: bisogna attendere che tutte le sue testate abbiano
+spettatori: bisogna attendere che tutte le sue testate abbiano
 terminato. Atomiche e bombe all'idrogeno non hanno questo limite. I MIRV dei
 giocatori mantengono le regole ordinarie. I replay riproducono i colpi registrati,
 senza consentire nuovi lanci.

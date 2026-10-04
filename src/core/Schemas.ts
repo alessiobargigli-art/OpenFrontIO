@@ -531,12 +531,8 @@ export const PoolConfigSchema = z
 export type PoolConfig = z.infer<typeof PoolConfigSchema>;
 
 export const GameConfigSchema = z.object({
-  // Missing means enabled for private games. Server pins the permitted IDs at start.
+  // Missing means enabled for every spectator in a private game.
   godMode: z.boolean().optional(),
-  godSpectators: z
-    .array(z.string().regex(/^[A-Za-z0-9]{8,10}$/))
-    .max(200)
-    .optional(),
   gameMap: z.enum(GameMapType),
   difficulty: z.enum(Difficulty),
   donateGold: z.boolean(), // Configures donations to humans only

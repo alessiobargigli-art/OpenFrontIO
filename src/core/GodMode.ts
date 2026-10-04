@@ -6,7 +6,7 @@ import {
   PlayerType,
   UnitType,
 } from "./game/Game";
-import type { GameConfig } from "./Schemas";
+import type { ClientID, GameConfig, GameStartInfo } from "./Schemas";
 
 // generateID() omits O and 0, so this cannot collide with a normal player.
 export const GOD_PLAYER_ID = "GOD00000";
@@ -22,6 +22,18 @@ export function godModeEnabled(config: GameConfig): boolean {
     config.godMode !== false &&
     config.gameType !== GameType.Public &&
     config.rankedType === undefined
+  );
+}
+
+// The frozen player roster also identifies spectators who arrive after start.
+export function isGodSpectator(
+  start: GameStartInfo,
+  clientID: ClientID | undefined,
+): boolean {
+  return (
+    !!clientID &&
+    godModeEnabled(start.config) &&
+    !start.players.some((p) => p.clientID === clientID)
   );
 }
 

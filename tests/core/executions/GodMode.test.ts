@@ -20,7 +20,7 @@ const CAST = "cast0001";
 async function make(config: Partial<GameConfig> = {}) {
   const game = await setup(
     "big_plains",
-    { gameType: GameType.Private, godSpectators: [CAST], ...config },
+    { gameType: GameType.Private, ...config },
     [new PlayerInfo("Victim", PlayerType.Human, "human001", "human001")],
   );
   const victim = game.player("human001");
@@ -72,14 +72,24 @@ describe("God spectator simulation", () => {
     }
   });
 
-  test("ungranted spectators and seated players cannot use God commands", async () => {
-    const { game, launch, ticks } = await make({
-      godSpectators: [CAST, "human001"],
-    });
-    launch(UnitType.AtomBomb, "intrude1");
+  test("seated players cannot use God commands, including the owner", async () => {
+    const { game, launch, ticks } = await make();
     launch(UnitType.AtomBomb, "human001");
     ticks(5);
     expect(game.hasPlayer(GOD_PLAYER_ID)).toBe(false);
+  });
+
+  test("different spectators automatically share God weapons and the MIRV lock", async () => {
+    const { game, launch, ticks } = await make();
+    launch(UnitType.AtomBomb, "watch001");
+    launch(UnitType.HydrogenBomb, "watch002");
+    launch(UnitType.MIRV, "watch001");
+    launch(UnitType.MIRV, "watch002");
+    ticks(4);
+    const god = game.player(GOD_PLAYER_ID);
+    expect(god.units(UnitType.AtomBomb)).toHaveLength(1);
+    expect(god.units(UnitType.HydrogenBomb)).toHaveLength(1);
+    expect(god.units(UnitType.MIRV)).toHaveLength(1);
   });
 
   test("two MIRVs in one turn share a lock through separation and all warheads", async () => {

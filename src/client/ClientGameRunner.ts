@@ -2,7 +2,7 @@ import { Config } from "src/core/configuration/Config";
 import { ClientEnv } from "../client/ClientEnv";
 import { reloadForUpdate, translateText } from "../client/Utils";
 import { EventBus } from "../core/EventBus";
-import { godModeEnabled } from "../core/GodMode";
+import { isGodSpectator } from "../core/GodMode";
 import {
   ClientID,
   GameID,
@@ -73,7 +73,8 @@ import {
 } from "./Transport";
 import { createCanvas } from "./Utils";
 import { WebGLFrameBuilder } from "./WebGLFrameBuilder";
-import { GodToolbar } from "./components/GodToolbar";
+import "./components/GodToolbar";
+import type { GodToolbar } from "./components/GodToolbar";
 import { MapLayerController } from "./controllers/MapLayerController";
 import { createRenderer, GameRenderer } from "./hud/GameRenderer";
 import { goldRateTracker } from "./hud/layers/lib/GoldRateTracker";
@@ -970,11 +971,9 @@ export class ClientGameRunner {
   public start() {
     const config = this.gameView.config();
     if (
-      this.clientID &&
-      config.isIntentionalSpectator() &&
       !config.isReplay() &&
-      godModeEnabled(config.gameConfig()) &&
-      config.gameConfig().godSpectators?.includes(this.clientID)
+      this.lobby.gameStartInfo &&
+      isGodSpectator(this.lobby.gameStartInfo, this.clientID)
     ) {
       this.godToolbar = document.createElement("god-toolbar") as GodToolbar;
       this.godToolbar.game = this.gameView;

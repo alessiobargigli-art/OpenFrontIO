@@ -2443,7 +2443,6 @@
   "god_mode": {
     "enabled": "God spectator mode",
     "title": "God Spectator",
-    "host_spectate": "Join as spectator (God mode)",
     "atom": "Atomic bomb",
     "hydrogen": "Hydrogen bomb",
     "mirv": "MIRV",

@@ -46,7 +46,6 @@ import { fetchCosmetics, InsufficientCurrency } from "./Cosmetics";
 import { crazyGamesSDK } from "./CrazyGamesSDK";
 import { JoinLobbyEvent } from "./Main";
 import { terrainMapFileLoader } from "./TerrainMapFileLoader";
-import { SendSpectateEvent } from "./Transport";
 import {
   getBotsForCompactMap,
   getNationsForCompactMap,
@@ -98,7 +97,6 @@ export class HostLobbyModal extends BaseModal {
   @state() private anonymizeNames: boolean = false;
   @state() private nameReveals: string[] = [];
   @state() private godMode = true;
-  @state() private godSpectators: string[] = [];
   @state() private whitelistEnabled: boolean = false;
   @state() private allowedPublicIds: string = "";
   @state() private waterNukes: boolean = false;
@@ -725,19 +723,6 @@ export class HostLobbyModal extends BaseModal {
             @unit-toggle-changed=${this.handleConfigUnitToggleChanged}
           ></game-config-settings>
 
-          <label class="flex items-center gap-3 mt-6 text-white cursor-pointer">
-            <input
-              type="checkbox"
-              .checked=${this.clients.find(
-                (c) => c.clientID === this.lobbyCreatorClientID,
-              )?.spectator === true}
-              @change=${(e: Event) =>
-                this.eventBus?.emit(
-                  new SendSpectateEvent((e.target as HTMLInputElement).checked),
-                )}
-            />
-            ${translateText("god_mode.host_spectate")}
-          </label>
           <lobby-player-view
             class="mt-10"
             .gameMode=${this.gameMode}
@@ -754,13 +739,6 @@ export class HostLobbyModal extends BaseModal {
               : (clientID: string) => this.toggleNameReveal(clientID)}
             .nameReveals=${this.nameReveals}
             .godMode=${this.godMode}
-            .godSpectators=${this.godSpectators}
-            .onToggleGod=${(clientID: string) => {
-              this.godSpectators = this.godSpectators.includes(clientID)
-                ? this.godSpectators.filter((id) => id !== clientID)
-                : [...this.godSpectators, clientID];
-              this.putGameConfig();
-            }}
             .anonymizeNames=${this.anonymizeNames}
           ></lobby-player-view>
         </div>
@@ -1022,7 +1000,6 @@ export class HostLobbyModal extends BaseModal {
     this.anonymizeNames = false;
     this.nameReveals = [];
     this.godMode = true;
-    this.godSpectators = [];
     this.whitelistEnabled = false;
     this.allowedPublicIds = "";
     this.waterNukes = false;
@@ -1625,7 +1602,6 @@ export class HostLobbyModal extends BaseModal {
             anonymizeNames: this.anonymizeNames,
             nameReveals: this.nameReveals,
             godMode: this.godMode,
-            godSpectators: this.godSpectators,
             allowedPublicIds: this.whitelistEnabled
               ? (this.parseAllowedPublicIds() ?? [])
               : [],

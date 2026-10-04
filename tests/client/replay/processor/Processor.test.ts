@@ -75,7 +75,6 @@ describe("replay processor", () => {
         gameMap: GameMapType.Onion,
         bots: 0,
         nations: "disabled",
-        godSpectators: [caster],
       }),
       players: [victim],
       ticks: 450,

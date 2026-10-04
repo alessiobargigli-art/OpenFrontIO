@@ -20,7 +20,7 @@ import {
   assignTeamsLobbyPreview,
   resolveTeamsList,
 } from "../core/game/TeamAssignment";
-import { godModeEnabled } from "../core/GodMode";
+import { isGodSpectator } from "../core/GodMode";
 import {
   ClientID,
   ClientMessage,
@@ -391,15 +391,10 @@ export class GameServer {
     switch (stamped.type) {
       case "god_launch": {
         const client = this.clients.get(actor.clientID);
-        const config = this.gameStartInfo?.config;
-        if (!this.hasStarted() || !config || this.ended)
+        const start = this.gameStartInfo;
+        if (!this.hasStarted() || !start || this.ended)
           return finish({ status: 409, error: "game not running" });
-        if (
-          !client?.spectator ||
-          !godModeEnabled(config) ||
-          !config.godSpectators?.includes(actor.clientID) ||
-          this.gameStartInfo?.players.some((p) => p.clientID === actor.clientID)
-        ) {
+        if (!client?.spectator || !isGodSpectator(start, actor.clientID)) {
           return finish({
             status: 403,
             error: "God spectator permission required",
@@ -1125,16 +1120,6 @@ export class GameServer {
     // Keep them out of gameStartInfo: its config goes to every client in the
     // start message and into the publicly downloadable game record.
     const config = configWithoutPool(this.gameConfig);
-    config.godSpectators = godModeEnabled(config)
-      ? [
-          ...new Set(
-            [this.lobbyCreatorID, ...(config.godSpectators ?? [])].filter(
-              (id): id is string =>
-                id !== undefined && this.clients.get(id) !== undefined,
-            ),
-          ),
-        ].slice(0, 200)
-      : [];
     delete config.allowedPublicIds;
     delete config.nameRevealPublicIds;
 

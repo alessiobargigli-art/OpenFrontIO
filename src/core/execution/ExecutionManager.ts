@@ -60,7 +60,6 @@ export class Executor {
       const config = this.mg.config().gameConfig();
       return !player &&
         godModeEnabled(config) &&
-        config.godSpectators?.includes(intent.clientID) &&
         Number.isInteger(intent.tile) &&
         intent.tile >= 0 &&
         intent.tile < this.mg.width() * this.mg.height()

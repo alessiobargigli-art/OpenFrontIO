@@ -13,9 +13,6 @@ exports[`GameServer wire transcript > matches the golden transcript for a script
         "gameMapSize": "Normal",
         "gameMode": "Free For All",
         "gameType": "Private",
-        "godSpectators": [
-          "host0000",
-        ],
         "hostCheats": undefined,
         "infiniteGold": false,
         "infiniteTroops": false,
@@ -295,9 +292,6 @@ exports[`GameServer wire transcript > matches the golden transcript for a script
             "gameMapSize": "Normal",
             "gameMode": "Free For All",
             "gameType": "Private",
-            "godSpectators": [
-              "host0000",
-            ],
             "infiniteGold": false,
             "infiniteTroops": false,
             "instantBuild": false,
@@ -689,9 +683,6 @@ exports[`GameServer wire transcript > matches the golden transcript for a script
             "gameMapSize": "Normal",
             "gameMode": "Free For All",
             "gameType": "Private",
-            "godSpectators": [
-              "host0000",
-            ],
             "infiniteGold": false,
             "infiniteTroops": false,
             "instantBuild": false,
@@ -1055,9 +1046,6 @@ exports[`GameServer wire transcript > matches the golden transcript for a script
             "gameMapSize": "Normal",
             "gameMode": "Free For All",
             "gameType": "Private",
-            "godSpectators": [
-              "host0000",
-            ],
             "infiniteGold": false,
             "infiniteTroops": false,
             "instantBuild": false,
@@ -1415,9 +1403,6 @@ exports[`GameServer wire transcript > matches the golden transcript for a script
             "gameMapSize": "Normal",
             "gameMode": "Free For All",
             "gameType": "Private",
-            "godSpectators": [
-              "host0000",
-            ],
             "infiniteGold": false,
             "infiniteTroops": false,
             "instantBuild": false,
@@ -1668,9 +1653,6 @@ exports[`GameServer wire transcript > matches the golden transcript for a script
             "gameMapSize": "Normal",
             "gameMode": "Free For All",
             "gameType": "Private",
-            "godSpectators": [
-              "host0000",
-            ],
             "infiniteGold": false,
             "infiniteTroops": false,
             "instantBuild": false,

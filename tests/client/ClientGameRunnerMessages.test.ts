@@ -121,7 +121,13 @@ function makeLobbyConfig(withStartInfo: boolean): LobbyConfig {
     turnstileToken: null,
     cosmetics: {},
     ...(withStartInfo
-      ? { gameStartInfo: { gameID: "game1234", config: {} } }
+      ? {
+          gameStartInfo: {
+            gameID: "game1234",
+            config: {},
+            players: [{ clientID: "c0000001" }],
+          },
+        }
       : {}),
   } as unknown as LobbyConfig;
 }
