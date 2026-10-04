@@ -248,7 +248,7 @@ export default defineConfig(({ mode }) => {
       cdnBase,
     ),
     backgroundImageUrl: buildAssetUrl(
-      image("images/background.webp"),
+      selfHosted ? "images/PeacePattern.svg" : "images/background.webp",
       assetManifest,
       cdnBase,
     ),

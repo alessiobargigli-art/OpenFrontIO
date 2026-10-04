@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="560" viewBox="0 0 720 560" fill="none">
+  <defs>
+    <g id="peace" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle r="36"/>
+      <path d="M0-36V36M0 0-25.5 25.5M0 0 25.5 25.5"/>
+    </g>
+    <g id="heart" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M0 25C-9 17-29 3-29-12-29-29-7-34 0-19 7-34 29-29 29-12 29 3 9 17 0 25Z"/>
+    </g>
+    <g id="flower" stroke="currentColor" stroke-width="2.5">
+      <ellipse cy="-19" rx="8" ry="13"/>
+      <ellipse cy="-19" rx="8" ry="13" transform="rotate(60)"/>
+      <ellipse cy="-19" rx="8" ry="13" transform="rotate(120)"/>
+      <ellipse cy="-19" rx="8" ry="13" transform="rotate(180)"/>
+      <ellipse cy="-19" rx="8" ry="13" transform="rotate(240)"/>
+      <ellipse cy="-19" rx="8" ry="13" transform="rotate(300)"/>
+      <circle r="7" fill="#152534"/>
+    </g>
+    <g id="dove" stroke="currentColor" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M-41 15-20 6C-25-7-31-24-22-38L-4-13C2-21 9-25 15-19L22-10 34-7 23-1C18 21-4 28-22 19L-42 29-35 18-41 15Z"/>
+      <path d="M-20 6C-8 14 2 13 10 4M35-5 48 3M39-2C39-12 48-12 47-3M44 1C48-7 56-5 51 4"/>
+      <circle cx="15" cy="-12" r="1.5" fill="currentColor" stroke="none"/>
+    </g>
+    <g id="spark" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <path d="M0-9V9M-9 0H9"/>
+    </g>
+  </defs>
+  <use href="#peace" transform="translate(83 77) rotate(-16) scale(1.2)" color="#a8e7cb"/>
+  <use href="#heart" transform="translate(321 59) rotate(14) scale(.75)" color="#ffb7ce"/>
+  <use href="#dove" transform="translate(564 99) rotate(-12) scale(1.1)" color="#d5c1ff"/>
+  <use href="#flower" transform="translate(226 193) rotate(12) scale(.8)" color="#ffe0a3"/>
+  <use href="#peace" transform="translate(451 247) rotate(18) scale(.85)" color="#d5c1ff"/>
+  <use href="#heart" transform="translate(673 222) rotate(-17)" color="#a8e7cb"/>
+  <use href="#dove" transform="translate(81 316) rotate(13) scale(.85)" color="#a8e7cb"/>
+  <use href="#heart" transform="translate(302 370) rotate(-12) scale(1.1)" color="#ffb7ce"/>
+  <use href="#flower" transform="translate(599 388) rotate(-8)" color="#ffe0a3"/>
+  <use href="#peace" transform="translate(144 500) rotate(10) scale(.75)" color="#ffe0a3"/>
+  <use href="#dove" transform="translate(458 488) rotate(8) scale(.7)" color="#ffb7ce"/>
+  <use href="#heart" transform="translate(680 512) rotate(14) scale(.65)" color="#d5c1ff"/>
+  <g color="#a8e7cb" opacity=".5">
+    <use href="#spark" transform="translate(194 56) scale(.7)"/>
+    <use href="#spark" transform="translate(387 161) rotate(15)"/>
+    <use href="#spark" transform="translate(194 338) scale(.7)"/>
+    <use href="#spark" transform="translate(532 317) rotate(15) scale(.7)"/>
+    <use href="#spark" transform="translate(347 506) rotate(15)"/>
+    <circle cx="34" cy="195" r="3" fill="currentColor"/>
+    <circle cx="658" cy="66" r="3" fill="currentColor"/>
+    <circle cx="368" cy="293" r="3" fill="currentColor"/>
+    <circle cx="43" cy="438" r="3" fill="currentColor"/>
+  </g>
+</svg>

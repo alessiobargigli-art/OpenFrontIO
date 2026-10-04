@@ -119,7 +119,9 @@ export async function renderHtmlContent(
       cdnBase,
     ),
     backgroundImageUrl: buildAssetUrl(
-      image("images/background.webp"),
+      ServerEnv.selfHosted()
+        ? "images/PeacePattern.svg"
+        : "images/background.webp",
       assetManifest,
       cdnBase,
     ),
