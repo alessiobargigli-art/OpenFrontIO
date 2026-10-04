@@ -2439,5 +2439,15 @@
     "you_won": "You Won!",
     "your_team": "Your team won!",
     "youtube_tutorial": "Need some help?"
+  },
+  "god_mode": {
+    "enabled": "God spectator mode",
+    "title": "God Spectator",
+    "host_spectate": "Join as spectator (God mode)",
+    "atom": "Atomic bomb",
+    "hydrogen": "Hydrogen bomb",
+    "mirv": "MIRV",
+    "mirv_busy": "MIRV active: wait until all warheads finish",
+    "target_hint": "Select a weapon, then click or tap the map. Select it again to cancel."
   }
 }

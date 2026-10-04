@@ -16,7 +16,14 @@ import {
   processGameRecord,
   ReplayDesyncError,
 } from "../../../../src/client/replay/processor/ReplayProcessor";
-import { Game, GameMapType, GameMode } from "../../../../src/core/game/Game";
+import {
+  Game,
+  GameMapType,
+  GameMode,
+  GameType,
+  UnitType,
+} from "../../../../src/core/game/Game";
+import { GOD_PLAYER_ID } from "../../../../src/core/GodMode";
 import { Player } from "../../../../src/core/Schemas";
 import {
   config,
@@ -57,6 +64,69 @@ async function processWithTruth(
 }
 
 describe("replay processor", () => {
+  test("God spectator weapons archive and replay with matching hashes and ownership", async () => {
+    const caster = "caster01";
+    const victim = human(1);
+    let target = 0;
+    const { record } = await playAndArchive({
+      gameID: "procGOD01",
+      config: config({
+        gameType: GameType.Private,
+        gameMap: GameMapType.Onion,
+        bots: 0,
+        nations: "disabled",
+        godSpectators: [caster],
+      }),
+      players: [victim],
+      ticks: 450,
+      intents: (game, t) => {
+        if (t === 1) {
+          const spawn = spawnOnLand(game, victim.clientID, 1000);
+          if (spawn.type !== "spawn") throw new Error("expected spawn intent");
+          target = spawn.tile;
+          return [spawn];
+        }
+        if (t === 10 || t === 20 || t === 21)
+          return [
+            {
+              type: "god_launch",
+              clientID: caster,
+              weapon: t === 10 ? UnitType.AtomBomb : UnitType.MIRV,
+              tile: target,
+            },
+          ];
+        return [];
+      },
+    });
+    const { result, truth, replay } = await processWithTruth(record);
+    expect(result.totalTicks).toBe(450);
+    expectReplayMatches({ replay, truth, frames: [] });
+    const god = openReader(replay).header.players.find(
+      (p) => p.id === GOD_PLAYER_ID,
+    );
+    expect(god).toBeDefined();
+    const units = truth.flatMap((t) => [...t.units.values()]);
+    expect(
+      units.some(
+        (u) => u.unitType === UnitType.AtomBomb && u.ownerID === god!.smallID,
+      ),
+    ).toBe(true);
+    expect(
+      units.some(
+        (u) =>
+          u.unitType === UnitType.MIRVWarhead && u.ownerID === god!.smallID,
+      ),
+    ).toBe(true);
+    const mirvIDs = new Set(
+      truth.flatMap((t) =>
+        [...t.units.entries()]
+          .filter(([, u]) => u.unitType === UnitType.MIRV)
+          .map(([id]) => id),
+      ),
+    );
+    expect(mirvIDs.size).toBe(1);
+  }, 60_000);
+
   test("FFA with humans, nations and bots: in sync, decodes to the live game", async () => {
     const [a, b] = [
       human(1, {

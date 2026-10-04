@@ -2,6 +2,7 @@ import { Config } from "src/core/configuration/Config";
 import { ClientEnv } from "../client/ClientEnv";
 import { reloadForUpdate, translateText } from "../client/Utils";
 import { EventBus } from "../core/EventBus";
+import { godModeEnabled } from "../core/GodMode";
 import {
   ClientID,
   GameID,
@@ -64,6 +65,7 @@ import {
   SendAttackIntentEvent,
   SendBoatAttackIntentEvent,
   SendBreakAllianceIntentEvent,
+  SendGodLaunchEvent,
   SendHashEvent,
   SendSpawnIntentEvent,
   SendUpgradeStructureIntentEvent,
@@ -71,6 +73,7 @@ import {
 } from "./Transport";
 import { createCanvas } from "./Utils";
 import { WebGLFrameBuilder } from "./WebGLFrameBuilder";
+import { GodToolbar } from "./components/GodToolbar";
 import { MapLayerController } from "./controllers/MapLayerController";
 import { createRenderer, GameRenderer } from "./hud/GameRenderer";
 import { goldRateTracker } from "./hud/layers/lib/GoldRateTracker";
@@ -912,6 +915,7 @@ async function createClientGame(
 }
 
 export class ClientGameRunner {
+  private godToolbar: GodToolbar | null = null;
   private myPlayer: PlayerView | null = null;
   private isActive = false;
 
@@ -964,6 +968,20 @@ export class ClientGameRunner {
   }
 
   public start() {
+    const config = this.gameView.config();
+    if (
+      this.clientID &&
+      config.isIntentionalSpectator() &&
+      !config.isReplay() &&
+      godModeEnabled(config.gameConfig()) &&
+      config.gameConfig().godSpectators?.includes(this.clientID)
+    ) {
+      this.godToolbar = document.createElement("god-toolbar") as GodToolbar;
+      this.godToolbar.game = this.gameView;
+      this.godToolbar.onLaunch = (weapon, tile) =>
+        this.eventBus.emit(new SendGodLaunchEvent(weapon, tile));
+      document.body.append(this.godToolbar);
+    }
     this.soundManager.playBackgroundMusic();
     console.log("starting client game");
 
@@ -1186,6 +1204,8 @@ export class ClientGameRunner {
   }
 
   public stop() {
+    this.godToolbar?.remove();
+    this.godToolbar = null;
     this.soundManager.dispose();
     this.graphicsListenerAbort?.abort();
     // Detach the input handler's window/canvas listeners and its EventBus
@@ -1225,6 +1245,7 @@ export class ClientGameRunner {
     }
     console.log(`clicked cell ${cell}`);
     const tile = this.gameView.ref(cell.x, cell.y);
+    if (this.godToolbar?.consumeTarget(tile)) return;
     if (
       this.gameView.isLand(tile) &&
       !this.gameView.hasOwner(tile) &&

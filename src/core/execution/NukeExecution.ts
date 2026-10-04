@@ -13,6 +13,7 @@ import {
   UnitType,
 } from "../game/Game";
 import { TileRef } from "../game/GameMap";
+import { GOD_PLAYER_ID } from "../GodMode";
 import { UniversalPathFinding } from "../pathfinding/PathFinder";
 import { ParabolaUniversalPathFinder } from "../pathfinding/PathFinder.Parabola";
 import { PathStatus } from "../pathfinding/types";
@@ -198,7 +199,10 @@ export class NukeExecution implements Execution {
 
   tick(ticks: number): void {
     if (this.nuke === null) {
-      const spawn = this.player.canBuild(this.nukeType, this.dst);
+      const spawn =
+        this.player.id() === GOD_PLAYER_ID
+          ? (this.src ?? this.dst)
+          : this.player.canBuild(this.nukeType, this.dst);
       if (spawn === false) {
         console.warn(`cannot build Nuke`);
         this.active = false;
@@ -311,6 +315,10 @@ export class NukeExecution implements Execution {
 
   public getNuke(): Unit | null {
     return this.nuke;
+  }
+
+  public weaponType(): NukeType {
+    return this.nukeType;
   }
 
   /**
@@ -543,7 +551,7 @@ export class NukeExecution implements Execution {
   }
 
   activeDuringSpawnPhase(): boolean {
-    return false;
+    return this.player.id() === GOD_PLAYER_ID;
   }
 
   // tilesToDestroyCache is not stored: it is filled and read within the

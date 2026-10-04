@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit";
+import { LitElement, html, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { repeat } from "lit/directives/repeat.js";
 import {
@@ -41,6 +41,9 @@ export class LobbyTeamView extends LitElement {
   @property({ type: Function }) onKickPlayer?: (clientID: string) => void;
   @property({ type: Function }) onToggleNameReveal?: (clientID: string) => void;
   @property({ type: Array }) nameReveals: string[] = [];
+  @property({ type: Boolean }) godMode = false;
+  @property({ type: Array }) godSpectators: string[] = [];
+  @property({ type: Function }) onToggleGod?: (clientID: string) => void;
   @property({ type: Boolean }) anonymizeNames: boolean = false;
   @property({ type: Number }) nationCount: number = 0;
   @property({ type: Boolean }) isPublicGame: boolean = false;
@@ -173,6 +176,22 @@ export class LobbyTeamView extends LitElement {
                   >${this.getClientDisplayName(client)}
                   ${this.renderVerifiedBadge(client)}</span
                 >
+                ${this.godMode && this.onToggleGod
+                  ? html` <label
+                      class="ml-2 inline-flex items-center gap-1 cursor-pointer text-xs text-amber-300"
+                    >
+                      <input
+                        type="checkbox"
+                        .checked=${client.clientID ===
+                          this.lobbyCreatorClientID ||
+                        this.godSpectators.includes(client.clientID)}
+                        ?disabled=${client.clientID ===
+                        this.lobbyCreatorClientID}
+                        @change=${() => this.onToggleGod?.(client.clientID)}
+                      />
+                      ${translateText("god_mode.title")}
+                    </label>`
+                  : nothing}
               </span>`,
           )}
         </div>

@@ -176,10 +176,18 @@ export class SocketIngress {
       });
       return;
     }
-    // A spectator is not in the simulation, so none of what it sends can be
-    // game state. Without this, claiming to spectate is a way past the lobby
-    // cap and into the intent stream.
-    if (client.spectator && SPECTATOR_BLOCKED_MESSAGES.has(clientMsg.type)) {
+    // Only explicit God commands and lobby controls reach GameServer, which
+    // checks their permissions. Ordinary player actions remain blocked.
+    const spectatorControl =
+      clientMsg.type === "intent" &&
+      ["god_launch", "update_game_config", "toggle_game_start_timer"].includes(
+        clientMsg.intent.type,
+      );
+    if (
+      client.spectator &&
+      SPECTATOR_BLOCKED_MESSAGES.has(clientMsg.type) &&
+      !spectatorControl
+    ) {
       // Debug-only: a spectator probing blocked types produces one line per
       // message, which dominates warn volume at scale.
       this.log.debug(`dropping ${clientMsg.type} from spectator`, {

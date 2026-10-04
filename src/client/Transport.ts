@@ -16,6 +16,7 @@ import {
   UnitType,
 } from "../core/game/Game";
 import { TileRef } from "../core/game/GameMap";
+import { GodWeapon } from "../core/GodMode";
 import {
   AllPlayersStats,
   ClientHashMessage,
@@ -212,6 +213,13 @@ export class SendKickPlayerIntentEvent implements GameEvent {
   constructor(public readonly target: string) {}
 }
 
+export class SendGodLaunchEvent implements GameEvent {
+  constructor(
+    public readonly weapon: GodWeapon,
+    public readonly tile: number,
+  ) {}
+}
+
 export class SendUpdateGameConfigIntentEvent implements GameEvent {
   constructor(public readonly config: Partial<GameConfig>) {}
 }
@@ -365,6 +373,9 @@ export class Transport {
         spectator: e.spectator,
       } satisfies ClientSpectateMessage);
     });
+    this.subscribe(SendGodLaunchEvent, (e) =>
+      this.sendIntent({ type: "god_launch", weapon: e.weapon, tile: e.tile }),
+    );
   }
 
   private subscribe<T extends GameEvent>(

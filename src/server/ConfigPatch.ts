@@ -9,6 +9,8 @@ import { GameConfig } from "../core/Schemas";
 
 // Copied whenever the patch carries them.
 const COPIED_KEYS = [
+  "godMode",
+  "godSpectators",
   "gameMap",
   "gameMapSize",
   "difficulty",

@@ -1,4 +1,5 @@
 import { Execution, Game } from "../game/Game";
+import { godModeEnabled } from "../GodMode";
 import { PseudoRandom } from "../PseudoRandom";
 import { ClientID, GameID, StampedIntent, Turn } from "../Schemas";
 import { simpleHash } from "../Util";
@@ -15,6 +16,7 @@ import { DonateTroopsExecution } from "./DonateTroopExecution";
 import { EmbargoAllExecution } from "./EmbargoAllExecution";
 import { EmbargoExecution } from "./EmbargoExecution";
 import { EmojiExecution } from "./EmojiExecution";
+import { GodLaunchExecution } from "./GodLaunchExecution";
 import { MarkDisconnectedExecution } from "./MarkDisconnectedExecution";
 import { MoveWarshipExecution } from "./MoveWarshipExecution";
 import { NationExecution } from "./NationExecution";
@@ -54,6 +56,17 @@ export class Executor {
 
   createExec(intent: StampedIntent): Execution {
     const player = this.mg.playerByClientID(intent.clientID);
+    if (intent.type === "god_launch") {
+      const config = this.mg.config().gameConfig();
+      return !player &&
+        godModeEnabled(config) &&
+        config.godSpectators?.includes(intent.clientID) &&
+        Number.isInteger(intent.tile) &&
+        intent.tile >= 0 &&
+        intent.tile < this.mg.width() * this.mg.height()
+        ? new GodLaunchExecution(intent.weapon, intent.tile)
+        : new NoOpExecution();
+    }
     if (!player) {
       console.warn(`player with clientID ${intent.clientID} not found`);
       return new NoOpExecution();
