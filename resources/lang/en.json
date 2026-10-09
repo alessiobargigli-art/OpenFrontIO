@@ -2451,5 +2451,14 @@
     "you_won": "You Won!",
     "your_team": "Your team won!",
     "youtube_tutorial": "Need some help?"
+  },
+  "lobby_name": {
+    "label": "Your name in this lobby",
+    "save": "Change name",
+    "saving": "Saving…",
+    "hint": "Players and spectators can change their name before the game starts.",
+    "saved": "Name updated for everyone in the lobby.",
+    "started": "The game is starting. Your name can no longer be changed.",
+    "retry": "No response received. Please try again."
   }
 }

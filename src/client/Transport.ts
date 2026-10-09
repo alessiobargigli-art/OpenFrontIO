@@ -228,6 +228,17 @@ export class SendToggleGameStartTimer implements GameEvent {
   constructor() {}
 }
 
+export class SendLobbyRenameEvent implements GameEvent {
+  constructor(public readonly username: string) {}
+}
+
+export class LobbyRenameResultEvent implements GameEvent {
+  constructor(
+    public readonly accepted: boolean,
+    public readonly username: string,
+  ) {}
+}
+
 // Switch between playing and watching from the lobby screen.
 export class SendSpectateEvent implements GameEvent {
   constructor(public readonly spectator: boolean) {}
@@ -366,6 +377,9 @@ export class Transport {
     this.subscribe(SendToggleGameStartTimer, (e) =>
       this.onSendToggleGameStartTimer(e),
     );
+    this.subscribe(SendLobbyRenameEvent, (e) => {
+      this.sendMsg({ type: "lobby_rename", username: e.username });
+    });
     this.subscribe(SendSpectateEvent, (e) => {
       this.lobbyConfig.spectator = e.spectator;
       this.sendMsg({
@@ -502,6 +516,20 @@ export class Transport {
         );
         if (msg.type === "redirect") {
           this.handlePoolRedirect(msg.gameID);
+          return;
+        }
+        if (msg.type === "lobby_rename") {
+          if (msg.accepted) {
+            if (msg.username !== this.lobbyConfig.playerName) {
+              // A custom name cannot inherit a verified-account badge on rejoin.
+              delete this.lobbyConfig.cosmetics.verified;
+            }
+            this.lobbyConfig.playerName = msg.username;
+            this.lobbyConfig.playerClanTag = msg.clanTag;
+          }
+          this.eventBus.emit(
+            new LobbyRenameResultEvent(msg.accepted, msg.username),
+          );
           return;
         }
         if (msg.type === "start") {

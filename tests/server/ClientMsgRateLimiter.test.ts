@@ -40,6 +40,14 @@ describe("ClientMsgRateLimiter", () => {
     });
   });
 
+  it("limits lobby renames per sender because each one broadcasts to the lobby", () => {
+    const limiter = new ClientMsgRateLimiter();
+    for (let i = 0; i < 10; i++)
+      expect(limiter.check(CLIENT_A, "lobby_rename", SMALL)).toBe("ok");
+    expect(limiter.check(CLIENT_A, "lobby_rename", SMALL)).toBe("limit");
+    expect(limiter.check(CLIENT_B, "lobby_rename", SMALL)).toBe("ok");
+  });
+
   describe("non-intent messages", () => {
     it("does not rate-limit non-intent messages", () => {
       const limiter = new ClientMsgRateLimiter();

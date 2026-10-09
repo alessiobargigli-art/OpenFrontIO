@@ -35,6 +35,7 @@ import { BaseModal } from "./components/BaseModal";
 import "./components/CopyButton";
 import { GameStartAlertController } from "./components/GameStartAlertController";
 import "./components/LobbyConfigItem";
+import "./components/LobbyNameEditor";
 import "./components/LobbyPlayerView";
 import { inviteFriendsButton } from "./components/ui/InviteFriendsButton";
 import { DEFAULT_TITLE_CLASS, modalHeader } from "./components/ui/ModalHeader";
@@ -241,6 +242,13 @@ export class JoinLobbyModal extends BaseModal {
                 </div>
               `
             : html`
+                <lobby-name-editor
+                  .lobbyID=${this.currentLobbyId}
+                  .eventBus=${this.eventBus}
+                  .client=${this.players.find(
+                    (p) => p.clientID === this.currentClientID,
+                  )}
+                ></lobby-name-editor>
                 ${this.gameConfig ? this.renderGameConfig() : html``}
                 ${this.players.length > 0
                   ? html`

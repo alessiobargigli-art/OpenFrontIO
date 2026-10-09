@@ -37,6 +37,7 @@ import "./components/InputCard";
 import "./components/InsufficientCurrencyDialog";
 import "./components/ListLobbyDialog";
 import { ListLobbyOptions } from "./components/ListLobbyDialog";
+import "./components/LobbyNameEditor";
 import "./components/LobbyPlayerView";
 import "./components/PlutoniumIcon";
 import "./components/ToggleInputCard";
@@ -723,6 +724,13 @@ export class HostLobbyModal extends BaseModal {
             @unit-toggle-changed=${this.handleConfigUnitToggleChanged}
           ></game-config-settings>
 
+          <lobby-name-editor
+            .lobbyID=${this.lobbyId}
+            .eventBus=${this.eventBus}
+            .client=${this.clients.find(
+              (c) => c.clientID === this.lobbyCreatorClientID,
+            )}
+          ></lobby-name-editor>
           <lobby-player-view
             class="mt-10"
             .gameMode=${this.gameMode}
