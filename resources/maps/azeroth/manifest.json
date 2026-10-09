@@ -1,0 +1,1839 @@
+{
+  "additionalNations": [
+    {
+      "name": "Atal'ai"
+    },
+    {
+      "name": "Bloodscalp"
+    },
+    {
+      "name": "Skullsplitter"
+    },
+    {
+      "name": "Shatterspear"
+    },
+    {
+      "name": "Witherbark"
+    },
+    {
+      "name": "Vilebranch"
+    },
+    {
+      "name": "Mossflayer"
+    },
+    {
+      "name": "Smolderthorn"
+    },
+    {
+      "name": "Firetree"
+    },
+    {
+      "name": "Shadowtooth"
+    },
+    {
+      "name": "Winterax"
+    },
+    {
+      "name": "Icetusk"
+    },
+    {
+      "name": "Snowfang"
+    },
+    {
+      "name": "Frost Trolls"
+    },
+    {
+      "name": "Dark Trolls"
+    },
+    {
+      "name": "Sand Trolls"
+    },
+    {
+      "name": "Forest Trolls"
+    },
+    {
+      "name": "Jungle Trolls"
+    },
+    {
+      "name": "Rastari"
+    },
+    {
+      "name": "Zanchuli"
+    },
+    {
+      "name": "Razzashi"
+    },
+    {
+      "name": "Shadowpine"
+    },
+    {
+      "name": "Shadowglen"
+    },
+    {
+      "name": "Hakkari"
+    },
+    {
+      "name": "Zulian"
+    },
+    {
+      "name": "Nazmani"
+    },
+    {
+      "name": "Farraki"
+    },
+    {
+      "name": "Shattered Hand Clan"
+    },
+    {
+      "name": "Bonechewer Clan"
+    },
+    {
+      "name": "Thunderlord Clan"
+    },
+    {
+      "name": "Burning Blade Clan"
+    },
+    {
+      "name": "Stormreaver Clan"
+    },
+    {
+      "name": "Lightning's Blade Clan"
+    },
+    {
+      "name": "Whiteclaw Clan"
+    },
+    {
+      "name": "Redwalker Clan"
+    },
+    {
+      "name": "Bladewind Clan"
+    },
+    {
+      "name": "Flowerpicker Clan"
+    },
+    {
+      "name": "Black Tooth Grin Clan"
+    },
+    {
+      "name": "Mok'Nathal"
+    },
+    {
+      "name": "Fel Horde"
+    },
+    {
+      "name": "Iron Horde"
+    },
+    {
+      "name": "Shadow Council"
+    },
+    {
+      "name": "Kor'kron"
+    },
+    {
+      "name": "Shattered Hand"
+    },
+    {
+      "name": "Grimtotem"
+    },
+    {
+      "name": "Runetotem"
+    },
+    {
+      "name": "Dawnstrider"
+    },
+    {
+      "name": "Skychaser"
+    },
+    {
+      "name": "Ragetotem"
+    },
+    {
+      "name": "Wildmane"
+    },
+    {
+      "name": "Winterhoof"
+    },
+    {
+      "name": "Thunderhorn"
+    },
+    {
+      "name": "Stonehoof"
+    },
+    {
+      "name": "Mistrunner"
+    },
+    {
+      "name": "Cloudsong"
+    },
+    {
+      "name": "Stonespire"
+    },
+    {
+      "name": "Rivermane"
+    },
+    {
+      "name": "Skyhorn"
+    },
+    {
+      "name": "Bloodtotem"
+    },
+    {
+      "name": "Feltotem"
+    },
+    {
+      "name": "Taunka"
+    },
+    {
+      "name": "Icemist"
+    },
+    {
+      "name": "Taunka'le"
+    },
+    {
+      "name": "Gelkis"
+    },
+    {
+      "name": "Kolkar"
+    },
+    {
+      "name": "Galak"
+    },
+    {
+      "name": "Maraudine"
+    },
+    {
+      "name": "Nokhud"
+    },
+    {
+      "name": "Shikaar"
+    },
+    {
+      "name": "Ohn'ir"
+    },
+    {
+      "name": "Teerai"
+    },
+    {
+      "name": "Kaighan"
+    },
+    {
+      "name": "Timbermaw"
+    },
+    {
+      "name": "Blackwood"
+    },
+    {
+      "name": "Deadwood"
+    },
+    {
+      "name": "Foulweald"
+    },
+    {
+      "name": "Thistlefur"
+    },
+    {
+      "name": "Stillpine"
+    },
+    {
+      "name": "Bristlelimb"
+    },
+    {
+      "name": "Redpine"
+    },
+    {
+      "name": "Barkskin"
+    },
+    {
+      "name": "Grizzleweald"
+    },
+    {
+      "name": "Rageclaw"
+    },
+    {
+      "name": "Longclaw"
+    },
+    {
+      "name": "Winterpelt"
+    },
+    {
+      "name": "Frostpaw"
+    },
+    {
+      "name": "Redfang"
+    },
+    {
+      "name": "Bristleback"
+    },
+    {
+      "name": "Razormane"
+    },
+    {
+      "name": "Death's Head"
+    },
+    {
+      "name": "Briarback"
+    },
+    {
+      "name": "Riverpaw"
+    },
+    {
+      "name": "Mosshide"
+    },
+    {
+      "name": "Mudsnout"
+    },
+    {
+      "name": "Blackpaw"
+    },
+    {
+      "name": "Woodpaw"
+    },
+    {
+      "name": "Brackenhide"
+    },
+    {
+      "name": "Rotskin"
+    },
+    {
+      "name": "Bluegill"
+    },
+    {
+      "name": "Greengill"
+    },
+    {
+      "name": "Rockpool"
+    },
+    {
+      "name": "Saltspittle"
+    },
+    {
+      "name": "Saltscale"
+    },
+    {
+      "name": "Saltspray"
+    },
+    {
+      "name": "Marshfin"
+    },
+    {
+      "name": "Mudfin"
+    },
+    {
+      "name": "Grimscale"
+    },
+    {
+      "name": "Wildfin"
+    },
+    {
+      "name": "Winterfin"
+    },
+    {
+      "name": "Blindlight"
+    },
+    {
+      "name": "Coldlight"
+    },
+    {
+      "name": "Finblade"
+    },
+    {
+      "name": "Gorlocs"
+    },
+    {
+      "name": "Oracles"
+    },
+    {
+      "name": "Boulderfist"
+    },
+    {
+      "name": "Crushridge"
+    },
+    {
+      "name": "Dunemaul"
+    },
+    {
+      "name": "Dreadmaul"
+    },
+    {
+      "name": "Mosh'Ogg"
+    },
+    {
+      "name": "Mo'grosh"
+    },
+    {
+      "name": "Firegut"
+    },
+    {
+      "name": "Bloodmaul"
+    },
+    {
+      "name": "Spirestone"
+    },
+    {
+      "name": "Warmaul"
+    },
+    {
+      "name": "Bladespire"
+    },
+    {
+      "name": "Bash'ir"
+    },
+    {
+      "name": "Gorian Empire"
+    },
+    {
+      "name": "Highmaul"
+    },
+    {
+      "name": "Gordok"
+    },
+    {
+      "name": "Ango'rosh"
+    },
+    {
+      "name": "Boulder'mok"
+    },
+    {
+      "name": "Daggermaw"
+    },
+    {
+      "name": "Stonemaul Ogres"
+    },
+    {
+      "name": "Bloodscale"
+    },
+    {
+      "name": "Darkcrest"
+    },
+    {
+      "name": "Coilfang"
+    },
+    {
+      "name": "Slitherblade"
+    },
+    {
+      "name": "Spitelash"
+    },
+    {
+      "name": "Hatecrest"
+    },
+    {
+      "name": "Wrathscale"
+    },
+    {
+      "name": "Wrathtail"
+    },
+    {
+      "name": "Stormscale"
+    },
+    {
+      "name": "Naz'jar"
+    },
+    {
+      "name": "Azshari"
+    },
+    {
+      "name": "Sargerei"
+    },
+    {
+      "name": "Qiraji"
+    },
+    {
+      "name": "Silithid"
+    },
+    {
+      "name": "Aqir"
+    },
+    {
+      "name": "Nerubians"
+    },
+    {
+      "name": "Mantid"
+    },
+    {
+      "name": "N'raqi"
+    },
+    {
+      "name": "Set'thik"
+    },
+    {
+      "name": "Kor'thik"
+    },
+    {
+      "name": "Zan'thik"
+    },
+    {
+      "name": "Sik'thik"
+    },
+    {
+      "name": "Ik'thik"
+    },
+    {
+      "name": "Wildhammer Clan"
+    },
+    {
+      "name": "Frostborn"
+    },
+    {
+      "name": "Explorer's League"
+    },
+    {
+      "name": "Gnomeregan Exiles"
+    },
+    {
+      "name": "Mechagnomes"
+    },
+    {
+      "name": "Scarlet Crusade"
+    },
+    {
+      "name": "Scarlet Brotherhood"
+    },
+    {
+      "name": "Syndicate"
+    },
+    {
+      "name": "Ravenholdt"
+    },
+    {
+      "name": "Kul Tiras"
+    },
+    {
+      "name": "Dalaran"
+    },
+    {
+      "name": "Kirin Tor"
+    },
+    {
+      "name": "Stromgarde"
+    },
+    {
+      "name": "Alterac"
+    },
+    {
+      "name": "Silver Hand"
+    },
+    {
+      "name": "Argent Dawn"
+    },
+    {
+      "name": "Silverwing Sentinels"
+    },
+    {
+      "name": "Theramore"
+    },
+    {
+      "name": "Stormwind Guard"
+    },
+    {
+      "name": "7th Legion"
+    },
+    {
+      "name": "Stormwind Army"
+    },
+    {
+      "name": "Guardians of Tirisfal"
+    },
+    {
+      "name": "Gilneas Liberation Front"
+    },
+    {
+      "name": "Southsea Freebooters"
+    },
+    {
+      "name": "Bloodsail Buccaneers"
+    },
+    {
+      "name": "Blackwater Raiders"
+    },
+    {
+      "name": "Northsea Freebooters"
+    },
+    {
+      "name": "Irontide Raiders"
+    },
+    {
+      "name": "Ashvane Company"
+    },
+    {
+      "name": "Fogsail Freebooters"
+    },
+    {
+      "name": "Quel'dorei"
+    },
+    {
+      "name": "Sin'dorei"
+    },
+    {
+      "name": "Kaldorei"
+    },
+    {
+      "name": "Shal'dorei"
+    },
+    {
+      "name": "Ren'dorei"
+    },
+    {
+      "name": "Shen'dralar"
+    },
+    {
+      "name": "Highborne"
+    },
+    {
+      "name": "Sunreavers"
+    },
+    {
+      "name": "Silvermoon City"
+    },
+    {
+      "name": "Moon Guard"
+    },
+    {
+      "name": "Duskwatch"
+    },
+    {
+      "name": "Fal'dorei"
+    },
+    {
+      "name": "Blue Dragonflight"
+    },
+    {
+      "name": "Red Dragonflight"
+    },
+    {
+      "name": "Green Dragonflight"
+    },
+    {
+      "name": "Bronze Dragonflight"
+    },
+    {
+      "name": "Black Dragonflight"
+    },
+    {
+      "name": "Infinite Dragonflight"
+    },
+    {
+      "name": "Netherwing"
+    },
+    {
+      "name": "Chromatic Dragonflight"
+    },
+    {
+      "name": "Twilight Dragonflight"
+    },
+    {
+      "name": "Dracthyr"
+    },
+    {
+      "name": "Dark Talons"
+    },
+    {
+      "name": "Primalists"
+    },
+    {
+      "name": "Djaradin"
+    },
+    {
+      "name": "Sundered Flame"
+    },
+    {
+      "name": "Flame Druids"
+    },
+    {
+      "name": "Kurenai"
+    },
+    {
+      "name": "Thrallmar"
+    },
+    {
+      "name": "Cenarion Expedition"
+    },
+    {
+      "name": "Sha'tar"
+    },
+    {
+      "name": "Scryers"
+    },
+    {
+      "name": "Aldor"
+    },
+    {
+      "name": "Ethereum"
+    },
+    {
+      "name": "Protectorate"
+    },
+    {
+      "name": "Ashtongue Deathsworn"
+    },
+    {
+      "name": "Broken"
+    },
+    {
+      "name": "Lost Ones"
+    },
+    {
+      "name": "Terokk's Chosen"
+    },
+    {
+      "name": "Skettis"
+    },
+    {
+      "name": "Sethekk"
+    },
+    {
+      "name": "Skyreach"
+    },
+    {
+      "name": "Order of the Awakened"
+    },
+    {
+      "name": "Saberstalkers"
+    },
+    {
+      "name": "Sha'tari Skyguard"
+    },
+    {
+      "name": "Botani"
+    },
+    {
+      "name": "Everbloom"
+    },
+    {
+      "name": "Huojin"
+    },
+    {
+      "name": "August Celestials"
+    },
+    {
+      "name": "Lorewalkers"
+    },
+    {
+      "name": "Black Prince"
+    },
+    {
+      "name": "Shao-Tien"
+    },
+    {
+      "name": "Dojani"
+    },
+    {
+      "name": "Harthak"
+    },
+    {
+      "name": "Riverblade"
+    },
+    {
+      "name": "Krasari"
+    },
+    {
+      "name": "Pearlfin"
+    },
+    {
+      "name": "Jinyu"
+    },
+    {
+      "name": "Hozen"
+    },
+    {
+      "name": "Yaungol"
+    },
+    {
+      "name": "Ordon"
+    },
+    {
+      "name": "Bataari"
+    },
+    {
+      "name": "Osul"
+    },
+    {
+      "name": "Nayeli"
+    },
+    {
+      "name": "Sra'thik"
+    },
+    {
+      "name": "Sha-Touched"
+    },
+    {
+      "name": "Shan'ze"
+    },
+    {
+      "name": "Gurthan"
+    },
+    {
+      "name": "Korune"
+    },
+    {
+      "name": "Rajani"
+    },
+    {
+      "name": "Tortollan Seekers"
+    },
+    {
+      "name": "Sethrak"
+    },
+    {
+      "name": "Faithless"
+    },
+    {
+      "name": "Devoted"
+    },
+    {
+      "name": "Vulpera"
+    },
+    {
+      "name": "Unshackled"
+    },
+    {
+      "name": "Gilgoblins"
+    },
+    {
+      "name": "Ankoan"
+    },
+    {
+      "name": "Hydraxian Waterlords"
+    },
+    {
+      "name": "Orsis"
+    },
+    {
+      "name": "Neferset"
+    },
+    {
+      "name": "Wastewander"
+    },
+    {
+      "name": "Drogbar"
+    },
+    {
+      "name": "Understone"
+    },
+    {
+      "name": "Stonedark"
+    },
+    {
+      "name": "Skrog"
+    },
+    {
+      "name": "Vrykul"
+    },
+    {
+      "name": "Kvaldir"
+    },
+    {
+      "name": "Nightmare Satyrs"
+    },
+    {
+      "name": "Jadefire"
+    },
+    {
+      "name": "Wildspawn"
+    },
+    {
+      "name": "Bleakheart"
+    },
+    {
+      "name": "Legashi"
+    },
+    {
+      "name": "Ascended"
+    },
+    {
+      "name": "Forsworn"
+    },
+    {
+      "name": "House of the Chosen"
+    },
+    {
+      "name": "House of Constructs"
+    },
+    {
+      "name": "House of Eyes"
+    },
+    {
+      "name": "House of Plagues"
+    },
+    {
+      "name": "House of Rituals"
+    },
+    {
+      "name": "Undying Army"
+    },
+    {
+      "name": "Night Court"
+    },
+    {
+      "name": "Wild Hunt"
+    },
+    {
+      "name": "Court of Harvesters"
+    },
+    {
+      "name": "Stone Legion"
+    },
+    {
+      "name": "Avowed"
+    },
+    {
+      "name": "Cartel Ta"
+    },
+    {
+      "name": "Cartel So"
+    },
+    {
+      "name": "Cartel Ba"
+    },
+    {
+      "name": "Cartel Al"
+    },
+    {
+      "name": "Brokers"
+    },
+    {
+      "name": "Dredgers"
+    },
+    {
+      "name": "Maldraxxi"
+    },
+    {
+      "name": "Mawguard"
+    },
+    {
+      "name": "Archivists' Codex"
+    },
+    {
+      "name": "Automa"
+    },
+    {
+      "name": "Hallowfall Lamplighters"
+    },
+    {
+      "name": "Arathi"
+    },
+    {
+      "name": "Stormriders"
+    },
+    {
+      "name": "Unbound"
+    },
+    {
+      "name": "Machine Speakers"
+    },
+    {
+      "name": "Order of Night"
+    },
+    {
+      "name": "Flame's Radiance"
+    },
+    {
+      "name": "Sureki"
+    },
+    {
+      "name": "Darkfuse Solutions"
+    },
+    {
+      "name": "Blackwater Cartel"
+    },
+    {
+      "name": "Venture Co."
+    },
+    {
+      "name": "Gallagio Loyalty Rewards Club"
+    },
+    {
+      "name": "Gallagio Goons"
+    },
+    {
+      "name": "Manaforge Omega"
+    },
+    {
+      "name": "Shadowguard"
+    },
+    {
+      "name": "Ethereals"
+    },
+    {
+      "name": "Haranir"
+    },
+    {
+      "name": "Shul'ka"
+    },
+    {
+      "name": "Lightbloom"
+    },
+    {
+      "name": "Rutaani"
+    },
+    {
+      "name": "Voidguard"
+    },
+    {
+      "name": "Void Elves"
+    },
+    {
+      "name": "Darkfallen"
+    },
+    {
+      "name": "San'layn"
+    }
+  ],
+  "categories": ["new", "fictional"],
+  "custom_tribes": [
+    "Atal'ai",
+    "Bloodscalp",
+    "Skullsplitter",
+    "Shatterspear",
+    "Witherbark",
+    "Vilebranch",
+    "Mossflayer",
+    "Smolderthorn",
+    "Firetree",
+    "Shadowtooth",
+    "Winterax",
+    "Icetusk",
+    "Snowfang",
+    "Frost Trolls",
+    "Dark Trolls",
+    "Sand Trolls",
+    "Forest Trolls",
+    "Jungle Trolls",
+    "Rastari",
+    "Zanchuli",
+    "Razzashi",
+    "Shadowpine",
+    "Shadowglen",
+    "Hakkari",
+    "Zulian",
+    "Nazmani",
+    "Farraki",
+    "Shattered Hand Clan",
+    "Bonechewer Clan",
+    "Thunderlord Clan",
+    "Burning Blade Clan",
+    "Stormreaver Clan",
+    "Lightning's Blade Clan",
+    "Whiteclaw Clan",
+    "Redwalker Clan",
+    "Bladewind Clan",
+    "Flowerpicker Clan",
+    "Black Tooth Grin Clan",
+    "Mok'Nathal",
+    "Fel Horde",
+    "Iron Horde",
+    "Shadow Council",
+    "Kor'kron",
+    "Shattered Hand",
+    "Grimtotem",
+    "Runetotem",
+    "Dawnstrider",
+    "Skychaser",
+    "Ragetotem",
+    "Wildmane",
+    "Winterhoof",
+    "Thunderhorn",
+    "Stonehoof",
+    "Mistrunner",
+    "Cloudsong",
+    "Stonespire",
+    "Rivermane",
+    "Skyhorn",
+    "Bloodtotem",
+    "Feltotem",
+    "Taunka",
+    "Icemist",
+    "Taunka'le",
+    "Gelkis",
+    "Kolkar",
+    "Galak",
+    "Maraudine",
+    "Nokhud",
+    "Shikaar",
+    "Ohn'ir",
+    "Teerai",
+    "Kaighan",
+    "Timbermaw",
+    "Blackwood",
+    "Deadwood",
+    "Foulweald",
+    "Thistlefur",
+    "Stillpine",
+    "Bristlelimb",
+    "Redpine",
+    "Barkskin",
+    "Grizzleweald",
+    "Rageclaw",
+    "Longclaw",
+    "Winterpelt",
+    "Frostpaw",
+    "Redfang",
+    "Bristleback",
+    "Razormane",
+    "Death's Head",
+    "Briarback",
+    "Riverpaw",
+    "Mosshide",
+    "Mudsnout",
+    "Blackpaw",
+    "Woodpaw",
+    "Brackenhide",
+    "Rotskin",
+    "Bluegill",
+    "Greengill",
+    "Rockpool",
+    "Saltspittle",
+    "Saltscale",
+    "Saltspray",
+    "Marshfin",
+    "Mudfin",
+    "Grimscale",
+    "Wildfin",
+    "Winterfin",
+    "Blindlight",
+    "Coldlight",
+    "Finblade",
+    "Gorlocs",
+    "Oracles",
+    "Boulderfist",
+    "Crushridge",
+    "Dunemaul",
+    "Dreadmaul",
+    "Mosh'Ogg",
+    "Mo'grosh",
+    "Firegut",
+    "Bloodmaul",
+    "Spirestone",
+    "Warmaul",
+    "Bladespire",
+    "Bash'ir",
+    "Gorian Empire",
+    "Highmaul",
+    "Gordok",
+    "Ango'rosh",
+    "Boulder'mok",
+    "Daggermaw",
+    "Stonemaul Ogres",
+    "Bloodscale",
+    "Darkcrest",
+    "Coilfang",
+    "Slitherblade",
+    "Spitelash",
+    "Hatecrest",
+    "Wrathscale",
+    "Wrathtail",
+    "Stormscale",
+    "Naz'jar",
+    "Azshari",
+    "Sargerei",
+    "Qiraji",
+    "Silithid",
+    "Aqir",
+    "Nerubians",
+    "Mantid",
+    "N'raqi",
+    "Set'thik",
+    "Kor'thik",
+    "Zan'thik",
+    "Sik'thik",
+    "Ik'thik",
+    "Wildhammer Clan",
+    "Frostborn",
+    "Explorer's League",
+    "Gnomeregan Exiles",
+    "Mechagnomes",
+    "Scarlet Crusade",
+    "Scarlet Brotherhood",
+    "Syndicate",
+    "Ravenholdt",
+    "Kul Tiras",
+    "Dalaran",
+    "Kirin Tor",
+    "Stromgarde",
+    "Alterac",
+    "Silver Hand",
+    "Argent Dawn",
+    "Silverwing Sentinels",
+    "Theramore",
+    "Stormwind Guard",
+    "7th Legion",
+    "Stormwind Army",
+    "Guardians of Tirisfal",
+    "Gilneas Liberation Front",
+    "Southsea Freebooters",
+    "Bloodsail Buccaneers",
+    "Blackwater Raiders",
+    "Northsea Freebooters",
+    "Irontide Raiders",
+    "Ashvane Company",
+    "Fogsail Freebooters",
+    "Quel'dorei",
+    "Sin'dorei",
+    "Kaldorei",
+    "Shal'dorei",
+    "Ren'dorei",
+    "Shen'dralar",
+    "Highborne",
+    "Sunreavers",
+    "Silvermoon City",
+    "Moon Guard",
+    "Duskwatch",
+    "Fal'dorei",
+    "Blue Dragonflight",
+    "Red Dragonflight",
+    "Green Dragonflight",
+    "Bronze Dragonflight",
+    "Black Dragonflight",
+    "Infinite Dragonflight",
+    "Netherwing",
+    "Chromatic Dragonflight",
+    "Twilight Dragonflight",
+    "Dracthyr",
+    "Dark Talons",
+    "Primalists",
+    "Djaradin",
+    "Sundered Flame",
+    "Flame Druids",
+    "Kurenai",
+    "Thrallmar",
+    "Cenarion Expedition",
+    "Sha'tar",
+    "Scryers",
+    "Aldor",
+    "Ethereum",
+    "Protectorate",
+    "Ashtongue Deathsworn",
+    "Broken",
+    "Lost Ones",
+    "Terokk's Chosen",
+    "Skettis",
+    "Sethekk",
+    "Skyreach",
+    "Order of the Awakened",
+    "Saberstalkers",
+    "Sha'tari Skyguard",
+    "Botani",
+    "Everbloom",
+    "Huojin",
+    "August Celestials",
+    "Lorewalkers",
+    "Black Prince",
+    "Shao-Tien",
+    "Dojani",
+    "Harthak",
+    "Riverblade",
+    "Krasari",
+    "Pearlfin",
+    "Jinyu",
+    "Hozen",
+    "Yaungol",
+    "Ordon",
+    "Bataari",
+    "Osul",
+    "Nayeli",
+    "Sra'thik",
+    "Sha-Touched",
+    "Shan'ze",
+    "Gurthan",
+    "Korune",
+    "Rajani",
+    "Tortollan Seekers",
+    "Sethrak",
+    "Faithless",
+    "Devoted",
+    "Vulpera",
+    "Unshackled",
+    "Gilgoblins",
+    "Ankoan",
+    "Hydraxian Waterlords",
+    "Orsis",
+    "Neferset",
+    "Wastewander",
+    "Drogbar",
+    "Understone",
+    "Stonedark",
+    "Skrog",
+    "Vrykul",
+    "Kvaldir",
+    "Nightmare Satyrs",
+    "Jadefire",
+    "Wildspawn",
+    "Bleakheart",
+    "Legashi",
+    "Ascended",
+    "Forsworn",
+    "House of the Chosen",
+    "House of Constructs",
+    "House of Eyes",
+    "House of Plagues",
+    "House of Rituals",
+    "Undying Army",
+    "Night Court",
+    "Wild Hunt",
+    "Court of Harvesters",
+    "Stone Legion",
+    "Avowed",
+    "Cartel Ta",
+    "Cartel So",
+    "Cartel Ba",
+    "Cartel Al",
+    "Brokers",
+    "Dredgers",
+    "Maldraxxi",
+    "Mawguard",
+    "Archivists' Codex",
+    "Automa",
+    "Hallowfall Lamplighters",
+    "Arathi",
+    "Stormriders",
+    "Unbound",
+    "Machine Speakers",
+    "Order of Night",
+    "Flame's Radiance",
+    "Sureki",
+    "Darkfuse Solutions",
+    "Blackwater Cartel",
+    "Venture Co.",
+    "Gallagio Loyalty Rewards Club",
+    "Gallagio Goons",
+    "Manaforge Omega",
+    "Shadowguard",
+    "Ethereals",
+    "Haranir",
+    "Shul'ka",
+    "Lightbloom",
+    "Rutaani",
+    "Voidguard",
+    "Void Elves",
+    "Darkfallen",
+    "San'layn"
+  ],
+  "display_name": "Azeroth · All Expansions",
+  "id": "Azeroth",
+  "layers": [
+    {
+      "alpha": 0.55,
+      "id": "azeroth-biomes",
+      "nukeable": false,
+      "placement": "land"
+    },
+    {
+      "id": "azeroth-atlas",
+      "nukeable": false,
+      "placement": "water"
+    }
+  ],
+  "map": {
+    "height": 1536,
+    "num_land_tiles": 709607,
+    "width": 1920
+  },
+  "map16x": {
+    "height": 384,
+    "num_land_tiles": 41562,
+    "width": 480
+  },
+  "map4x": {
+    "height": 768,
+    "num_land_tiles": 173596,
+    "width": 960
+  },
+  "multiplayer_frequency": 0,
+  "name": "Azeroth",
+  "nations": [
+    {
+      "coordinates": [196, 483],
+      "name": "Army of the Black Moon"
+    },
+    {
+      "coordinates": [302, 463],
+      "name": "Guardians of Hyjal"
+    },
+    {
+      "coordinates": [339, 444],
+      "name": "Winterfall"
+    },
+    {
+      "coordinates": [250, 548],
+      "name": "Warsong Clan"
+    },
+    {
+      "coordinates": [350, 594],
+      "name": "Darkspear"
+    },
+    {
+      "coordinates": [210, 620],
+      "name": "Venture Company"
+    },
+    {
+      "coordinates": [210, 692],
+      "name": "Magram"
+    },
+    {
+      "coordinates": [259, 725],
+      "name": "Bloodhoof"
+    },
+    {
+      "coordinates": [310, 673],
+      "name": "Razorfen"
+    },
+    {
+      "coordinates": [330, 791],
+      "name": "Stonemaul"
+    },
+    {
+      "coordinates": [233, 804],
+      "name": "Gordunni"
+    },
+    {
+      "coordinates": [210, 896],
+      "name": "Cenarion Circle"
+    },
+    {
+      "coordinates": [282, 889],
+      "name": "Ravasaur"
+    },
+    {
+      "coordinates": [344, 896],
+      "name": "Sandfury"
+    },
+    {
+      "coordinates": [262, 954],
+      "name": "Ramkahen"
+    },
+    {
+      "coordinates": [581, 238],
+      "name": "Kalu'ak"
+    },
+    {
+      "coordinates": [613, 193],
+      "name": "Frenzyheart"
+    },
+    {
+      "coordinates": [666, 174],
+      "name": "Scourge"
+    },
+    {
+      "coordinates": [744, 177],
+      "name": "Sons of Hodir"
+    },
+    {
+      "coordinates": [680, 230],
+      "name": "Wyrmrest Accord"
+    },
+    {
+      "coordinates": [634, 227],
+      "name": "Alliance Vanguard"
+    },
+    {
+      "coordinates": [780, 222],
+      "name": "Drakkari"
+    },
+    {
+      "coordinates": [798, 278],
+      "name": "Grizzlemaw"
+    },
+    {
+      "coordinates": [815, 317],
+      "name": "Dragonflayer"
+    },
+    {
+      "coordinates": [719, 225],
+      "name": "Silver Covenant"
+    },
+    {
+      "coordinates": [1232, 442],
+      "name": "Silvermoon Court"
+    },
+    {
+      "coordinates": [1240, 480],
+      "name": "Farstriders"
+    },
+    {
+      "coordinates": [1268, 522],
+      "name": "Amani"
+    },
+    {
+      "coordinates": [1224, 592],
+      "name": "Cult of the Damned"
+    },
+    {
+      "coordinates": [1170, 599],
+      "name": "Argent Crusade"
+    },
+    {
+      "coordinates": [1123, 613],
+      "name": "Forsaken"
+    },
+    {
+      "coordinates": [1115, 652],
+      "name": "Bloodfang"
+    },
+    {
+      "coordinates": [1110, 683],
+      "name": "Gilneans"
+    },
+    {
+      "coordinates": [1162, 658],
+      "name": "Stormpike Guard"
+    },
+    {
+      "coordinates": [1224, 658],
+      "name": "Revantusk"
+    },
+    {
+      "coordinates": [1219, 676],
+      "name": "League of Arathor"
+    },
+    {
+      "coordinates": [1218, 810],
+      "name": "Dragonmaw Clan"
+    },
+    {
+      "coordinates": [1270, 820],
+      "name": "Twilight's Hammer"
+    },
+    {
+      "coordinates": [1232, 870],
+      "name": "Stonesplinter"
+    },
+    {
+      "coordinates": [1170, 848],
+      "name": "Bronzebeard Clan"
+    },
+    {
+      "coordinates": [1150, 862],
+      "name": "Frostmane"
+    },
+    {
+      "coordinates": [1220, 904],
+      "name": "Dark Iron Clan"
+    },
+    {
+      "coordinates": [1182, 915],
+      "name": "Blackrock Clan"
+    },
+    {
+      "coordinates": [1155, 960],
+      "name": "Kingdom of Stormwind"
+    },
+    {
+      "coordinates": [1188, 957],
+      "name": "Goldshire Militia"
+    },
+    {
+      "coordinates": [1152, 999],
+      "name": "Defias Brotherhood"
+    },
+    {
+      "coordinates": [1195, 996],
+      "name": "Night Watch"
+    },
+    {
+      "coordinates": [1228, 982],
+      "name": "Burning Legion"
+    },
+    {
+      "coordinates": [1178, 1041],
+      "name": "Gurubashi"
+    },
+    {
+      "coordinates": [649, 1016],
+      "name": "Shado-Pan"
+    },
+    {
+      "coordinates": [649, 1097],
+      "name": "Klaxxi"
+    },
+    {
+      "coordinates": [699, 1001],
+      "name": "Burlap Trail"
+    },
+    {
+      "coordinates": [715, 1058],
+      "name": "Golden Lotus"
+    },
+    {
+      "coordinates": [710, 1104],
+      "name": "Tillers"
+    },
+    {
+      "coordinates": [784, 1036],
+      "name": "Order of the Cloud Serpent"
+    },
+    {
+      "coordinates": [744, 1138],
+      "name": "Anglers"
+    },
+    {
+      "coordinates": [1083, 198],
+      "name": "Dragonscale Expedition"
+    },
+    {
+      "coordinates": [1085, 257],
+      "name": "Maruuk Centaur"
+    },
+    {
+      "coordinates": [1085, 311],
+      "name": "Iskaara Tuskarr"
+    },
+    {
+      "coordinates": [1159, 245],
+      "name": "Valdrakken Accord"
+    },
+    {
+      "coordinates": [818, 471],
+      "name": "Highmountain"
+    },
+    {
+      "coordinates": [781, 521],
+      "name": "Dreamweavers"
+    },
+    {
+      "coordinates": [870, 516],
+      "name": "Valarjar"
+    },
+    {
+      "coordinates": [831, 556],
+      "name": "Nightfallen"
+    },
+    {
+      "coordinates": [777, 584],
+      "name": "Court of Farondis"
+    },
+    {
+      "coordinates": [826, 608],
+      "name": "Armies of Legionfall"
+    },
+    {
+      "coordinates": [776, 817],
+      "name": "Voldunai"
+    },
+    {
+      "coordinates": [858, 813],
+      "name": "Blood Trolls"
+    },
+    {
+      "coordinates": [828, 876],
+      "name": "Zandalari"
+    },
+    {
+      "coordinates": [997, 702],
+      "name": "Proudmoore Admiralty"
+    },
+    {
+      "coordinates": [908, 742],
+      "name": "Order of Embers"
+    },
+    {
+      "coordinates": [996, 610],
+      "name": "Storm's Wake"
+    },
+    {
+      "coordinates": [486, 1074],
+      "name": "Council of Dornogal"
+    },
+    {
+      "coordinates": [194, 302],
+      "name": "Darnassus Sentinels"
+    },
+    {
+      "coordinates": [78, 420],
+      "name": "Exodar"
+    },
+    {
+      "coordinates": [83, 346],
+      "name": "Sunhawks"
+    },
+    {
+      "coordinates": [1243, 348],
+      "name": "Shattered Sun Offensive"
+    },
+    {
+      "coordinates": [1125, 86],
+      "name": "Obsidian Warders"
+    },
+    {
+      "coordinates": [929, 606],
+      "name": "Rustbolt Resistance"
+    },
+    {
+      "coordinates": [1057, 694],
+      "name": "Baradin's Wardens"
+    },
+    {
+      "coordinates": [665, 768],
+      "name": "Waveblade Ankoan"
+    },
+    {
+      "coordinates": [517, 873],
+      "name": "Bilgewater Cartel"
+    },
+    {
+      "coordinates": [574, 855],
+      "name": "Uncrowned"
+    },
+    {
+      "coordinates": [978, 856],
+      "name": "Earthen Ring"
+    },
+    {
+      "coordinates": [1040, 948],
+      "name": "Darkmoon Faire"
+    },
+    {
+      "coordinates": [556, 945],
+      "name": "Shado-Pan Assault"
+    },
+    {
+      "coordinates": [900, 1132],
+      "name": "Emperor Shaohao"
+    },
+    {
+      "coordinates": [588, 882],
+      "name": "Tushui"
+    },
+    {
+      "coordinates": [1612, 108],
+      "name": "Ogri'la"
+    },
+    {
+      "coordinates": [1729, 106],
+      "name": "Consortium"
+    },
+    {
+      "coordinates": [1577, 141],
+      "name": "Sporeggar"
+    },
+    {
+      "coordinates": [1718, 148],
+      "name": "Honor Hold"
+    },
+    {
+      "coordinates": [1573, 187],
+      "name": "Mag'har"
+    },
+    {
+      "coordinates": [1651, 178],
+      "name": "Auchenai"
+    },
+    {
+      "coordinates": [1722, 198],
+      "name": "Illidari"
+    },
+    {
+      "coordinates": [1573, 356],
+      "name": "Frostwolf Clan"
+    },
+    {
+      "coordinates": [1686, 352],
+      "name": "Laughing Skull Clan"
+    },
+    {
+      "coordinates": [1757, 390],
+      "name": "Bleeding Hollow Clan"
+    },
+    {
+      "coordinates": [1570, 415],
+      "name": "Warsong Outriders"
+    },
+    {
+      "coordinates": [1654, 399],
+      "name": "Sha'tari Defense"
+    },
+    {
+      "coordinates": [1654, 453],
+      "name": "Arakkoa Outcasts"
+    },
+    {
+      "coordinates": [1750, 429],
+      "name": "Shadowmoon Clan"
+    },
+    {
+      "coordinates": [1524, 661],
+      "name": "Army of the Light"
+    },
+    {
+      "coordinates": [1656, 610],
+      "name": "Argussian Reach"
+    },
+    {
+      "coordinates": [1794, 660],
+      "name": "Antoran Guard"
+    },
+    {
+      "coordinates": [1676, 824],
+      "name": "Kyrian"
+    },
+    {
+      "coordinates": [1807, 860],
+      "name": "Necrolords"
+    },
+    {
+      "coordinates": [1704, 1020],
+      "name": "Night Fae"
+    },
+    {
+      "coordinates": [1520, 984],
+      "name": "Venthyr"
+    },
+    {
+      "coordinates": [1515, 831],
+      "name": "Mawsworn"
+    },
+    {
+      "coordinates": [1627, 924],
+      "name": "Attendants"
+    },
+    {
+      "coordinates": [1506, 900],
+      "name": "Death's Advance"
+    },
+    {
+      "coordinates": [1822, 1014],
+      "name": "Enlightened"
+    },
+    {
+      "coordinates": [1583, 1229],
+      "name": "K'aresh Trust"
+    },
+    {
+      "coordinates": [1798, 1229],
+      "name": "Singularity"
+    },
+    {
+      "coordinates": [126, 1414],
+      "name": "Assembly of the Deeps"
+    },
+    {
+      "coordinates": [320, 1414],
+      "name": "Hallowfall Arathi"
+    },
+    {
+      "coordinates": [514, 1414],
+      "name": "Severed Threads"
+    },
+    {
+      "coordinates": [693, 1414],
+      "name": "Steamwheedle Cartel"
+    },
+    {
+      "coordinates": [872, 1414],
+      "name": "Loamm Niffen"
+    },
+    {
+      "coordinates": [1060, 1414],
+      "name": "Therazane"
+    },
+    {
+      "coordinates": [1250, 1414],
+      "name": "Hara'ti"
+    },
+    {
+      "coordinates": [1662, 1442],
+      "name": "Dream Wardens"
+    }
+  ],
+  "themes": ["azeroth"],
+  "translation_key": "map.azeroth"
+}

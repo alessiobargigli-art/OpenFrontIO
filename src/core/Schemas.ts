@@ -108,7 +108,8 @@ export type ClientMessage =
   | ClientLogMessage
   | ClientHashMessage
   | ClientSpectateMessage
-  | ClientReportMessage;
+  | ClientReportMessage
+  | z.infer<typeof ClientLobbyRenameMessageSchema>;
 
 export type ServerMessage =
   | ServerTurnMessage
@@ -120,7 +121,8 @@ export type ServerMessage =
   | ServerLobbyInfoMessage
   | ServerNewLobbyMessage
   | ServerPongMessage
-  | ServerRedirectMessage;
+  | ServerRedirectMessage
+  | z.infer<typeof ServerLobbyRenameMessageSchema>;
 
 export type ServerTurnMessage = z.infer<typeof ServerTurnMessageSchema>;
 export type ServerStartGameMessage = z.infer<
@@ -1112,6 +1114,14 @@ export const ServerRedirectMessageSchema = z.object({
   gameID: ID,
 });
 
+// Reply only to the connection requesting a lobby rename.
+export const ServerLobbyRenameMessageSchema = z.object({
+  type: z.literal("lobby_rename"),
+  accepted: z.boolean(),
+  username: UsernameSchema,
+  clanTag: ClanTagSchema,
+});
+
 export const ServerMessageSchema = zb.discriminatedUnion("type", [
   ServerTurnMessageSchema,
   ServerPrestartMessageSchema,
@@ -1124,6 +1134,7 @@ export const ServerMessageSchema = zb.discriminatedUnion("type", [
   ServerPongMessageSchema,
   // Appended, never inserted: variant order is the wire tag (zbin/README.md).
   ServerRedirectMessageSchema,
+  ServerLobbyRenameMessageSchema,
 ]);
 
 //
@@ -1265,6 +1276,12 @@ export const ClientSpectateMessageSchema = z.object({
   spectator: z.boolean(),
 });
 
+// No target ID: the authenticated connection may rename only itself.
+export const ClientLobbyRenameMessageSchema = z.object({
+  type: z.literal("lobby_rename"),
+  username: UsernameSchema.max(20).refine((name) => name.trim().length >= 3),
+});
+
 export const ClientMessageSchema = zb.discriminatedUnion("type", [
   ClientSendWinnerSchema,
   ClientSendLiveStatsSchema,
@@ -1276,6 +1293,7 @@ export const ClientMessageSchema = zb.discriminatedUnion("type", [
   ClientHashSchema,
   ClientSpectateMessageSchema,
   ClientReportMessageSchema,
+  ClientLobbyRenameMessageSchema,
 ]);
 
 //

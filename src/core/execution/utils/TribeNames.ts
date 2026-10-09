@@ -10,9 +10,12 @@ export interface TribeNameData {
   prefixes: string[];
   suffixes: string[];
   customTribes?: CustomTribe[];
+  /** Exact names to reuse after custom tribes are exhausted. */
+  names?: string[];
 }
 
 interface TribeNameTheme {
+  names?: string[];
   prefixes: string[];
   suffixes: string[];
 }
@@ -41,6 +44,7 @@ export function resolveTribeNameData(mapType?: GameMapType): TribeNameData {
           ? mapInfo.themes
           : ["default"];
 
+      const mergedNames: string[] = [];
       const mergedPrefixes: string[] = [];
       const mergedSuffixes: string[] = [];
 
@@ -52,6 +56,7 @@ export function resolveTribeNameData(mapType?: GameMapType): TribeNameData {
           );
           continue;
         }
+        mergedNames.push(...(theme.names ?? []));
         mergedPrefixes.push(...theme.prefixes);
         mergedSuffixes.push(...theme.suffixes);
       }
@@ -69,6 +74,7 @@ export function resolveTribeNameData(mapType?: GameMapType): TribeNameData {
       }
 
       return {
+        names: mergedNames.length > 0 ? mergedNames : undefined,
         prefixes: mergedPrefixes,
         suffixes: mergedSuffixes,
         customTribes:

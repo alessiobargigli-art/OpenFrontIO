@@ -56,6 +56,7 @@ import {
 import { createPartialGameRecord } from "../core/Util";
 import { createGameWireContext, encodeServerMessage } from "../core/ZbinWire";
 import { archive, finalizeGameRecord } from "./Archive";
+import { censorPlayer } from "./Censor";
 import { Client } from "./Client";
 import { applyGameConfigPatch, hostCheatsEnabled } from "./ConfigPatch";
 import { LiveStatsVote, WinnerVote } from "./Consensus";
@@ -818,6 +819,36 @@ export class GameServer {
       }
       case "hash": {
         client.hashes.set(clientMsg.turnNumber, clientMsg.hash);
+        break;
+      }
+      case "lobby_rename": {
+        const accepted = !this.hasStarted() && !this.ended;
+        if (accepted) {
+          const identity = censorPlayer(
+            clientMsg.username.trim(),
+            client.clanTag,
+          );
+          if (
+            identity.username !== client.username &&
+            client.cosmetics?.verified
+          ) {
+            delete client.cosmetics.verified;
+          }
+          client.username = identity.username;
+          client.clanTag = identity.clanTag;
+        }
+        client.ws.send(
+          encodeServerMessage(
+            {
+              type: "lobby_rename",
+              accepted,
+              username: client.username,
+              clanTag: client.clanTag,
+            },
+            this.zbinCtx,
+          ),
+        );
+        if (accepted) this.broadcastLobbyInfo();
         break;
       }
       case "spectate": {

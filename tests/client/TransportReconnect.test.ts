@@ -43,7 +43,12 @@ vi.mock("../../src/client/Utils", () => ({
 }));
 
 import type { LobbyConfig } from "../../src/client/ClientGameRunner";
-import { SendSpectateEvent, Transport } from "../../src/client/Transport";
+import {
+  LobbyRenameResultEvent,
+  SendLobbyRenameEvent,
+  SendSpectateEvent,
+  Transport,
+} from "../../src/client/Transport";
 
 type Script = (ws: FakeWebSocket) => void;
 
@@ -559,6 +564,62 @@ describe("Transport reconnect policy", () => {
 
       expect(FakeWebSocket.instances).toHaveLength(2);
       expect(showInGameConfirm).not.toHaveBeenCalled();
+    });
+
+    it("sends lobby rename on the existing socket and retains the accepted identity for later joins", async () => {
+      const { transport, eventBus } = makeTransport();
+      const config = (transport as any).lobbyConfig as LobbyConfig;
+      config.cosmetics = { verified: true };
+      config.turnstileToken = null;
+      config.playerClanTag = "SUN";
+      const result = vi.fn();
+      eventBus.on(LobbyRenameResultEvent, result);
+      transport.connect(
+        () => {},
+        () => {},
+      );
+      const ws = FakeWebSocket.instances[0];
+      ws.serverOpen();
+      ws.serverSend({ type: "pong", sentAt: Date.now() });
+      eventBus.emit(new SendLobbyRenameEvent("Flower Child"));
+      expect(decodeClientMessage(ws.sent.slice(-1)[0]!, undefined)).toEqual({
+        type: "lobby_rename",
+        username: "Flower Child",
+      });
+      expect(config.playerName).toBe("tester");
+      ws.serverSend({
+        type: "lobby_rename",
+        accepted: false,
+        username: "tester",
+        clanTag: "SUN",
+      });
+      expect(config.playerName).toBe("tester");
+      expect(config.cosmetics.verified).toBe(true);
+      ws.serverSend({
+        type: "lobby_rename",
+        accepted: true,
+        username: "Flower Child",
+        clanTag: null,
+      });
+      expect(config.playerName).toBe("Flower Child");
+      expect(config.playerClanTag).toBeNull();
+      expect(config.cosmetics.verified).toBeUndefined();
+      expect(result).toHaveBeenLastCalledWith(
+        new LobbyRenameResultEvent(true, "Flower Child"),
+      );
+      await transport.joinGame();
+      expect(
+        decodeClientMessage(ws.sent.slice(-1)[0]!, undefined),
+      ).toMatchObject({
+        type: "join",
+        username: "Flower Child",
+        clanTag: null,
+      });
+      expect(FakeWebSocket.instances).toHaveLength(1);
+      transport.leaveGame();
+      const before = ws.sent.length;
+      eventBus.emit(new SendLobbyRenameEvent("Ignored Name"));
+      expect(ws.sent).toHaveLength(before);
     });
 
     it("preserves FIFO intent ordering across connection and does not send intents before handshake", async () => {

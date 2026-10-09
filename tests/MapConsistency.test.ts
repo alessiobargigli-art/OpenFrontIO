@@ -25,6 +25,7 @@ const allMapKeys = Object.keys(GameMapType) as GameMapName[];
 
 // Maps excluded from the frequency requirement (not part of regular playlists).
 const FREQUENCY_EXEMPTIONS: Set<GameMapName> = new Set([
+  "Azeroth", // Custom fan atlas, available in private/singleplayer games only.
   "GiantWorldMap",
   "Oceania",
   "BaikalNukeWars",
