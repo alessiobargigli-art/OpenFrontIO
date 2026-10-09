@@ -52,7 +52,45 @@ inventate le sue nuove zone o interpretate come contenuti già pubblicati.
   regni minori sono ingranditi per rimanere utilizzabili anche in Compact.
 - I colori regionali e i nomi dei continenti sono due livelli grafici opzionali,
   disattivabili nelle impostazioni. Non influenzano lo stato della simulazione.
-  I nomi delle nazioni provengono dalle località dell'atlante.
+  Le 123 nazioni usano ora tribù e fazioni legate alle località dell'atlante.
+
+## Avversari di Warcraft
+
+Il catalogo editabile è [`scripts/maps/azeroth_factions.json`](../scripts/maps/azeroth_factions.json):
+**449 nomi** di tribù, clan, fazioni e popoli, suddivisi fra 123 nazioni e 326
+nomi per i bot. Include gruppi storici, alleati e antagonisti da Classic alle
+espansioni rappresentate. È un catalogo ampio, non una pretesa di censire ogni
+organizzazione minore di trent'anni di Warcraft.
+
+Le nazioni partono nelle 123 posizioni geografiche già definite: ad esempio
+Darkspear a Orgrimmar, Bloodhoof a Thunder Bluff, Amani a Zul'Aman, Scourge a
+Icecrown, Mag'har a Nagrand nelle Terre Esterne e Hara'ti a Harandar. Queste
+associazioni sono un adattamento per il gameplay, non confini canonici o una
+ricostruzione di una singola epoca. Le etichette dei continenti e la geometria
+non cambiano. Non vengono importati stemmi o artwork Blizzard.
+
+Per i bot, tutti i 326 nomi vengono utilizzati prima di ripetere nomi dal
+medesimo elenco: fino al limite di 400 bot non compaiono nomi generici. Più
+bande possono quindi avere lo stesso nome, ma identità e posizioni distinte.
+Le nazioni extra attingono ai medesimi 326 nomi, coprendo senza nomi inventati
+anche una configurazione da 400 nazioni. I numeri impostati nella lobby
+continuano a decidere quanti avversari compaiono; disabilitando le nazioni non
+compaiono le 123 fazioni regionali. Le alleanze seguono le regole esistenti di
+OpenFront, senza diplomazia predefinita fra Orda e Alleanza.
+
+Il tema `azeroth` in `resources/tribeNameThemes.json` usa il campo opzionale
+`names` per ripetere nomi completi invece di combinare prefissi e suffissi.
+Le altre mappe conservano la sequenza precedente di nomi e numeri casuali.
+
+Riferimenti per i nomi, consultati il 9 ottobre 2026:
+
+- [Warcraft Wiki: tribù](https://warcraft.wiki.gg/wiki/Tribe)
+- [Warcraft Wiki: clan](https://warcraft.wiki.gg/wiki/Clan)
+- [Warcraft Wiki: centauri](https://warcraft.wiki.gg/wiki/Centaur)
+- [Warcraft Wiki: furbolg](https://warcraft.wiki.gg/wiki/Furbolg)
+- [Blizzard: Harandar e Hara'ti](https://news.blizzard.com/en-gb/article/24250355/explore-the-zones-of-midnight-harandar)
+- [Blizzard: cartelli di Undermine](https://worldofwarcraft.blizzard.com/en-us/news/24179386/)
+- [Blizzard: K'aresh](https://worldofwarcraft.blizzard.com/en-us/news/24226730/)
 
 ## Modifica e rigenerazione
 
@@ -67,6 +105,8 @@ ufficiale. Le build Docker/Render usano direttamente gli asset già inclusi:
 python scripts/maps/create_azeroth.py
 cd map-generator
 go run . --maps=azeroth
+cd ..
+npx --no-install prettier --write resources/maps/azeroth/manifest.json src/core/game/Maps.gen.ts resources/lang/en.json
 ```
 
 Sorgenti: `map-generator/assets/maps/azeroth/`.
@@ -81,9 +121,12 @@ validità delle posizioni nominate, conteggio del terreno, Maelstrom navigabile,
 assenza di muri invalicabili e avvio/avanzamento della simulazione con giocatori
 su continenti e reami differenti. I test generali controllano registro, manifest,
 flag e livelli. In tutte e tre le scale, le 45 masse di terra hanno accesso allo
-stesso oceano connesso. La rigenerazione delle sorgenti e dei binari produce gli
-stessi byte; gli asset della build con hash corrispondono ai file runtime.
-La verifica completa di una partita nel browser resta da fare.
+stesso oceano connesso. La rigenerazione delle sorgenti e dei binari, seguita dalla formattazione
+indicata sopra, produce gli stessi byte; gli asset della build con hash corrispondono ai file runtime.
+I test includono inoltre spawn e avanzamento reale di 400 bot in Normal e
+Compact, identità/posizioni riproducibili, catalogo completo ed espansione a 400
+nazioni con soli nomi Warcraft. La verifica completa di una partita nel browser
+resta da fare.
 
 ## Riferimenti geografici
 

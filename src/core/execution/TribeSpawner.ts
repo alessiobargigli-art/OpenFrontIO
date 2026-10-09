@@ -123,7 +123,7 @@ export class TribeSpawner {
   }
 
   private randomTribeName(): string {
-    const { customTribes, prefixes, suffixes } = this.tribeNameData;
+    const { customTribes, prefixes, suffixes, names } = this.tribeNameData;
 
     // Use custom tribes first (random selection, no duplicates until exhausted).
     if (customTribes !== undefined) {
@@ -137,6 +137,12 @@ export class TribeSpawner {
         this.usedCustomTribes.add(chosen.name);
         return chosen.name;
       }
+    }
+
+    // Themes may supply complete names: keep canonical faction names instead
+    // of inventing prefix/suffix combinations when the unique pool runs out.
+    if (names !== undefined && names.length > 0) {
+      return names[this.random.nextInt(0, names.length)];
     }
 
     // Fall back to theme-based prefix + suffix names.

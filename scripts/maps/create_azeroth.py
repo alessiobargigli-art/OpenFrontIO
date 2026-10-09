@@ -10,6 +10,7 @@ No Blizzard artwork is imported, traced pixel-by-pixel, or required at runtime.
 
 import json
 import math
+import subprocess
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont
@@ -218,6 +219,17 @@ def main():
     ld = ImageDraw.Draw(land)
     biome = Image.new("RGBA", (WIDTH, HEIGHT))
     bd = ImageDraw.Draw(biome)
+    factions = json.loads(Path(__file__).with_name("azeroth_factions.json").read_text())
+    nation_names = factions["nation_names"]
+    locations = {name for *_region, spawns in REGIONS for name, *_xy in spawns}
+    if locations != set(nation_names):
+        raise ValueError("Faction assignments must cover every Azeroth spawn exactly")
+    tribe_names = [name for group in factions["tribe_groups"].values() for name in group]
+    all_names = list(nation_names.values()) + tribe_names
+    if len(all_names) != len(set(all_names)) or any(not n.strip() for n in all_names):
+        raise ValueError("Azeroth factions must have unique, nonempty names")
+    if len(all_names) < 400:
+        raise ValueError("The catalog must cover the maximum 400 nations")
     nations = []
     outlines = []
     for title, rect, shape, color, locations in REGIONS:
@@ -229,7 +241,7 @@ def main():
             pos = point(rect, (x, y))
             if not land.getpixel(pos):
                 raise ValueError(f"Spawn {name} lies outside its land silhouette: {pos}")
-            nations.append({"name": name, "coordinates": list(pos)})
+            nations.append({"name": nation_names[name], "coordinates": list(pos)})
 
     terrain = Image.new("RGB", (WIDTH, HEIGHT), (106,106,106))
     # Deterministic integer-only terrain: mostly plains, with gentle ridges.
@@ -306,7 +318,16 @@ def main():
             {"id":"azeroth-atlas", "placement":"water", "nukeable":False},
         ],
         "nations": nations,
+        "additionalNations": [{"name": name} for name in tribe_names],
+        "themes": ["azeroth"],
+        "custom_tribes": tribe_names,
     }
+    themes_path = ROOT / "resources/tribeNameThemes.json"
+    themes = json.loads(themes_path.read_text())
+    themes["azeroth"] = {
+        "prefixes": ["Azeroth"], "suffixes": ["Warband"], "names": tribe_names,
+    }
+    themes_path.write_text(json.dumps(themes,indent=2,ensure_ascii=False)+"\n")
     (DEST / "info.json").write_text(json.dumps(info,indent=2,ensure_ascii=False)+"\n")
     # The labeled contact atlas is documentation only. Runtime uses the real
     # generated binary terrain plus optional layers above, never this preview.
@@ -326,6 +347,11 @@ def main():
         pd.ellipse((x-2,y-2,x+2,y+2),fill="#f7e4b8")
     PREVIEW.parent.mkdir(exist_ok=True)
     preview.convert("RGB").save(PREVIEW, optimize=True)
+    # Match the Go pipeline's JSON formatting when the project's dependencies
+    # are installed; terrain generation itself still needs only Pillow.
+    prettier = ROOT / "node_modules/.bin/prettier"
+    if prettier.exists():
+        subprocess.run([str(prettier), "--write", str(DEST / "info.json"), str(themes_path)], check=True)
     print(f"Created {WIDTH}x{HEIGHT} terrain, 2 optional layers, {len(nations)} named spawns.")
 
 
