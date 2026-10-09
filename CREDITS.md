@@ -109,6 +109,15 @@ Licensed under ODbL
 © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright)  
 Licensed under ODbL
 
+### Azeroth Custom Map
+
+Original terrain, simplified coast geometry, atlas labels and generation code
+created for this fork. Geography and place names are based on World of Warcraft
+by Blizzard Entertainment. This is an unofficial fan atlas; it includes no
+Blizzard textures, logos or official map artwork. See
+[docs/AZEROTH_MAP.md](docs/AZEROTH_MAP.md) for geographic references, expansion
+coverage and the adaptation of other worlds and underground regions.
+
 ## Icons
 
 ### [The Noun Project](https://thenounproject.com/)

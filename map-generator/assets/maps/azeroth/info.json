@@ -1,0 +1,887 @@
+{
+  "id": "Azeroth",
+  "name": "Azeroth",
+  "display_name": "Azeroth · All Expansions",
+  "translation_key": "map.azeroth",
+  "categories": [
+    "new",
+    "fictional"
+  ],
+  "multiplayer_frequency": 0,
+  "layers": [
+    {
+      "id": "azeroth-biomes",
+      "placement": "land",
+      "nukeable": false,
+      "alpha": 0.55
+    },
+    {
+      "id": "azeroth-atlas",
+      "placement": "water",
+      "nukeable": false
+    }
+  ],
+  "nations": [
+    {
+      "name": "Darkshore",
+      "coordinates": [
+        196,
+        483
+      ]
+    },
+    {
+      "name": "Mount Hyjal",
+      "coordinates": [
+        302,
+        463
+      ]
+    },
+    {
+      "name": "Winterspring",
+      "coordinates": [
+        339,
+        444
+      ]
+    },
+    {
+      "name": "Ashenvale",
+      "coordinates": [
+        250,
+        548
+      ]
+    },
+    {
+      "name": "Orgrimmar",
+      "coordinates": [
+        350,
+        594
+      ]
+    },
+    {
+      "name": "Stonetalon",
+      "coordinates": [
+        210,
+        620
+      ]
+    },
+    {
+      "name": "Desolace",
+      "coordinates": [
+        210,
+        692
+      ]
+    },
+    {
+      "name": "Thunder Bluff",
+      "coordinates": [
+        259,
+        725
+      ]
+    },
+    {
+      "name": "The Barrens",
+      "coordinates": [
+        310,
+        673
+      ]
+    },
+    {
+      "name": "Dustwallow Marsh",
+      "coordinates": [
+        330,
+        791
+      ]
+    },
+    {
+      "name": "Feralas",
+      "coordinates": [
+        233,
+        804
+      ]
+    },
+    {
+      "name": "Silithus",
+      "coordinates": [
+        210,
+        896
+      ]
+    },
+    {
+      "name": "Un'Goro",
+      "coordinates": [
+        282,
+        889
+      ]
+    },
+    {
+      "name": "Tanaris",
+      "coordinates": [
+        344,
+        896
+      ]
+    },
+    {
+      "name": "Uldum",
+      "coordinates": [
+        262,
+        954
+      ]
+    },
+    {
+      "name": "Borean Tundra",
+      "coordinates": [
+        581,
+        238
+      ]
+    },
+    {
+      "name": "Sholazar Basin",
+      "coordinates": [
+        613,
+        193
+      ]
+    },
+    {
+      "name": "Icecrown",
+      "coordinates": [
+        666,
+        174
+      ]
+    },
+    {
+      "name": "Storm Peaks",
+      "coordinates": [
+        744,
+        177
+      ]
+    },
+    {
+      "name": "Dragonblight",
+      "coordinates": [
+        680,
+        230
+      ]
+    },
+    {
+      "name": "Wintergrasp",
+      "coordinates": [
+        634,
+        227
+      ]
+    },
+    {
+      "name": "Zul'Drak",
+      "coordinates": [
+        780,
+        222
+      ]
+    },
+    {
+      "name": "Grizzly Hills",
+      "coordinates": [
+        798,
+        278
+      ]
+    },
+    {
+      "name": "Howling Fjord",
+      "coordinates": [
+        815,
+        317
+      ]
+    },
+    {
+      "name": "Crystalsong Forest",
+      "coordinates": [
+        719,
+        225
+      ]
+    },
+    {
+      "name": "Silvermoon",
+      "coordinates": [
+        1232,
+        442
+      ]
+    },
+    {
+      "name": "Eversong Woods",
+      "coordinates": [
+        1240,
+        480
+      ]
+    },
+    {
+      "name": "Zul'Aman",
+      "coordinates": [
+        1268,
+        522
+      ]
+    },
+    {
+      "name": "Eastern Plaguelands",
+      "coordinates": [
+        1224,
+        592
+      ]
+    },
+    {
+      "name": "Western Plaguelands",
+      "coordinates": [
+        1170,
+        599
+      ]
+    },
+    {
+      "name": "Undercity",
+      "coordinates": [
+        1123,
+        613
+      ]
+    },
+    {
+      "name": "Silverpine Forest",
+      "coordinates": [
+        1115,
+        652
+      ]
+    },
+    {
+      "name": "Gilneas",
+      "coordinates": [
+        1110,
+        683
+      ]
+    },
+    {
+      "name": "Hillsbrad",
+      "coordinates": [
+        1162,
+        658
+      ]
+    },
+    {
+      "name": "The Hinterlands",
+      "coordinates": [
+        1224,
+        658
+      ]
+    },
+    {
+      "name": "Arathi Highlands",
+      "coordinates": [
+        1219,
+        676
+      ]
+    },
+    {
+      "name": "Wetlands",
+      "coordinates": [
+        1218,
+        810
+      ]
+    },
+    {
+      "name": "Twilight Highlands",
+      "coordinates": [
+        1270,
+        820
+      ]
+    },
+    {
+      "name": "Loch Modan",
+      "coordinates": [
+        1232,
+        870
+      ]
+    },
+    {
+      "name": "Ironforge",
+      "coordinates": [
+        1170,
+        848
+      ]
+    },
+    {
+      "name": "Dun Morogh",
+      "coordinates": [
+        1150,
+        862
+      ]
+    },
+    {
+      "name": "Badlands",
+      "coordinates": [
+        1220,
+        904
+      ]
+    },
+    {
+      "name": "Blackrock Mountain",
+      "coordinates": [
+        1182,
+        915
+      ]
+    },
+    {
+      "name": "Stormwind",
+      "coordinates": [
+        1155,
+        960
+      ]
+    },
+    {
+      "name": "Elwynn Forest",
+      "coordinates": [
+        1188,
+        957
+      ]
+    },
+    {
+      "name": "Westfall",
+      "coordinates": [
+        1152,
+        999
+      ]
+    },
+    {
+      "name": "Duskwood",
+      "coordinates": [
+        1195,
+        996
+      ]
+    },
+    {
+      "name": "Blasted Lands",
+      "coordinates": [
+        1228,
+        982
+      ]
+    },
+    {
+      "name": "Stranglethorn",
+      "coordinates": [
+        1178,
+        1041
+      ]
+    },
+    {
+      "name": "Townlong Steppes",
+      "coordinates": [
+        649,
+        1016
+      ]
+    },
+    {
+      "name": "Dread Wastes",
+      "coordinates": [
+        649,
+        1097
+      ]
+    },
+    {
+      "name": "Kun-Lai Summit",
+      "coordinates": [
+        699,
+        1001
+      ]
+    },
+    {
+      "name": "Vale of Eternal Blossoms",
+      "coordinates": [
+        715,
+        1058
+      ]
+    },
+    {
+      "name": "Valley of Four Winds",
+      "coordinates": [
+        710,
+        1104
+      ]
+    },
+    {
+      "name": "Jade Forest",
+      "coordinates": [
+        784,
+        1036
+      ]
+    },
+    {
+      "name": "Krasarang Wilds",
+      "coordinates": [
+        744,
+        1138
+      ]
+    },
+    {
+      "name": "Waking Shores",
+      "coordinates": [
+        1083,
+        198
+      ]
+    },
+    {
+      "name": "Ohn'ahran Plains",
+      "coordinates": [
+        1085,
+        257
+      ]
+    },
+    {
+      "name": "Azure Span",
+      "coordinates": [
+        1085,
+        311
+      ]
+    },
+    {
+      "name": "Thaldraszus",
+      "coordinates": [
+        1159,
+        245
+      ]
+    },
+    {
+      "name": "Highmountain",
+      "coordinates": [
+        818,
+        471
+      ]
+    },
+    {
+      "name": "Val'sharah",
+      "coordinates": [
+        781,
+        521
+      ]
+    },
+    {
+      "name": "Stormheim",
+      "coordinates": [
+        870,
+        516
+      ]
+    },
+    {
+      "name": "Suramar",
+      "coordinates": [
+        831,
+        556
+      ]
+    },
+    {
+      "name": "Azsuna",
+      "coordinates": [
+        777,
+        584
+      ]
+    },
+    {
+      "name": "Broken Shore",
+      "coordinates": [
+        826,
+        608
+      ]
+    },
+    {
+      "name": "Vol'dun",
+      "coordinates": [
+        776,
+        817
+      ]
+    },
+    {
+      "name": "Nazmir",
+      "coordinates": [
+        858,
+        813
+      ]
+    },
+    {
+      "name": "Zuldazar",
+      "coordinates": [
+        828,
+        876
+      ]
+    },
+    {
+      "name": "Boralus",
+      "coordinates": [
+        997,
+        702
+      ]
+    },
+    {
+      "name": "Drustvar",
+      "coordinates": [
+        908,
+        742
+      ]
+    },
+    {
+      "name": "Stormsong Valley",
+      "coordinates": [
+        996,
+        610
+      ]
+    },
+    {
+      "name": "Isle of Dorn",
+      "coordinates": [
+        486,
+        1074
+      ]
+    },
+    {
+      "name": "Teldrassil",
+      "coordinates": [
+        194,
+        302
+      ]
+    },
+    {
+      "name": "Azuremyst Isle",
+      "coordinates": [
+        78,
+        420
+      ]
+    },
+    {
+      "name": "Bloodmyst Isle",
+      "coordinates": [
+        83,
+        346
+      ]
+    },
+    {
+      "name": "Quel'Danas",
+      "coordinates": [
+        1243,
+        348
+      ]
+    },
+    {
+      "name": "Forbidden Reach",
+      "coordinates": [
+        1125,
+        86
+      ]
+    },
+    {
+      "name": "Mechagon",
+      "coordinates": [
+        929,
+        606
+      ]
+    },
+    {
+      "name": "Tol Barad",
+      "coordinates": [
+        1057,
+        694
+      ]
+    },
+    {
+      "name": "Nazjatar",
+      "coordinates": [
+        665,
+        768
+      ]
+    },
+    {
+      "name": "Kezan",
+      "coordinates": [
+        517,
+        873
+      ]
+    },
+    {
+      "name": "Lost Isles",
+      "coordinates": [
+        574,
+        855
+      ]
+    },
+    {
+      "name": "Vashj'ir",
+      "coordinates": [
+        978,
+        856
+      ]
+    },
+    {
+      "name": "Darkmoon Island",
+      "coordinates": [
+        1040,
+        948
+      ]
+    },
+    {
+      "name": "Isle of Thunder",
+      "coordinates": [
+        556,
+        945
+      ]
+    },
+    {
+      "name": "Timeless Isle",
+      "coordinates": [
+        900,
+        1132
+      ]
+    },
+    {
+      "name": "Wandering Isle",
+      "coordinates": [
+        588,
+        882
+      ]
+    },
+    {
+      "name": "Blade's Edge",
+      "coordinates": [
+        1612,
+        108
+      ]
+    },
+    {
+      "name": "Netherstorm",
+      "coordinates": [
+        1729,
+        106
+      ]
+    },
+    {
+      "name": "Zangarmarsh",
+      "coordinates": [
+        1577,
+        141
+      ]
+    },
+    {
+      "name": "Hellfire Peninsula",
+      "coordinates": [
+        1718,
+        148
+      ]
+    },
+    {
+      "name": "Nagrand (Outland)",
+      "coordinates": [
+        1573,
+        187
+      ]
+    },
+    {
+      "name": "Terokkar Forest",
+      "coordinates": [
+        1651,
+        178
+      ]
+    },
+    {
+      "name": "Shadowmoon (Outland)",
+      "coordinates": [
+        1722,
+        198
+      ]
+    },
+    {
+      "name": "Frostfire Ridge",
+      "coordinates": [
+        1573,
+        356
+      ]
+    },
+    {
+      "name": "Gorgrond",
+      "coordinates": [
+        1686,
+        352
+      ]
+    },
+    {
+      "name": "Tanaan Jungle",
+      "coordinates": [
+        1757,
+        390
+      ]
+    },
+    {
+      "name": "Nagrand (Draenor)",
+      "coordinates": [
+        1570,
+        415
+      ]
+    },
+    {
+      "name": "Talador",
+      "coordinates": [
+        1654,
+        399
+      ]
+    },
+    {
+      "name": "Spires of Arak",
+      "coordinates": [
+        1654,
+        453
+      ]
+    },
+    {
+      "name": "Shadowmoon (Draenor)",
+      "coordinates": [
+        1750,
+        429
+      ]
+    },
+    {
+      "name": "Krokuun",
+      "coordinates": [
+        1524,
+        661
+      ]
+    },
+    {
+      "name": "Eredath",
+      "coordinates": [
+        1656,
+        610
+      ]
+    },
+    {
+      "name": "Antoran Wastes",
+      "coordinates": [
+        1794,
+        660
+      ]
+    },
+    {
+      "name": "Bastion",
+      "coordinates": [
+        1676,
+        824
+      ]
+    },
+    {
+      "name": "Maldraxxus",
+      "coordinates": [
+        1807,
+        860
+      ]
+    },
+    {
+      "name": "Ardenweald",
+      "coordinates": [
+        1704,
+        1020
+      ]
+    },
+    {
+      "name": "Revendreth",
+      "coordinates": [
+        1520,
+        984
+      ]
+    },
+    {
+      "name": "The Maw",
+      "coordinates": [
+        1515,
+        831
+      ]
+    },
+    {
+      "name": "Oribos",
+      "coordinates": [
+        1627,
+        924
+      ]
+    },
+    {
+      "name": "Korthia",
+      "coordinates": [
+        1506,
+        900
+      ]
+    },
+    {
+      "name": "Zereth Mortis",
+      "coordinates": [
+        1822,
+        1014
+      ]
+    },
+    {
+      "name": "K'aresh",
+      "coordinates": [
+        1583,
+        1229
+      ]
+    },
+    {
+      "name": "Voidstorm",
+      "coordinates": [
+        1798,
+        1229
+      ]
+    },
+    {
+      "name": "Ringing Deeps",
+      "coordinates": [
+        126,
+        1414
+      ]
+    },
+    {
+      "name": "Hallowfall",
+      "coordinates": [
+        320,
+        1414
+      ]
+    },
+    {
+      "name": "Azj-Kahet",
+      "coordinates": [
+        514,
+        1414
+      ]
+    },
+    {
+      "name": "Undermine",
+      "coordinates": [
+        693,
+        1414
+      ]
+    },
+    {
+      "name": "Zaralek Cavern",
+      "coordinates": [
+        872,
+        1414
+      ]
+    },
+    {
+      "name": "Deepholm",
+      "coordinates": [
+        1060,
+        1414
+      ]
+    },
+    {
+      "name": "Harandar",
+      "coordinates": [
+        1250,
+        1414
+      ]
+    },
+    {
+      "name": "Emerald Dream",
+      "coordinates": [
+        1662,
+        1442
+      ]
+    }
+  ]
+}

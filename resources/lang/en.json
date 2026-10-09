@@ -910,6 +910,15 @@
   "game_timer": {
     "one_minute_remaining": "One minute remaining!"
   },
+  "god_mode": {
+    "atom": "Atomic bomb",
+    "enabled": "God spectator mode",
+    "hydrogen": "Hydrogen bomb",
+    "mirv": "MIRV",
+    "mirv_busy": "MIRV active: wait until all warheads finish",
+    "target_hint": "Select a weapon, then click or tap the map. Select it again to cancel.",
+    "title": "God Spectator"
+  },
   "graphics_setting": {
     "advanced_desc": "Fine-tune individual graphics options",
     "advanced_label": "Advanced settings",
@@ -1358,6 +1367,7 @@
     "arctic": "Arctic",
     "asia": "Asia",
     "australia": "Australia",
+    "azeroth": "Azeroth · All Expansions",
     "babelmandebstrait": "Bab el-Mandeb Strait",
     "baikal": "Baikal",
     "baikalnukewars": "Baikal (Nuke Wars)",
@@ -1515,6 +1525,8 @@
     "unfavorite": "Remove from favourites"
   },
   "map_layers": {
+    "azeroth-atlas": "Azeroth atlas labels",
+    "azeroth-biomes": "Azeroth region colors",
     "label": "label"
   },
   "marketing_consent": {
@@ -2439,14 +2451,5 @@
     "you_won": "You Won!",
     "your_team": "Your team won!",
     "youtube_tutorial": "Need some help?"
-  },
-  "god_mode": {
-    "enabled": "God spectator mode",
-    "title": "God Spectator",
-    "atom": "Atomic bomb",
-    "hydrogen": "Hydrogen bomb",
-    "mirv": "MIRV",
-    "mirv_busy": "MIRV active: wait until all warheads finish",
-    "target_hint": "Select a weapon, then click or tap the map. Select it again to cancel."
   }
 }

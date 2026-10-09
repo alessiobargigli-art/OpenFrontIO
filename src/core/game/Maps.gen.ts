@@ -13,6 +13,7 @@ export enum GameMapType {
   Arctic = "Arctic", // map-generator/assets/maps/arctic/info.json
   Asia = "Asia", // map-generator/assets/maps/asia/info.json
   Australia = "Australia", // map-generator/assets/maps/australia/info.json
+  Azeroth = "Azeroth", // map-generator/assets/maps/azeroth/info.json
   BabelMandebStrait = "Bab el-Mandeb Strait", // map-generator/assets/maps/babelmandebstrait/info.json
   Baikal = "Baikal", // map-generator/assets/maps/baikal/info.json
   BaikalNukeWars = "Baikal Nuke Wars", // map-generator/assets/maps/baikalnukewars/info.json
@@ -368,6 +369,21 @@ export const maps: readonly MapInfo[] = [
     specialFrequency: -1,
     defaultNationCount: 7,
     themes: ["oceania"],
+  },
+  {
+    id: "Azeroth",
+    type: GameMapType.Azeroth,
+    translationKey: "map.azeroth",
+    categories: ["new", "fictional"],
+    multiplayerFrequency: 0,
+    ffaFrequency: -1,
+    teamFrequency: -1,
+    specialFrequency: -1,
+    defaultNationCount: 123,
+    layers: [
+      { id: "azeroth-biomes", placement: "land" },
+      { id: "azeroth-atlas", placement: "water" },
+    ],
   },
   {
     id: "BabelMandebStrait",
