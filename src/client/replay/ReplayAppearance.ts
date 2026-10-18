@@ -17,6 +17,7 @@ import type { MapRenderer } from "../render/gl";
 import type { SpiralSink } from "../render/gl/utils/PlayerPalette";
 import type { PlayerStatic } from "../render/types";
 import { themeProvider } from "../theme/ThemeProvider";
+import { savedUnitSkin } from "../UnitSkinAssets";
 import { applyReplayEffects } from "./ReplayEffects";
 import type { ReplayGameView } from "./ReplayGameAdapter";
 import {
@@ -109,10 +110,8 @@ export class ReplayAppearance {
   }
 
   private resolve(): void {
-    this.cosmetics = visibleReplayCosmetics(
-      this.equipped,
-      this.userSettings.graphicsOverrides().cosmetics ?? {},
-    );
+    const visibility = this.userSettings.graphicsOverrides().cosmetics ?? {};
+    this.cosmetics = visibleReplayCosmetics(this.equipped, visibility);
     // Start from a fresh theme each time like ClientGameRunner does, so
     // the same players in the same order get the same colours.
     themeProvider.reset();
@@ -120,6 +119,9 @@ export class ReplayAppearance {
       this.players,
       this.cosmetics,
       themeProvider.current(),
+      (visibility.showFrom ?? "everyone") === "everyone"
+        ? savedUnitSkin()
+        : "flower-power",
     );
   }
 

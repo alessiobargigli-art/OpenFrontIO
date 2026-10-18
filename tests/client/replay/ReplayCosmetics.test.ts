@@ -355,3 +355,21 @@ test("built-in unit packs survive replay palette construction and visibility fil
   );
   expect(hidden.unitSkins.size).toBe(0);
 });
+
+it("uses the viewer's Default pack for replay AI while preserving human packs", () => {
+  const built = buildReplayPalette(
+    [
+      player(1, "c1"),
+      player(2, null, { playerType: PlayerTypeEnum.Bot }),
+      player(3, null, { playerType: PlayerTypeEnum.Nation }),
+    ],
+    new Map([["c1", { unitSkin: "warcraft" }]]),
+    undefined,
+    "default",
+  );
+  expect([...built.unitSkins.entries()]).toEqual([
+    [1, "warcraft"],
+    [2, "default"],
+    [3, "default"],
+  ]);
+});

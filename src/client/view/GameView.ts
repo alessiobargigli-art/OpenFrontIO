@@ -24,6 +24,7 @@ import { TerraNulliusImpl } from "../../core/game/TerraNulliusImpl";
 import { UnitGrid, UnitPredicate } from "../../core/game/UnitGrid";
 import { UserSettings } from "../../core/game/UserSettings";
 import { ClientID, GameID, Player, PlayerCosmetics } from "../../core/Schemas";
+import type { UnitSkin } from "../../core/UnitSkins";
 import { formatPlayerDisplayName } from "../../core/Util";
 import { WorkerClient } from "../../core/worker/WorkerClient";
 import { computeAllianceClusters } from "../render/frame/derive/AllianceClusters";
@@ -38,6 +39,7 @@ import { TrailManager } from "../render/frame/TrailManager";
 import type { FrameData, NameEntry } from "../render/types";
 import { STRUCTURE_TYPES } from "../render/types";
 import { TRAIL_TYPES } from "../render/types/UnitType";
+import { savedUnitSkin } from "../UnitSkinAssets";
 import { resolveTeamClanTag } from "../Utils";
 import type { CosmeticVisibility } from "./CosmeticVisibility";
 import {
@@ -137,6 +139,12 @@ export class GameView implements GameMap {
   private toDelete = new Set<number>();
 
   private _cosmetics: Map<string, PlayerCosmetics> = new Map();
+  private readonly _nonHumanUnitSkin: UnitSkin;
+
+  nonHumanUnitSkin(): UnitSkin {
+    return this._nonHumanUnitSkin;
+  }
+
   private _cosmeticVisibility: CosmeticVisibility = readCosmeticVisibility();
 
   private _map: GameMap;
@@ -157,6 +165,13 @@ export class GameView implements GameMap {
     this._cosmetics = new Map(
       humans.map((h) => [h.clientID, h.cosmetics ?? {}]),
     );
+
+    // Freeze the viewer's base pack for AI and God units. A rostered player
+    // uses the server-accepted choice, even if local storage changed later.
+    const local = _myClientID ? this._cosmetics.get(_myClientID) : undefined;
+    this._nonHumanUnitSkin = local
+      ? (local.unitSkin ?? "flower-power")
+      : savedUnitSkin();
 
     // Nation-type players carry their own flag on the wire (PlayerUpdate.nationFlag,
     // sourced from the manifest via PlayerInfo) rather than being looked up here by
@@ -342,13 +357,14 @@ export class GameView implements GameMap {
           // directly on the update (see PlayerUpdate.nationFlag) rather than
           // being looked up by name — some maps define multiple nations with
           // the same display name (e.g. India's and Pakistan's "Punjab").
-          this._cosmetics.get(pu.clientID ?? "") ??
-            (pu.playerType === PlayerType.Nation && pu.nationFlag
-              ? ({
-                  flag: `/flags/${pu.nationFlag}.svg`,
-                } satisfies PlayerCosmetics)
-              : undefined) ??
-            {},
+          pu.playerType === PlayerType.Human
+            ? (this._cosmetics.get(pu.clientID ?? "") ?? {})
+            : {
+                unitSkin: this._nonHumanUnitSkin,
+                ...(pu.playerType === PlayerType.Nation && pu.nationFlag
+                  ? { flag: `/flags/${pu.nationFlag}.svg` }
+                  : {}),
+              },
         );
         this._players.set(pu.id, player);
         this._playerStates.set(pu.smallID!, player.state);

@@ -7,12 +7,14 @@ import {
   TUTORIAL_VIDEO_URL,
 } from "../client/Utils";
 import { assetUrl } from "../core/AssetUrls";
+import { UnitType } from "../core/game/Game";
 import { UserSettings } from "../core/game/UserSettings";
 import { BaseModal } from "./components/BaseModal";
 import "./components/Difficulties";
 import { modalHeader } from "./components/ui/ModalHeader";
 import { Platform } from "./Platform";
 import { TroubleshootingModal } from "./TroubleshootingModal";
+import { savedUnitSkin, unitSkinIconUrl } from "./UnitSkinAssets";
 
 @customElement("help-modal")
 export class HelpModal extends BaseModal {
@@ -997,7 +999,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/flower-power/city.png")}
+                        src=${unitSkinIconUrl(UnitType.City, savedUnitSkin())}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1013,7 +1015,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/flower-power/defensePost.png")}
+                        src=${unitSkinIconUrl(UnitType.DefensePost, savedUnitSkin())}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1029,7 +1031,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/flower-power/port.png")}
+                        src=${unitSkinIconUrl(UnitType.Port, savedUnitSkin())}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1045,7 +1047,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/flower-power/factory.png")}
+                        src=${unitSkinIconUrl(UnitType.Factory, savedUnitSkin())}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1061,7 +1063,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("sprites/warship.png")}
+                        src=${unitSkinIconUrl(UnitType.Warship, savedUnitSkin())}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1077,7 +1079,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/flower-power/missileSilo.png")}
+                        src=${unitSkinIconUrl(UnitType.MissileSilo, savedUnitSkin())}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1093,7 +1095,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("images/flower-power/samLauncher.png")}
+                        src=${unitSkinIconUrl(UnitType.SAMLauncher, savedUnitSkin())}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1109,7 +1111,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("sprites/atombomb.png")}
+                        src=${unitSkinIconUrl(UnitType.AtomBomb, savedUnitSkin())}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1125,7 +1127,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("sprites/hydrogenbomb.png")}
+                        src=${unitSkinIconUrl(UnitType.HydrogenBomb, savedUnitSkin())}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>
@@ -1141,7 +1143,7 @@ export class HelpModal extends BaseModal {
                     </td>
                     <td class="py-3 border-b border-white/5">
                       <img
-                        src=${assetUrl("sprites/mirv2.png")}
+                        src=${unitSkinIconUrl(UnitType.MIRV, savedUnitSkin())}
                         class="w-8 h-8 scale-75 origin-left"
                       />
                     </td>

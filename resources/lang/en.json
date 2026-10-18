@@ -2463,8 +2463,9 @@
   },
   "unit_skin": {
     "title": "Unit skin",
-    "hint": "Choose how your units and buildings look. Other players see your choice.",
+    "hint": "Choose how your units and buildings look. Other players see your choice. Bots and nations follow your theme on your screen.",
     "flower_power": "Flower Power",
+    "default": "Default (original OpenFront)",
     "warcraft": "Warcraft Fantasy",
     "saving": "Applying skin…",
     "saved": "Skin selected.",

@@ -1,3 +1,4 @@
+import { assetUrl } from "../core/AssetUrls";
 import { UnitType } from "../core/game/Game";
 import { UnitSkin, UnitSkinSchema } from "../core/UnitSkins";
 
@@ -53,8 +54,17 @@ export function unitSkinIcon(
 ): string | undefined {
   const file = files[type];
   if (!file) return undefined;
-  if (skin === "warcraft") return `skins/warcraft/${file}.png`;
+  if (skin === "warcraft" || skin === "default")
+    return `skins/${skin}/${file}.png`;
   return buildings.has(type)
     ? `images/flower-power/${file}.png`
     : `sprites/${file}.png`;
+}
+
+/** Resolve at render time: menu chrome uses the local player's accepted skin,
+ * while player panels pass the inspected owner's visible cosmetics. */
+export function unitSkinIconUrl(type: UnitType, skin?: UnitSkin): string {
+  const path = unitSkinIcon(type, skin);
+  if (!path) throw new Error(`No unit skin icon for ${type}`);
+  return assetUrl(path);
 }

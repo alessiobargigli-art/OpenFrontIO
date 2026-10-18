@@ -15,6 +15,7 @@
 
 import { assetUrl } from "../../core/AssetUrls";
 import type { PlayerCosmetics } from "../../core/Schemas";
+import type { UnitSkin } from "../../core/UnitSkins";
 import { createThemeSettings } from "../render/gl/RenderSettings";
 import {
   PALETTE_SIZE,
@@ -22,6 +23,7 @@ import {
   writePatternEntry,
 } from "../render/gl/utils/PlayerPalette";
 import type { PlayerStatic } from "../render/types";
+import { PlayerTypeEnum } from "../render/types";
 import { SettingsTheme, type Theme } from "../theme/ThemeProvider";
 import type { PlayerView } from "../view";
 import {
@@ -64,6 +66,7 @@ export function buildReplayPalette(
   cosmetics: ReadonlyMap<string, PlayerCosmetics> = new Map(),
   /** A fresh theme. The colours it hands out depend on what it has seen. */
   theme: Theme = new SettingsTheme(createThemeSettings("default")),
+  nonHumanUnitSkin: UnitSkin = "flower-power",
 ): ReplayPalette {
   const palette = new Float32Array(PALETTE_SIZE * 2 * 4);
   const patternMeta = new Float32Array(PALETTE_SIZE * 4);
@@ -90,7 +93,9 @@ export function buildReplayPalette(
     );
     writePaletteEntry(palette, p.smallID, fill, border);
     writePatternEntry(patternMeta, patternData, p.smallID, own.pattern);
-    if (own.unitSkin) unitSkins.set(p.smallID, own.unitSkin);
+    const unitSkin =
+      p.playerType === PlayerTypeEnum.Human ? own.unitSkin : nonHumanUnitSkin;
+    if (unitSkin) unitSkins.set(p.smallID, unitSkin);
     if (own.skin?.url !== undefined) {
       skins.set(p.smallID, assetUrl(own.skin.url));
     }

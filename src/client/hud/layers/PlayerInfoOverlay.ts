@@ -19,6 +19,7 @@ import {
 } from "../../InputHandler";
 import { themeProvider } from "../../theme/ThemeProvider";
 import { TransformHandler } from "../../TransformHandler";
+import { unitSkinIconUrl } from "../../UnitSkinAssets";
 import {
   getTranslatedPlayerTeamLabel,
   renderDuration,
@@ -40,13 +41,7 @@ import { SpawnBarVisibleEvent } from "./SpawnTimer";
 const soldierIconAquarius = assetUrl("images/SoldierIconAquarius.svg");
 const allianceIcon = assetUrl("images/AllianceIcon.svg");
 const traitorIcon = assetUrl("images/TraitorIcon.svg");
-const warshipIcon = assetUrl("sprites/warship.png");
-const cityIcon = assetUrl("images/flower-power/city.png");
-const factoryIcon = assetUrl("images/flower-power/factory.png");
 const goldCoinIcon = assetUrl("images/GoldCoinIcon.svg");
-const missileSiloIcon = assetUrl("images/flower-power/missileSilo.png");
-const portIcon = assetUrl("images/flower-power/port.png");
-const samLauncherIcon = assetUrl("images/flower-power/samLauncher.png");
 const soldierIcon = assetUrl("images/SoldierIcon.svg");
 
 function euclideanDistWorld(
@@ -210,14 +205,14 @@ export class PlayerInfoOverlay extends LitElement implements Controller {
     }
   }
 
-  private displayUnitCount(player: PlayerView, type: UnitType, icon: string) {
+  private displayUnitCount(player: PlayerView, type: UnitType) {
     return !this.game.config().isUnitDisabled(type)
       ? html`<div
           class="flex items-center justify-center gap-0.5 lg:gap-1 p-0.5 lg:p-1 border rounded-md border-gray-500 text-[10px] lg:text-xs w-9 lg:w-12 h-6 lg:h-7"
           translate="no"
         >
           <img
-            src=${icon}
+            src=${unitSkinIconUrl(type, player.cosmetics.unitSkin)}
             class="w-3 h-3 lg:w-4 lg:h-4 object-contain shrink-0"
           />
           <span>${player.totalUnitLevels(type)}</span>
@@ -537,20 +532,12 @@ export class PlayerInfoOverlay extends LitElement implements Controller {
             ${allianceHtml ?? ""}
           </div>
           <div class="flex gap-0.5 lg:gap-1 items-center mt-0.5">
-            ${this.displayUnitCount(player, UnitType.City, cityIcon)}
-            ${this.displayUnitCount(player, UnitType.Factory, factoryIcon)}
-            ${this.displayUnitCount(player, UnitType.Port, portIcon)}
-            ${this.displayUnitCount(
-              player,
-              UnitType.MissileSilo,
-              missileSiloIcon,
-            )}
-            ${this.displayUnitCount(
-              player,
-              UnitType.SAMLauncher,
-              samLauncherIcon,
-            )}
-            ${this.displayUnitCount(player, UnitType.Warship, warshipIcon)}
+            ${this.displayUnitCount(player, UnitType.City)}
+            ${this.displayUnitCount(player, UnitType.Factory)}
+            ${this.displayUnitCount(player, UnitType.Port)}
+            ${this.displayUnitCount(player, UnitType.MissileSilo)}
+            ${this.displayUnitCount(player, UnitType.SAMLauncher)}
+            ${this.displayUnitCount(player, UnitType.Warship)}
           </div>
         </div>
       </div>

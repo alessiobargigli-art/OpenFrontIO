@@ -24,39 +24,43 @@ describe("built-in unit skins in the lobby", () => {
     mockWsOf(player).send.mockClear();
     return { game, host, player };
   }
-  it("updates only the sender and broadcasts the chosen pack without changing account cosmetics", async () => {
-    const { game, host, player } = setup();
-    await mockWsOf(player).emit({ type: "unit_skin", skin: "warcraft" });
-    expect(player.cosmetics).toEqual({
-      verified: true,
-      skin: { name: "paid", url: "/paid.png" },
-      unitSkin: "warcraft",
-    });
-    expect(host.cosmetics?.unitSkin).toBeUndefined();
-    expect(mockWsOf(player).sent()[0]).toEqual({
-      type: "unit_skin",
-      accepted: true,
-      skin: "warcraft",
-    });
-    const lobby = mockWsOf(host)
-      .sent()
-      .find((m) => m.type === "lobby_info");
-    expect(
-      lobby?.type === "lobby_info" &&
-        lobby.lobby.clients?.find((c) => c.clientID === player.clientID)
-          ?.unitSkin,
-    ).toBe("warcraft");
-    game.prestart();
-    game.start();
-    const start = mockWsOf(host)
-      .sent()
-      .find((m) => m.type === "start");
-    expect(
-      start?.type === "start" &&
-        start.gameStartInfo.players.find((p) => p.clientID === player.clientID)
-          ?.cosmetics?.unitSkin,
-    ).toBe("warcraft");
-  });
+  it.each(["warcraft", "default"] as const)(
+    "broadcasts %s only for the sender without changing account cosmetics",
+    async (skin) => {
+      const { game, host, player } = setup();
+      await mockWsOf(player).emit({ type: "unit_skin", skin });
+      expect(player.cosmetics).toEqual({
+        verified: true,
+        skin: { name: "paid", url: "/paid.png" },
+        unitSkin: skin,
+      });
+      expect(host.cosmetics?.unitSkin).toBeUndefined();
+      expect(mockWsOf(player).sent()[0]).toEqual({
+        type: "unit_skin",
+        accepted: true,
+        skin,
+      });
+      const lobby = mockWsOf(host)
+        .sent()
+        .find((m) => m.type === "lobby_info");
+      expect(
+        lobby?.type === "lobby_info" &&
+          lobby.lobby.clients?.find((c) => c.clientID === player.clientID)
+            ?.unitSkin,
+      ).toBe(skin);
+      game.prestart();
+      game.start();
+      const start = mockWsOf(host)
+        .sent()
+        .find((m) => m.type === "start");
+      expect(
+        start?.type === "start" &&
+          start.gameStartInfo.players.find(
+            (p) => p.clientID === player.clientID,
+          )?.cosmetics?.unitSkin,
+      ).toBe(skin);
+    },
+  );
   it("lets a guest host with no cosmetics choose and switch back", async () => {
     const { host } = setup();
     await mockWsOf(host).emit({ type: "unit_skin", skin: "warcraft" });

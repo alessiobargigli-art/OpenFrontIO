@@ -58,7 +58,8 @@ lampeggio dei missili e trasparenza delle testate fuori portata dei SAM.
 
 L'aggiornamento sostituisce la grafica comune del fork, anche per i replay
 visualizzati con questa versione. Il pacchetto alternativo [Warcraft Fantasy](WARCRAFT_SKIN.md) è selezionabile
-per giocatore dalla lobby; la selezione delle skin territoriali resta separata.
+per giocatore dalla lobby, insieme a Default (grafica originale OpenFront).
+Bot e nazioni seguono il tema del visualizzatore. La selezione delle skin territoriali resta separata.
 
 ## Generazione
 

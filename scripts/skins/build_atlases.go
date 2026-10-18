@@ -41,7 +41,7 @@ func build(base, output string, names []string, sizes []int) {
 	if original.Bounds().Dx() != len(names)*cell || original.Bounds().Dy() != cell {
 		panic("unexpected original atlas dimensions")
 	}
-	atlas := image.NewNRGBA(image.Rect(0, 0, len(names)*cell, cell*2))
+	atlas := image.NewNRGBA(image.Rect(0, 0, len(names)*cell, cell*3))
 	draw.Draw(atlas, original.Bounds(), original, original.Bounds().Min, draw.Src)
 	for i, name := range names {
 		src := read(filepath.Join("resources/skins/warcraft", name+".png"))
@@ -59,6 +59,21 @@ func build(base, output string, names []string, sizes []int) {
 			}
 		}
 	}
+	// The original upstream atlases already encode each unit's world footprint.
+	// Scale whole cells with nearest-neighbour sampling; do not apply sizes twice.
+	classic := read(filepath.Join("resources/skins/default", filepath.Base(base)))
+	classicCell := classic.Bounds().Dy()
+	if classic.Bounds().Dx() != len(names)*classicCell {
+		panic("unexpected default atlas dimensions")
+	}
+	for i := range names {
+		for y := 0; y < cell; y++ {
+			for x := 0; x < cell; x++ {
+				atlas.Set(i*cell+x, 2*cell+y, classic.At(i*classicCell+x*classicCell/cell, y*classicCell/cell))
+			}
+		}
+	}
+
 	save(output, atlas)
 	fmt.Println(output)
 }

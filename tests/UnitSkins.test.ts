@@ -6,6 +6,7 @@ import {
 } from "../src/client/UnitSkinAssets";
 import { UnitType } from "../src/core/game/Game";
 import {
+  UNIT_SKIN_IDS,
   UNIT_SKIN_ROWS,
   unitSkinColumn,
   unitSkinRow,
@@ -20,11 +21,12 @@ import { ClientMsgRateLimiter } from "../src/server/ClientMsgRateLimiter";
 
 describe("built-in skin contract", () => {
   it("keeps old and absent selections in the exact original atlas row", () => {
-    expect(UNIT_SKIN_ROWS).toBe(2);
+    expect(UNIT_SKIN_ROWS).toBe(3);
     for (let c = 0; c < 12; c++) {
       expect(unitSkinColumn(c, 12)).toBe(c);
       expect(unitSkinColumn(c, 12, "flower-power")).toBe(c);
       expect(unitSkinColumn(c, 12, "warcraft")).toBe(c + 12);
+      expect(unitSkinColumn(c, 12, "default")).toBe(c + 24);
     }
     expect(unitSkinRow("warcraft")).toBe(1);
     expect(unitSkinColumn(5, 6, "warcraft")).toBe(11);
@@ -45,25 +47,25 @@ describe("built-in skin contract", () => {
     expect(unitSkinIcon(UnitType.MIRV, "warcraft")).toBe(
       "skins/warcraft/mirv2.png",
     );
+    expect(unitSkinIcon(UnitType.City, "default")).toBe(
+      "skins/default/city.png",
+    );
+    expect(unitSkinIcon(UnitType.AtomBomb, "default")).toBe(
+      "skins/default/atombomb.png",
+    );
     expect(unitSkinIcon(UnitType.City)).toBe("images/flower-power/city.png");
     expect(unitSkinIcon(UnitType.AtomBomb)).toBe("sprites/atombomb.png");
   });
-  it.each(["flower-power", "warcraft"] as const)(
-    "round trips both socket directions: %s",
-    (skin) => {
-      const request = { type: "unit_skin" as const, skin };
-      const response = { type: "unit_skin" as const, skin, accepted: true };
-      expect(
-        decodeClientMessage(encodeClientMessage(request, undefined), undefined),
-      ).toEqual(request);
-      expect(
-        decodeServerMessage(
-          encodeServerMessage(response, undefined),
-          undefined,
-        ),
-      ).toEqual(response);
-    },
-  );
+  it.each(UNIT_SKIN_IDS)("round trips both socket directions: %s", (skin) => {
+    const request = { type: "unit_skin" as const, skin };
+    const response = { type: "unit_skin" as const, skin, accepted: true };
+    expect(
+      decodeClientMessage(encodeClientMessage(request, undefined), undefined),
+    ).toEqual(request);
+    expect(
+      decodeServerMessage(encodeServerMessage(response, undefined), undefined),
+    ).toEqual(response);
+  });
   it("rate limits broadcast-producing selection changes", () => {
     const limiter = new ClientMsgRateLimiter();
     for (let i = 0; i < 10; i++)
