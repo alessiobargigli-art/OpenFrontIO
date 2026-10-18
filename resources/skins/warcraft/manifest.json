@@ -1,0 +1,94 @@
+{
+  "name": "Warcraft Fantasy",
+  "cellPixels": 128,
+  "row": 1,
+  "unitWorldSize": 13,
+  "units": [
+    {
+      "column": 0,
+      "source": "skins/warcraft/transportship.png",
+      "worldSize": 5
+    },
+    {
+      "column": 1,
+      "source": "skins/warcraft/tradeship.png",
+      "worldSize": 5
+    },
+    {
+      "column": 2,
+      "source": "skins/warcraft/warship.png",
+      "worldSize": 11
+    },
+    {
+      "column": 3,
+      "source": "skins/warcraft/atombomb.png",
+      "worldSize": 7
+    },
+    {
+      "column": 4,
+      "source": "skins/warcraft/hydrogenbomb.png",
+      "worldSize": 9
+    },
+    {
+      "column": 5,
+      "source": "skins/warcraft/mirv2.png",
+      "worldSize": 13
+    },
+    {
+      "column": 6,
+      "source": "skins/warcraft/samMissile.png",
+      "worldSize": 3
+    },
+    {
+      "column": 7,
+      "source": "skins/warcraft/shell.png",
+      "worldSize": 1
+    },
+    {
+      "column": 8,
+      "source": "skins/warcraft/mirvWarhead.png",
+      "worldSize": 3
+    },
+    {
+      "column": 9,
+      "source": "skins/warcraft/trainEngine.png",
+      "worldSize": 5
+    },
+    {
+      "column": 10,
+      "source": "skins/warcraft/trainCarriage.png",
+      "worldSize": 5
+    },
+    {
+      "column": 11,
+      "source": "skins/warcraft/trainCarriageLoaded.png",
+      "worldSize": 5
+    }
+  ],
+  "structures": [
+    {
+      "column": 0,
+      "source": "skins/warcraft/city.png"
+    },
+    {
+      "column": 1,
+      "source": "skins/warcraft/port.png"
+    },
+    {
+      "column": 2,
+      "source": "skins/warcraft/factory.png"
+    },
+    {
+      "column": 3,
+      "source": "skins/warcraft/defensePost.png"
+    },
+    {
+      "column": 4,
+      "source": "skins/warcraft/samLauncher.png"
+    },
+    {
+      "column": 5,
+      "source": "skins/warcraft/missileSilo.png"
+    }
+  ]
+}

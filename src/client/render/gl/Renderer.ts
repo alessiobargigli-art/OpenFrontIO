@@ -1135,6 +1135,14 @@ export class GPURenderer {
     );
   }
 
+  setPlayerUnitSkin(
+    owner: number,
+    skin: import("../../../core/UnitSkins").UnitSkin | undefined,
+  ): void {
+    this.unitPass.setPlayerUnitSkin(owner, skin);
+    this.structurePass.setPlayerUnitSkin(owner, skin);
+  }
+
   setLocalPlayerID(id: number): void {
     if (id === this.localPlayerID) return;
     this.localPlayerID = id;

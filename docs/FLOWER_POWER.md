@@ -1,6 +1,6 @@
 # Flower Power
 
-Il fork usa un tema grafico unico ispirato ai figli dei fiori. È già collegato
+Il tema grafico predefinito del fork è ispirato ai figli dei fiori. È già collegato
 alla mappa, alle anteprime, al menu costruzioni, ai contatori e alla barra God:
 non richiede account, cataloghi remoti o acquisti.
 
@@ -57,8 +57,8 @@ colori di affiliazione. Restano visibili costruzione, attacco, ritirata,
 lampeggio dei missili e trasparenza delle testate fuori portata dei SAM.
 
 L'aggiornamento sostituisce la grafica comune del fork, anche per i replay
-visualizzati con questa versione. La selezione delle skin per giocatore è un
-sistema separato dal tema.
+visualizzati con questa versione. Il pacchetto alternativo [Warcraft Fantasy](WARCRAFT_SKIN.md) è selezionabile
+per giocatore dalla lobby; la selezione delle skin territoriali resta separata.
 
 ## Generazione
 

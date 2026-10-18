@@ -47,7 +47,9 @@ import {
   LobbyRenameResultEvent,
   SendLobbyRenameEvent,
   SendSpectateEvent,
+  SendUnitSkinEvent,
   Transport,
+  UnitSkinResultEvent,
 } from "../../src/client/Transport";
 
 type Script = (ws: FakeWebSocket) => void;
@@ -564,6 +566,48 @@ describe("Transport reconnect policy", () => {
 
       expect(FakeWebSocket.instances).toHaveLength(2);
       expect(showInGameConfirm).not.toHaveBeenCalled();
+    });
+
+    it("synchronizes a unit skin only after the server accepts it and reuses it at join", async () => {
+      const { transport, eventBus } = makeTransport();
+      const config = (transport as any).lobbyConfig as LobbyConfig;
+      config.cosmetics = {};
+      config.turnstileToken = null;
+      config.unitSkin = "flower-power";
+      localStorage.removeItem("openfront.unitSkin");
+      const result = vi.fn();
+      eventBus.on(UnitSkinResultEvent, result);
+      transport.connect(
+        () => {},
+        () => {},
+      );
+      const ws = FakeWebSocket.instances[0];
+      ws.serverOpen();
+      ws.serverSend({ type: "pong", sentAt: Date.now() });
+      eventBus.emit(new SendUnitSkinEvent("warcraft"));
+      expect(decodeClientMessage(ws.sent.slice(-1)[0], undefined)).toEqual({
+        type: "unit_skin",
+        skin: "warcraft",
+      });
+      expect(config.unitSkin).toBe("flower-power");
+      ws.serverSend({
+        type: "unit_skin",
+        skin: "flower-power",
+        accepted: false,
+      });
+      expect(localStorage.getItem("openfront.unitSkin")).toBeNull();
+      ws.serverSend({ type: "unit_skin", skin: "warcraft", accepted: true });
+      expect(config.unitSkin).toBe("warcraft");
+      expect(localStorage.getItem("openfront.unitSkin")).toBe("warcraft");
+      expect(result).toHaveBeenLastCalledWith(
+        new UnitSkinResultEvent(true, "warcraft"),
+      );
+      await transport.joinGame();
+      expect(
+        decodeClientMessage(ws.sent.slice(-1)[0], undefined),
+      ).toMatchObject({ type: "join", unitSkin: "warcraft" });
+      transport.leaveGame();
+      localStorage.removeItem("openfront.unitSkin");
     });
 
     it("sends lobby rename on the existing socket and retains the accepted identity for later joins", async () => {

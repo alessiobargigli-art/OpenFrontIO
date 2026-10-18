@@ -208,6 +208,7 @@ export class NameVisibility {
         clientID: c.clientID,
         friends: teammateOnly ? undefined : friendsFor(c),
         verified: c.cosmetics?.verified,
+        unitSkin: c.cosmetics?.unitSkin,
         spectator: c.spectator || undefined,
         teamIndex: this.view.teamIndex(c),
       };

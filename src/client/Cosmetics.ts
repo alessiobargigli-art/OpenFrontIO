@@ -45,6 +45,7 @@ import {
   startPurchase,
 } from "./Payments";
 import { STEAM_TIER_CHANGE_IN_APP } from "./SubscriptionPolicy";
+import { savedUnitSkin } from "./UnitSkinAssets";
 import { translateText } from "./Utils";
 
 export const TEMP_FLARE_OFFSET = 1 * 60 * 1000; // 1 minute
@@ -1564,7 +1565,7 @@ export async function getPlayerCosmetics(
   const refs = await getPlayerCosmeticsRefs(opts);
   const cosmetics = await fetchCosmetics();
 
-  const result: PlayerCosmetics = {};
+  const result: PlayerCosmetics = { unitSkin: savedUnitSkin() };
 
   if (refs.flag) {
     result.flag = await resolveFlagUrl(refs.flag);

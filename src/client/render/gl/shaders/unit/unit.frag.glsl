@@ -28,6 +28,7 @@ in vec2  vQuadPos;
 in vec2  vCellUV;
 in vec2  vWorldPos;
 flat in float vAtlasCol;
+flat in float vSkinRow;
 flat in float vOwnerID;
 flat in float vFlags;
 flat in float vHash;
@@ -106,7 +107,7 @@ void main() {
   bool inSprite = vCellUV.x >= 0.0 && vCellUV.x <= 1.0 &&
                   vCellUV.y >= 0.0 && vCellUV.y <= 1.0;
   if (inSprite) {
-    vec2 atlasUV = vec2((vAtlasCol + vCellUV.x) / float(ATLAS_COLS), vCellUV.y);
+    vec2 atlasUV = vec2((vAtlasCol + vCellUV.x) / float(ATLAS_COLS), (vSkinRow + vCellUV.y) / float(UNIT_SKIN_ROWS));
     texel = texture(uAtlas, atlasUV);
   }
 

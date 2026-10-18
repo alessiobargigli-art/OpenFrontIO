@@ -24,6 +24,7 @@ import {
   SendUpgradeStructureIntentEvent,
 } from "../../Transport";
 import { UIState } from "../../UIState";
+import { unitSkinIcon } from "../../UnitSkinAssets";
 import { renderNumber } from "../../Utils";
 import { GameView } from "../../view";
 const warshipIcon = assetUrl("sprites/warship.png");
@@ -433,7 +434,12 @@ export class BuildMenu extends LitElement implements Controller {
                       : ""}
                   >
                     <img
-                      src=${item.icon}
+                      src=${assetUrl(
+                        unitSkinIcon(
+                          item.unitType,
+                          this.game?.myPlayer()?.cosmetics.unitSkin,
+                        ) ?? item.icon,
+                      )}
                       alt="${item.unitType}"
                       width="40"
                       height="40"

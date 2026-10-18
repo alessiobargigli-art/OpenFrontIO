@@ -43,6 +43,7 @@ import "./components/PlutoniumIcon";
 import "./components/ToggleInputCard";
 import { inviteFriendsButton } from "./components/ui/InviteFriendsButton";
 import { modalHeader } from "./components/ui/ModalHeader";
+import "./components/UnitSkinPicker";
 import { fetchCosmetics, InsufficientCurrency } from "./Cosmetics";
 import { crazyGamesSDK } from "./CrazyGamesSDK";
 import { JoinLobbyEvent } from "./Main";
@@ -724,6 +725,13 @@ export class HostLobbyModal extends BaseModal {
             @unit-toggle-changed=${this.handleConfigUnitToggleChanged}
           ></game-config-settings>
 
+          <unit-skin-picker
+            .lobbyID=${this.lobbyId}
+            .eventBus=${this.eventBus}
+            .client=${this.clients.find(
+              (c) => c.clientID === this.lobbyCreatorClientID,
+            )}
+          ></unit-skin-picker>
           <lobby-name-editor
             .lobbyID=${this.lobbyId}
             .eventBus=${this.eventBus}

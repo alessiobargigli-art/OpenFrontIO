@@ -37,6 +37,7 @@ import { GameStartAlertController } from "./components/GameStartAlertController"
 import "./components/LobbyConfigItem";
 import "./components/LobbyNameEditor";
 import "./components/LobbyPlayerView";
+import "./components/UnitSkinPicker";
 import { inviteFriendsButton } from "./components/ui/InviteFriendsButton";
 import { DEFAULT_TITLE_CLASS, modalHeader } from "./components/ui/ModalHeader";
 import { openReplayViewer } from "./replay/ReplayEntry";
@@ -242,6 +243,13 @@ export class JoinLobbyModal extends BaseModal {
                 </div>
               `
             : html`
+                <unit-skin-picker
+                  .lobbyID=${this.currentLobbyId}
+                  .eventBus=${this.eventBus}
+                  .client=${this.players.find(
+                    (p) => p.clientID === this.currentClientID,
+                  )}
+                ></unit-skin-picker>
                 <lobby-name-editor
                   .lobbyID=${this.currentLobbyId}
                   .eventBus=${this.eventBus}

@@ -14,6 +14,11 @@
  *   FrameSnapshot.units → filter structures → instance VBO → GPU
  */
 
+import {
+  UNIT_SKIN_ROWS,
+  type UnitSkin,
+  unitSkinColumn,
+} from "../../../../core/UnitSkins";
 import type { GhostPreviewData, RendererConfig, UnitState } from "../../types";
 import {
   UT_CITY,
@@ -36,7 +41,7 @@ import { assetUrl } from "src/core/AssetUrls";
 import structureFragSrc from "../shaders/structure/structure.frag.glsl?raw";
 import structureVertSrc from "../shaders/structure/structure.vert.glsl?raw";
 
-const iconAtlasUrl = assetUrl("atlases/icon-atlas.png");
+const iconAtlasUrl = assetUrl("atlases/icon-skins.png");
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -70,6 +75,10 @@ const BYTES_PER_INSTANCE = FLOATS_PER_INSTANCE * 4;
 // ---------------------------------------------------------------------------
 
 export class StructurePass {
+  private unitSkins = new Map<number, UnitSkin>();
+  setPlayerUnitSkin(owner: number, skin: UnitSkin | undefined): void {
+    this.unitSkins.set(owner, skin ?? "flower-power");
+  }
   private gl: WebGL2RenderingContext;
   private settings: RenderSettings;
   private program: WebGLProgram;
@@ -155,6 +164,7 @@ export class StructurePass {
       gl,
       shaderSrc(structureVertSrc, { ATLAS_COLS }),
       shaderSrc(structureFragSrc, {
+        UNIT_SKIN_ROWS,
         PALETTE_SIZE: getPaletteSize(),
         ATLAS_COLS,
         // First row of the structures block in the shared effect palette.
@@ -321,7 +331,11 @@ export class StructurePass {
       this.instanceBuf.float32[off + 1] = y;
       this.instanceBuf.float32[off + 2] = unit.ownerID;
       this.instanceBuf.float32[off + 3] = unit.underConstruction ? 1 : 0;
-      this.instanceBuf.float32[off + 4] = atlasIdx;
+      this.instanceBuf.float32[off + 4] = unitSkinColumn(
+        atlasIdx,
+        ATLAS_COLS,
+        this.unitSkins.get(unit.ownerID),
+      );
       this.instanceBuf.float32[off + 5] =
         unit.markedForDeletion !== false ? 1 : 0;
 
@@ -437,7 +451,11 @@ export class StructurePass {
     // --- Ghost structure (1 translucent instance with outline) ---
     if (hasGhost) {
       const g = this.ghost!;
-      const atlasIdx = this.typeToAtlasCol.get(g.ghostType)!;
+      const atlasIdx = unitSkinColumn(
+        this.typeToAtlasCol.get(g.ghostType)!,
+        ATLAS_COLS,
+        this.unitSkins.get(g.ownerID),
+      );
 
       // Temporarily rebind instance attrs to ghost buffer
       gl.bindBuffer(gl.ARRAY_BUFFER, this.ghostInstanceBuf);

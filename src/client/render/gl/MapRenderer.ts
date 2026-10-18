@@ -199,6 +199,12 @@ export class MapRenderer {
       patternData,
     );
   }
+  setPlayerUnitSkin(
+    owner: number,
+    skin: import("../../../core/UnitSkins").UnitSkin | undefined,
+  ): void {
+    this.renderer?.setPlayerUnitSkin(owner, skin);
+  }
   setPlayerSkin(smallID: number, url: string | null): void {
     this.renderer?.setPlayerSkin(smallID, url);
   }
