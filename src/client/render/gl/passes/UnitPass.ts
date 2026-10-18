@@ -33,6 +33,11 @@
 
 import { assetUrl } from "src/core/AssetUrls";
 import type { Config } from "src/core/configuration/Config";
+import {
+  UNIT_SKIN_ROWS,
+  type UnitSkin,
+  unitSkinColumn,
+} from "../../../../core/UnitSkins";
 import type { RendererConfig, UnitState } from "../../types";
 import {
   SMOOTHED_NUKE_TYPES,
@@ -60,7 +65,7 @@ import {
 } from "../utils/ColorUtils";
 import { createProgram, shaderSrc } from "../utils/GlUtils";
 
-const unitAtlasUrl = assetUrl("atlases/unit-atlas.png");
+const unitAtlasUrl = assetUrl("atlases/unit-skins.png");
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -199,6 +204,10 @@ function createUnitVao(
 // ---------------------------------------------------------------------------
 
 export class UnitPass {
+  private unitSkins = new Map<number, UnitSkin>();
+  setPlayerUnitSkin(owner: number, skin: UnitSkin | undefined): void {
+    this.unitSkins.set(owner, skin ?? "flower-power");
+  }
   private gl: WebGL2RenderingContext;
   private settings: RenderSettings;
   private program: WebGLProgram;
@@ -291,6 +300,7 @@ export class UnitPass {
       gl,
       shaderSrc(unitVertSrc, { ATLAS_COLS, HYDROGEN_BOMB_COL }),
       shaderSrc(unitFragSrc, {
+        UNIT_SKIN_ROWS,
         PALETTE_SIZE: getPaletteSize(),
         ATLAS_COLS,
         WARSHIP_COL,
@@ -415,7 +425,11 @@ export class UnitPass {
     this.groundBuf.float32[off + 1] = y;
     this.groundBuf.float32[off + 2] = ownerID;
     const byteOff = this.groundCount * BYTES_PER_INSTANCE;
-    this.groundBuf.uint8[byteOff + 12] = atlasIdx;
+    this.groundBuf.uint8[byteOff + 12] = unitSkinColumn(
+      atlasIdx,
+      ATLAS_COLS,
+      this.unitSkins.get(ownerID),
+    );
     this.groundBuf.uint8[byteOff + 13] = flags;
     this.groundBuf.uint8[byteOff + 14] = flickerHashByte(x, y);
     this.groundCount++;
@@ -434,7 +448,11 @@ export class UnitPass {
     this.missileBuf.float32[off + 1] = y;
     this.missileBuf.float32[off + 2] = ownerID;
     const byteOff = this.missileCount * BYTES_PER_INSTANCE;
-    this.missileBuf.uint8[byteOff + 12] = atlasIdx;
+    this.missileBuf.uint8[byteOff + 12] = unitSkinColumn(
+      atlasIdx,
+      ATLAS_COLS,
+      this.unitSkins.get(ownerID),
+    );
     this.missileBuf.uint8[byteOff + 13] = flags;
     this.missileBuf.uint8[byteOff + 14] = flickerHashByte(x, y);
     this.missileCount++;

@@ -2,6 +2,7 @@ import { Colord } from "colord";
 import { assetUrl } from "../../core/AssetUrls";
 import { TrainType, UnitType } from "../../core/game/Game";
 import { Theme } from "../theme/ThemeProvider";
+import { unitSkinIcon } from "../UnitSkinAssets";
 import { UnitView } from "../view";
 const atomBombSprite = assetUrl("sprites/atombomb.png");
 const hydrogenBombSprite = assetUrl("sprites/hydrogenbomb.png");
@@ -36,11 +37,24 @@ const SPRITE_CONFIG: Partial<Record<UnitType | TrainTypeSprite, string>> = {
   [TrainTypeSprite.LoadedCarriage]: trainLoadedCarriageSprite,
 };
 
-const spriteMap: Map<UnitType | TrainTypeSprite, ImageBitmap> = new Map();
+const spriteMap: Map<string, ImageBitmap> = new Map();
 
 // preload all images
 export const loadAllSprites = async (): Promise<void> => {
-  const entries = Object.entries(SPRITE_CONFIG);
+  const entries = Object.entries(SPRITE_CONFIG).flatMap(([type, url]) => {
+    const trainFiles: Record<string, string> = {
+      Engine: "trainEngine",
+      Carriage: "trainCarriage",
+      LoadedCarriage: "trainCarriageLoaded",
+    };
+    const variant = trainFiles[type]
+      ? `skins/warcraft/${trainFiles[type]}.png`
+      : unitSkinIcon(type as UnitType, "warcraft");
+    return [
+      [`flower-power:${type}`, url],
+      [`warcraft:${type}`, variant ? assetUrl(variant) : url],
+    ];
+  });
   const totalSprites = entries.length;
   let loadedCount = 0;
 
@@ -65,6 +79,7 @@ export const loadAllSprites = async (): Promise<void> => {
 
         const bitmap = await createImageBitmap(img);
         spriteMap.set(typedUnitType, bitmap);
+        coloredSpriteCache.clear();
         loadedCount++;
 
         if (loadedCount === totalSprites) {
@@ -97,21 +112,20 @@ function trainTypeToSpriteType(unit: UnitView): TrainTypeSprite {
 
 const getSpriteForUnit = (unit: UnitView): ImageBitmap | null => {
   const unitType = unit.type();
+  const skin = unit.owner().cosmetics?.unitSkin ?? "flower-power";
+  const lookup = (type: string) =>
+    spriteMap.get(`${skin}:${type}`) ??
+    spriteMap.get(`flower-power:${type}`) ??
+    null;
   if (unitType === UnitType.Train) {
     const trainType = trainTypeToSpriteType(unit);
-    return spriteMap.get(trainType) ?? null;
+    return lookup(trainType);
   }
-  return spriteMap.get(unitType) ?? null;
+  return lookup(unitType);
 };
 
-export const isSpriteReady = (unit: UnitView): boolean => {
-  const unitType = unit.type();
-  if (unitType === UnitType.Train) {
-    const trainType = trainTypeToSpriteType(unit);
-    return spriteMap.has(trainType);
-  }
-  return spriteMap.has(unitType);
-};
+export const isSpriteReady = (unit: UnitView): boolean =>
+  getSpriteForUnit(unit) !== null;
 
 const coloredSpriteCache: Map<string, HTMLCanvasElement> = new Map();
 
@@ -169,7 +183,7 @@ function computeSpriteKey(
 ): string {
   const owner = unit.owner();
   const type = `${unit.type()}-${unit.trainType()}-${unit.isLoaded()}`;
-  const key = `${type}-${owner.id()}-${territoryColor.toRgbString()}-${borderColor.toRgbString()}`;
+  const key = `${owner.cosmetics?.unitSkin ?? "flower-power"}-${type}-${owner.id()}-${territoryColor.toRgbString()}-${borderColor.toRgbString()}`;
   return key;
 }
 

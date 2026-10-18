@@ -34,6 +34,7 @@ flat in float vUnderConstruction;
 flat in float vMarkedForDeletion;
 flat in float vZoom;
 flat in float vAtlasIdx;
+flat in float vSkinRow;
 flat in float vShapeScale;
 
 out vec4 fragColor;
@@ -201,7 +202,7 @@ void main() {
     float colStart = vAtlasIdx / float(ATLAS_COLS);
     float colEnd = (vAtlasIdx + 1.0) / float(ATLAS_COLS);
     vec2 safeUV = vec2(clamp(vAtlasUV.x, colStart, colEnd), clamp(vAtlasUV.y, 0.0, 1.0));
-    vec4 iconSample = texture(uAtlas, safeUV);
+    vec4 iconSample = texture(uAtlas, vec2(safeUV.x, (vSkinRow + safeUV.y) / float(UNIT_SKIN_ROWS)));
     iconRGB = iconSample.rgb;
     // Zero out icon outside the valid UV region (clamped pixels would repeat the edge)
     float inBounds = step(colStart, vAtlasUV.x) * step(vAtlasUV.x, colEnd)

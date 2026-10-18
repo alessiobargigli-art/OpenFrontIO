@@ -523,6 +523,7 @@ export class WebGLFrameBuilder {
    */
   private writePlayerCosmetics(p: PlayerView): PlayerStatic {
     const smallID = p.smallID();
+    this.view.setPlayerUnitSkin(smallID, p.cosmetics.unitSkin);
     writePaletteEntry(
       this.palette,
       smallID,

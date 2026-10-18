@@ -131,3 +131,12 @@ Guild icon by Trimanggolo Mulyo – https://thenounproject.com/icon/guild-826614
 
 [Wikimedia Commons](https://commons.wikimedia.org/wiki/Flag)
 Licensed under [CC BY-SA 3.0 DE](https://creativecommons.org/licenses/by-sa/3.0/de/deed.en)
+
+## Warcraft Fantasy unit pack
+
+The 18 unit/building sprites under `resources/skins/warcraft/` are original
+AI-generated artwork created with the built-in ImageGen tool for this fork,
+inspired by the visual language of fantasy RTS games and Warcraft. No game
+textures or extracted Blizzard sprites are included. Warcraft is a Blizzard
+Entertainment property; this is an unofficial fan-game appearance pack.
+See `docs/WARCRAFT_SKIN.md` for the prompt set, asset mapping and build steps.

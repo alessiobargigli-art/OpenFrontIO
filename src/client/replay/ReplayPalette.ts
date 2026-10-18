@@ -32,6 +32,7 @@ import { playerTypeFromEnum } from "../view/EntityState";
 import { resolvePlayerColors } from "../view/PlayerColors";
 
 export interface ReplayPalette {
+  unitSkins: Map<number, import("../../core/UnitSkins").UnitSkin>;
   palette: Float32Array;
   patternMeta: Float32Array;
   patternData: Uint8Array;
@@ -68,6 +69,7 @@ export function buildReplayPalette(
   const patternMeta = new Float32Array(PALETTE_SIZE * 4);
   const patternData = new Uint8Array(PALETTE_SIZE * 1024);
   const skins = new Map<number, string>();
+  const unitSkins = new Map<number, import("../../core/UnitSkins").UnitSkin>();
   const out: PlayerStatic[] = [];
   for (const p of players) {
     const own =
@@ -88,6 +90,7 @@ export function buildReplayPalette(
     );
     writePaletteEntry(palette, p.smallID, fill, border);
     writePatternEntry(patternMeta, patternData, p.smallID, own.pattern);
+    if (own.unitSkin) unitSkins.set(p.smallID, own.unitSkin);
     if (own.skin?.url !== undefined) {
       skins.set(p.smallID, assetUrl(own.skin.url));
     }
@@ -100,5 +103,5 @@ export function buildReplayPalette(
       color: fill.toHex(),
     });
   }
-  return { palette, patternMeta, patternData, players: out, skins };
+  return { palette, patternMeta, patternData, players: out, skins, unitSkins };
 }

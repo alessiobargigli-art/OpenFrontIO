@@ -97,6 +97,7 @@ import { themeProvider } from "./theme/ThemeProvider";
 import { GameView, PlayerView } from "./view";
 
 export interface LobbyConfig {
+  unitSkin?: import("../core/UnitSkins").UnitSkin;
   cosmetics: PlayerCosmeticRefs;
   playerName: string;
   playerClanTag: string | null;

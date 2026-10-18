@@ -821,6 +821,25 @@ export class GameServer {
         client.hashes.set(clientMsg.turnNumber, clientMsg.hash);
         break;
       }
+      case "unit_skin": {
+        const accepted = !this.hasStarted() && !this.ended;
+        if (accepted) {
+          client.cosmetics ??= {};
+          client.cosmetics.unitSkin = clientMsg.skin;
+        }
+        client.ws.send(
+          encodeServerMessage(
+            {
+              type: "unit_skin",
+              accepted,
+              skin: client.cosmetics?.unitSkin ?? "flower-power",
+            },
+            this.zbinCtx,
+          ),
+        );
+        if (accepted) this.broadcastLobbyInfo();
+        break;
+      }
       case "lobby_rename": {
         const accepted = !this.hasStarted() && !this.ended;
         if (accepted) {

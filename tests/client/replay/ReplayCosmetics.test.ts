@@ -339,3 +339,19 @@ describe("trail effects", () => {
     expect(countAt(1)).toBe(0);
   });
 });
+
+test("built-in unit packs survive replay palette construction and visibility filtering", () => {
+  const players = [player(1, "c1"), player(2, "c2")];
+  const equipped = new Map<string, PlayerCosmetics>([
+    ["c1", { unitSkin: "warcraft" }],
+    ["c2", { unitSkin: "flower-power" }],
+  ]);
+  const palette = buildReplayPalette(players, equipped);
+  expect(palette.unitSkins.get(1)).toBe("warcraft");
+  expect(palette.unitSkins.get(2)).toBe("flower-power");
+  const hidden = buildReplayPalette(
+    players,
+    visibleReplayCosmetics(equipped, { showFrom: "self" }),
+  );
+  expect(hidden.unitSkins.size).toBe(0);
+});

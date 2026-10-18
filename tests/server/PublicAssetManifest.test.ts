@@ -98,6 +98,33 @@ describe("PublicAssetManifest", () => {
     }
   });
 
+  test("includes unit skin sprites in the production manifest and emitted hashed files", async () => {
+    const { resourcesDir, outDir } = await createTempResources();
+    const original = await fs.readFile(
+      path.resolve("resources/skins/warcraft/city.png"),
+    );
+    await fs.mkdir(path.join(resourcesDir, "skins/warcraft"), {
+      recursive: true,
+    });
+    await fs.writeFile(
+      path.join(resourcesDir, "skins/warcraft/city.png"),
+      original,
+    );
+    const manifest = buildPublicAssetManifest([resourcesDir]);
+    expect(manifest["skins/warcraft/city.png"]).toMatch(
+      /^\/_assets\/skins\/warcraft\/city\.[a-f0-9]+\.png$/,
+    );
+    createHashedPublicAssetFiles([resourcesDir], outDir, manifest);
+    expect(
+      await fs.readFile(
+        path.join(
+          outDir,
+          normalizeAssetPath(manifest["skins/warcraft/city.png"]),
+        ),
+      ),
+    ).toEqual(original);
+  });
+
   test("hashes manifest.json from its rewritten content", async () => {
     const { resourcesDir, outDir } = await createTempResources();
 

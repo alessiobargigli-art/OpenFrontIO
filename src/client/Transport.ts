@@ -49,6 +49,7 @@ import { isDesktopShell } from "./DesktopShell";
 import { showInGameConfirm } from "./InGameModal";
 import { LocalServer } from "./LocalServer";
 import { describeSocketClose } from "./SocketClose";
+import { savedUnitSkin, saveUnitSkin } from "./UnitSkinAssets";
 import { homeHref, translateText } from "./Utils";
 import { PlayerView } from "./view";
 
@@ -228,6 +229,16 @@ export class SendToggleGameStartTimer implements GameEvent {
   constructor() {}
 }
 
+export class SendUnitSkinEvent implements GameEvent {
+  constructor(public readonly skin: import("../core/UnitSkins").UnitSkin) {}
+}
+export class UnitSkinResultEvent implements GameEvent {
+  constructor(
+    public readonly accepted: boolean,
+    public readonly skin: import("../core/UnitSkins").UnitSkin,
+  ) {}
+}
+
 export class SendLobbyRenameEvent implements GameEvent {
   constructor(public readonly username: string) {}
 }
@@ -301,6 +312,7 @@ export class Transport {
     private lobbyConfig: LobbyConfig,
     private eventBus: EventBus,
   ) {
+    this.lobbyConfig.unitSkin ??= savedUnitSkin();
     // If gameRecord is not null, we are replaying an archived game.
     // For multiplayer games, GameConfig is not known until game starts.
     this.isLocal =
@@ -376,6 +388,9 @@ export class Transport {
 
     this.subscribe(SendToggleGameStartTimer, (e) =>
       this.onSendToggleGameStartTimer(e),
+    );
+    this.subscribe(SendUnitSkinEvent, (e) =>
+      this.sendMsg({ type: "unit_skin", skin: e.skin }),
     );
     this.subscribe(SendLobbyRenameEvent, (e) => {
       this.sendMsg({ type: "lobby_rename", username: e.username });
@@ -516,6 +531,14 @@ export class Transport {
         );
         if (msg.type === "redirect") {
           this.handlePoolRedirect(msg.gameID);
+          return;
+        }
+        if (msg.type === "unit_skin") {
+          if (msg.accepted) {
+            this.lobbyConfig.unitSkin = msg.skin;
+            saveUnitSkin(msg.skin);
+          }
+          this.eventBus.emit(new UnitSkinResultEvent(msg.accepted, msg.skin));
           return;
         }
         if (msg.type === "lobby_rename") {
@@ -756,6 +779,7 @@ export class Transport {
       spectator: this.lobbyConfig.spectator,
       gitCommit: ClientEnv.gitCommit(),
       platform: clientPlatform(),
+      unitSkin: this.lobbyConfig.unitSkin,
     } satisfies ClientJoinMessage);
   }
 

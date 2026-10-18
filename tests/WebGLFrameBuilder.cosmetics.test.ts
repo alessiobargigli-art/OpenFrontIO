@@ -20,6 +20,7 @@ function setup(visibility: CosmeticVisibility = {}) {
   const effectUploads: Float32Array[] = [];
   const view = {
     initSkinAtlas: () => {},
+    setPlayerUnitSkin: () => {},
     addPlayers: () => {},
     setLocalPlayerID: () => {},
     setLocalRailColor: () => {},

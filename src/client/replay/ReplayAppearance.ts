@@ -135,6 +135,7 @@ export class ReplayAppearance {
   private applySkins(): void {
     const view = this.view!;
     for (const p of this.players) {
+      view.setPlayerUnitSkin(p.smallID, this._palette.unitSkins.get(p.smallID));
       if (p.clientID === null || !this.equipped.get(p.clientID)?.skin?.url) {
         continue;
       }

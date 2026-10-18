@@ -24,12 +24,14 @@ import "./components/GameConfigSettings";
 import { MEDAL_ORDER, medalIcon } from "./components/map/Medals";
 import "./components/ToggleInputCard";
 import { modalHeader } from "./components/ui/ModalHeader";
+import "./components/UnitSkinPicker";
 import { getPlayerCosmetics, prewarmCosmetics } from "./Cosmetics";
 import { crazyGamesSDK } from "./CrazyGamesSDK";
 import { GameStartingModal } from "./GameStartingModal";
 import { showInGameAlert } from "./InGameModal";
 import { JoinLobbyEvent } from "./Main";
 import { fallbackPlayerName, ResolvedPlayerName } from "./PlayerName";
+import { savedUnitSkin } from "./UnitSkinAssets";
 import { UsernameInput } from "./UsernameInput";
 import {
   getBotsForCompactMap,
@@ -483,6 +485,7 @@ export class SinglePlayerModal extends BaseModal {
         <div
           class="flex-1 min-h-0 overflow-y-auto custom-scrollbar px-6 pt-4 pb-6 mr-1 mx-auto w-full max-w-5xl"
         >
+          <unit-skin-picker .localOnly=${true}></unit-skin-picker>
           <game-config-settings
             class="block"
             .sectionGapClass=${"space-y-6"}
@@ -1001,7 +1004,10 @@ export class SinglePlayerModal extends BaseModal {
         const resolvedName = nameNow();
         return {
           resolvedName,
-          cosmetics: resolvedName.verified ? { verified: true } : {},
+          cosmetics: {
+            unitSkin: savedUnitSkin(),
+            ...(resolvedName.verified ? { verified: true } : {}),
+          },
         };
       },
     );

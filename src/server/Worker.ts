@@ -803,6 +803,9 @@ export async function startWorker() {
           return;
         }
 
+        cosmeticResult.cosmetics.unitSkin =
+          clientMsg.unitSkin ?? "flower-power";
+
         // Verified intent, not a claim to verify: the check stays only when
         // the account renders bare and the screened join name is that bare
         // name. The name itself is never replaced, so everything shown in the

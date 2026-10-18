@@ -24,6 +24,7 @@ import {
   UnitType,
 } from "./game/Game";
 import { ArchivedPlayerStatsSchema, PlayerStatsSchema } from "./StatsSchemas";
+import { UnitSkinSchema, type UnitSkin } from "./UnitSkins";
 import { flattenedEmojiTable, LOBBY_LABEL_MAX } from "./Util";
 
 export type GameID = string;
@@ -109,7 +110,8 @@ export type ClientMessage =
   | ClientHashMessage
   | ClientSpectateMessage
   | ClientReportMessage
-  | z.infer<typeof ClientLobbyRenameMessageSchema>;
+  | z.infer<typeof ClientLobbyRenameMessageSchema>
+  | z.infer<typeof ClientUnitSkinMessageSchema>;
 
 export type ServerMessage =
   | ServerTurnMessage
@@ -122,7 +124,8 @@ export type ServerMessage =
   | ServerNewLobbyMessage
   | ServerPongMessage
   | ServerRedirectMessage
-  | z.infer<typeof ServerLobbyRenameMessageSchema>;
+  | z.infer<typeof ServerLobbyRenameMessageSchema>
+  | z.infer<typeof ServerUnitSkinMessageSchema>;
 
 export type ServerTurnMessage = z.infer<typeof ServerTurnMessageSchema>;
 export type ServerStartGameMessage = z.infer<
@@ -325,6 +328,7 @@ const ClientInfoSchema = z.object({
   // preview can honour the pins instead of re-deriving teams that the server
   // will overrule at start. Absent when the game isn't matchmade.
   teamIndex: zb.uint().optional(),
+  unitSkin: UnitSkinSchema.optional(),
 });
 
 export const GameInfoSchema = z.object({
@@ -436,6 +440,7 @@ export class GroupTokenEvent implements GameEvent {
 }
 
 export interface ClientInfo {
+  unitSkin?: UnitSkin;
   clientID: ClientID;
   username: string;
   clanTag: string | null;
@@ -958,6 +963,7 @@ export const PlayerCosmeticsSchema = z.object({
   effects: z.record(z.string(), PlayerEffectSchema).optional(),
   // Plays under the verified account username — renders the blue check.
   verified: z.boolean().optional(),
+  unitSkin: UnitSkinSchema.optional(),
 });
 
 export const PlayerSchema = z.object({
@@ -1122,6 +1128,12 @@ export const ServerLobbyRenameMessageSchema = z.object({
   clanTag: ClanTagSchema,
 });
 
+export const ServerUnitSkinMessageSchema = z.object({
+  type: z.literal("unit_skin"),
+  accepted: z.boolean(),
+  skin: UnitSkinSchema,
+});
+
 export const ServerMessageSchema = zb.discriminatedUnion("type", [
   ServerTurnMessageSchema,
   ServerPrestartMessageSchema,
@@ -1135,6 +1147,7 @@ export const ServerMessageSchema = zb.discriminatedUnion("type", [
   // Appended, never inserted: variant order is the wire tag (zbin/README.md).
   ServerRedirectMessageSchema,
   ServerLobbyRenameMessageSchema,
+  ServerUnitSkinMessageSchema,
 ]);
 
 //
@@ -1252,10 +1265,12 @@ export const ClientJoinMessageSchema = z.object({
   // whose commit doesn't match its own (missing counts as a mismatch —
   // pre-feature bundles are by definition stale).
   gitCommit: z.string().max(64).optional(),
-  // Must stay the last field, and its presence bit must not spill into a new
+  // Appended optional fields must not spill the presence bits into a new
   // header byte: then a stale bundle's frame (which lacks it) still decodes,
   // reaches the gitCommit check above, and the player is told to refresh.
   platform: ClientPlatformSchema.optional(),
+  // Free built-in unit art, independent of account cosmetics/territory skins.
+  unitSkin: UnitSkinSchema.optional(),
 });
 
 export const ClientRejoinMessageSchema = z.object({
@@ -1282,6 +1297,11 @@ export const ClientLobbyRenameMessageSchema = z.object({
   username: UsernameSchema.max(20).refine((name) => name.trim().length >= 3),
 });
 
+export const ClientUnitSkinMessageSchema = z.object({
+  type: z.literal("unit_skin"),
+  skin: UnitSkinSchema,
+});
+
 export const ClientMessageSchema = zb.discriminatedUnion("type", [
   ClientSendWinnerSchema,
   ClientSendLiveStatsSchema,
@@ -1294,6 +1314,7 @@ export const ClientMessageSchema = zb.discriminatedUnion("type", [
   ClientSpectateMessageSchema,
   ClientReportMessageSchema,
   ClientLobbyRenameMessageSchema,
+  ClientUnitSkinMessageSchema,
 ]);
 
 //

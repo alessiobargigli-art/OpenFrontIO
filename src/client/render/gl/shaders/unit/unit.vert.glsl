@@ -16,6 +16,7 @@ out vec2  vQuadPos;     // quad coords [0,1] — drives the radial glow falloff
 out vec2  vCellUV;      // sprite cell coords; the central 1/scale region is the sprite
 out vec2  vWorldPos;    // world-space tile coords — drives the train effect's gradient
 flat out float vAtlasCol;
+flat out float vSkinRow;
 flat out float vOwnerID;
 flat out float vFlags;  // 0.0 = normal, 1.0 = flicker, 2.0 = angry
 flat out float vHash;   // per-instance hash for flicker phase offset
@@ -26,7 +27,8 @@ void main() {
   float worldY = aInstPos.y;
   vOwnerID = aInstPos.z;
 
-  float atlasCol = aInstFlags.x;
+  float atlasCol = mod(aInstFlags.x, float(ATLAS_COLS));
+  vSkinRow = floor(aInstFlags.x / float(ATLAS_COLS));
   vFlags = aInstFlags.y;
   vAtlasCol = atlasCol;
 

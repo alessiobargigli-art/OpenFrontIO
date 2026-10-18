@@ -25,6 +25,7 @@ flat out float vUnderConstruction;
 flat out float vMarkedForDeletion;
 flat out float vZoom;
 flat out float vAtlasIdx;
+flat out float vSkinRow;
 flat out float vShapeScale;
 
 void main() {
@@ -34,7 +35,8 @@ void main() {
   vUnderConstruction = aInst0.w;
   vMarkedForDeletion = aInst1.y;
   vZoom = uZoom;
-  vAtlasIdx = aInst1.x;
+  vAtlasIdx = mod(aInst1.x, float(ATLAS_COLS));
+  vSkinRow = floor(aInst1.x / float(ATLAS_COLS));
 
   float iconScale;
   if (uZoom <= uDotsThreshold) {
@@ -48,7 +50,7 @@ void main() {
     iconScale = min(1.0, uZoom / uScaleFactor);
   }
 
-  int shapeIdx = int(aInst1.x);
+  int shapeIdx = int(vAtlasIdx);
   float shapeScale = uShapeScales[shapeIdx];
   vShapeScale = shapeScale;
 
@@ -67,6 +69,6 @@ void main() {
   float uvExpand = shapeScale / uIconFills[shapeIdx];
   float scaledX = 0.5 + (aPos.x - 0.5) * uvExpand;
   float scaledY = 0.5 + (aPos.y - 0.5) * uvExpand;
-  float colU = (aInst1.x + scaledX) / float(ATLAS_COLS);
+  float colU = (vAtlasIdx + scaledX) / float(ATLAS_COLS);
   vAtlasUV = vec2(colU, scaledY);
 }

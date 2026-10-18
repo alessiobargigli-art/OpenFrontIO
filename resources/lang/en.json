@@ -2460,5 +2460,16 @@
     "you_won": "You Won!",
     "your_team": "Your team won!",
     "youtube_tutorial": "Need some help?"
+  },
+  "unit_skin": {
+    "title": "Unit skin",
+    "hint": "Choose how your units and buildings look. Other players see your choice.",
+    "flower_power": "Flower Power",
+    "warcraft": "Warcraft Fantasy",
+    "saving": "Applying skin…",
+    "saved": "Skin selected.",
+    "unavailable": "The game is starting. You can change skin in the next lobby.",
+    "retry": "No response. Please try again.",
+    "preview": "Skin preview"
   }
 }
