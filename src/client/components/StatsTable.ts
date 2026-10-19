@@ -9,6 +9,7 @@ import {
   columnsFor,
 } from "../hud/layers/lib/StatsColumns";
 import { type ColumnId, type StatsTableKind } from "../StatsConstants";
+import { savedUnitSkin, unitSkinIconUrl } from "../UnitSkinAssets";
 import { translateText } from "../Utils";
 import type { GameView } from "../view";
 
@@ -174,12 +175,16 @@ export abstract class StatsTable extends LitElement {
     if (visual.kind === "text") {
       return html`<span>${translateText(visual.text)}</span>`;
     }
+    const player = this.game?.myPlayer?.();
+    const skin = player ? player.cosmetics?.unitSkin : savedUnitSkin();
     return html`<span class="inline-flex items-start">
       <img
         class="size-[1.1rem] object-contain ${visual.white === true
           ? "brightness-0 invert"
           : ""}"
-        src=${visual.src}
+        src=${visual.unitType
+          ? unitSkinIconUrl(visual.unitType, skin)
+          : visual.src}
         alt=""
         aria-hidden="true"
       />${visual.superscript

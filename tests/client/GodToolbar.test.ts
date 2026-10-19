@@ -43,6 +43,28 @@ describe("God spectator controls", () => {
     expect(launch).toHaveBeenCalledOnce();
   });
 
+  it.each(["warcraft", "default"] as const)(
+    "uses the spectator's %s pack before and after God units appear",
+    async (skin) => {
+      Object.assign(toolbar.game, { nonHumanUnitSkin: () => skin });
+      toolbar.requestUpdate();
+      await toolbar.updateComplete;
+      expect(
+        button(UnitType.AtomBomb).querySelector("img")?.getAttribute("src"),
+      ).toBe(`/skins/${skin}/atombomb.png`);
+      Object.assign(toolbar.game, {
+        playerViews: () => [
+          { id: () => GOD_PLAYER_ID, cosmetics: { unitSkin: skin } },
+        ],
+      });
+      toolbar.requestUpdate();
+      await toolbar.updateComplete;
+      expect(
+        button(UnitType.MIRV).querySelector("img")?.getAttribute("src"),
+      ).toBe(`/skins/${skin}/mirv2.png`);
+    },
+  );
+
   it("blocks repeat MIRVs during delivery and while God warheads remain", async () => {
     button(UnitType.MIRV).click();
     await toolbar.updateComplete;

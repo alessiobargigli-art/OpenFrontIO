@@ -24,24 +24,13 @@ import {
   SendUpgradeStructureIntentEvent,
 } from "../../Transport";
 import { UIState } from "../../UIState";
-import { unitSkinIcon } from "../../UnitSkinAssets";
+import { unitSkinIconUrl } from "../../UnitSkinAssets";
 import { renderNumber } from "../../Utils";
 import { GameView } from "../../view";
-const warshipIcon = assetUrl("sprites/warship.png");
-const cityIcon = assetUrl("images/flower-power/city.png");
-const factoryIcon = assetUrl("images/flower-power/factory.png");
 const goldCoinIcon = assetUrl("images/GoldCoinIcon.svg");
-const mirvIcon = assetUrl("sprites/mirv2.png");
-const missileSiloIcon = assetUrl("images/flower-power/missileSilo.png");
-const hydrogenBombIcon = assetUrl("sprites/hydrogenbomb.png");
-const atomBombIcon = assetUrl("sprites/atombomb.png");
-const portIcon = assetUrl("images/flower-power/port.png");
-const samlauncherIcon = assetUrl("images/flower-power/samLauncher.png");
-const shieldIcon = assetUrl("images/flower-power/defensePost.png");
 
 export interface BuildItemDisplay {
   unitType: PlayerBuildableUnitType;
-  icon: string;
   description?: string;
   key?: string;
   countable?: boolean;
@@ -51,70 +40,60 @@ export const buildTable: BuildItemDisplay[][] = [
   [
     {
       unitType: UnitType.AtomBomb,
-      icon: atomBombIcon,
       description: "build_menu.desc.atom_bomb",
       key: "unit_type.atom_bomb",
       countable: false,
     },
     {
       unitType: UnitType.MIRV,
-      icon: mirvIcon,
       description: "build_menu.desc.mirv",
       key: "unit_type.mirv",
       countable: false,
     },
     {
       unitType: UnitType.HydrogenBomb,
-      icon: hydrogenBombIcon,
       description: "build_menu.desc.hydrogen_bomb",
       key: "unit_type.hydrogen_bomb",
       countable: false,
     },
     {
       unitType: UnitType.Warship,
-      icon: warshipIcon,
       description: "build_menu.desc.warship",
       key: "unit_type.warship",
       countable: true,
     },
     {
       unitType: UnitType.Port,
-      icon: portIcon,
       description: "build_menu.desc.port",
       key: "unit_type.port",
       countable: true,
     },
     {
       unitType: UnitType.MissileSilo,
-      icon: missileSiloIcon,
       description: "build_menu.desc.missile_silo",
       key: "unit_type.missile_silo",
       countable: true,
     },
     {
       unitType: UnitType.SAMLauncher,
-      icon: samlauncherIcon,
       description: "build_menu.desc.sam_launcher",
       key: "unit_type.sam_launcher",
       countable: true,
     },
     {
       unitType: UnitType.DefensePost,
-      icon: shieldIcon,
       description: "build_menu.desc.defense_post",
       key: "unit_type.defense_post",
       countable: true,
     },
     {
       unitType: UnitType.City,
-      icon: cityIcon,
       description: "build_menu.desc.city",
       key: "unit_type.city",
       countable: true,
     },
     {
       unitType: UnitType.Factory,
-      icon: factoryIcon,
       description: "build_menu.desc.factory",
       key: "unit_type.factory",
       countable: true,
@@ -434,11 +413,9 @@ export class BuildMenu extends LitElement implements Controller {
                       : ""}
                   >
                     <img
-                      src=${assetUrl(
-                        unitSkinIcon(
-                          item.unitType,
-                          this.game?.myPlayer()?.cosmetics.unitSkin,
-                        ) ?? item.icon,
+                      src=${unitSkinIconUrl(
+                        item.unitType,
+                        this.game?.myPlayer()?.cosmetics.unitSkin,
                       )}
                       alt="${item.unitType}"
                       width="40"

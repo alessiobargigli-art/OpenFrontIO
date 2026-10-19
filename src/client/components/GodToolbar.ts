@@ -2,7 +2,7 @@ import { LitElement, html, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { UnitType } from "../../core/game/Game";
 import { GOD_PLAYER_ID, GodWeapon } from "../../core/GodMode";
-import { atomBombIcon, hydrogenBombIcon, mirvIcon } from "../hud/HotbarIcons";
+import { savedUnitSkin, unitSkinIconUrl } from "../UnitSkinAssets";
 import { translateText } from "../Utils";
 import { GameView } from "../view/GameView";
 
@@ -47,6 +47,10 @@ export class GodToolbar extends LitElement {
   }
   render() {
     if (!this.game || this.game.config().isReplay()) return nothing;
+    const god = this.game.playerViews?.().find((p) => p.id() === GOD_PLAYER_ID);
+    const skin = god
+      ? god.cosmetics.unitSkin
+      : (this.game.nonHumanUnitSkin?.() ?? savedUnitSkin());
     return html`<div
       class="fixed top-20 left-1/2 -translate-x-1/2 z-[10001] max-w-[95vw] rounded-xl border border-amber-300/40 bg-slate-950/95 p-3 text-white shadow-xl"
       @pointerdown=${(e: Event) => e.stopPropagation()}
@@ -62,12 +66,12 @@ export class GodToolbar extends LitElement {
       <div class="flex gap-2">
         ${(
           [
-            [UnitType.AtomBomb, "god_mode.atom", atomBombIcon],
-            [UnitType.HydrogenBomb, "god_mode.hydrogen", hydrogenBombIcon],
-            [UnitType.MIRV, "god_mode.mirv", mirvIcon],
+            [UnitType.AtomBomb, "god_mode.atom"],
+            [UnitType.HydrogenBomb, "god_mode.hydrogen"],
+            [UnitType.MIRV, "god_mode.mirv"],
           ] as const
         ).map(
-          ([weapon, label, icon]) =>
+          ([weapon, label]) =>
             html`<button
               type="button"
               data-weapon=${weapon}
@@ -82,7 +86,7 @@ export class GodToolbar extends LitElement {
               }}
             >
               <img
-                src=${icon}
+                src=${unitSkinIconUrl(weapon, skin)}
                 alt=""
                 aria-hidden="true"
                 class="mx-auto mb-1 h-7 w-7 object-contain"

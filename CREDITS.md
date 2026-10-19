@@ -140,3 +140,12 @@ inspired by the visual language of fantasy RTS games and Warcraft. No game
 textures or extracted Blizzard sprites are included. Warcraft is a Blizzard
 Entertainment property; this is an unofficial fan-game appearance pack.
 See `docs/WARCRAFT_SKIN.md` for the prompt set, asset mapping and build steps.
+
+## Default unit pack
+
+The Default pack restores OpenFront's original unit/building atlas artwork from
+[openfrontio/OpenFrontIO, commit 420f27a](https://github.com/openfrontio/OpenFrontIO/tree/420f27a33a0e321a4258062558da38554eea1661).
+The two source atlases are copied unchanged into `resources/skins/default/`;
+individual icons are exact cell crops. Shared atlases scale those cells with
+nearest-neighbour sampling. Existing source credits and license notices remain
+applicable. `manifest.json` records the source revision.

@@ -12,21 +12,10 @@ import { UserSettings } from "../../../core/game/UserSettings";
 import { Controller } from "../../Controller";
 import { ToggleStructureEvent } from "../../InputHandler";
 import { UIState } from "../../UIState";
+import { unitSkinIconUrl } from "../../UnitSkinAssets";
 import { renderNumber, translateText } from "../../Utils";
 import { GameView } from "../../view";
-import {
-  atomBombIcon,
-  cityIcon,
-  defensePostIcon,
-  factoryIcon,
-  goldCoinIcon,
-  hydrogenBombIcon,
-  mirvIcon,
-  missileSiloIcon,
-  portIcon,
-  samLauncherIcon,
-  warshipIcon,
-} from "../HotbarIcons";
+import { goldCoinIcon } from "../HotbarIcons";
 import { TutorialHighlight, TutorialHighlightEvent } from "../Tutorial";
 
 @customElement("unit-display")
@@ -144,70 +133,60 @@ export class UnitDisplay extends LitElement implements Controller {
       <div class="border-t border-white/10 p-0.5 w-full">
         <div class="grid grid-rows-1 grid-flow-col gap-0.5 w-fit mx-auto">
           ${this.renderUnitItem(
-            cityIcon,
             this._cities,
             UnitType.City,
             "city",
             this.keybinds["buildCity"]?.key ?? "1",
           )}
           ${this.renderUnitItem(
-            factoryIcon,
             this._factories,
             UnitType.Factory,
             "factory",
             this.keybinds["buildFactory"]?.key ?? "2",
           )}
           ${this.renderUnitItem(
-            portIcon,
             this._port,
             UnitType.Port,
             "port",
             this.keybinds["buildPort"]?.key ?? "3",
           )}
           ${this.renderUnitItem(
-            defensePostIcon,
             this._defensePost,
             UnitType.DefensePost,
             "defense_post",
             this.keybinds["buildDefensePost"]?.key ?? "4",
           )}
           ${this.renderUnitItem(
-            missileSiloIcon,
             this._missileSilo,
             UnitType.MissileSilo,
             "missile_silo",
             this.keybinds["buildMissileSilo"]?.key ?? "5",
           )}
           ${this.renderUnitItem(
-            samLauncherIcon,
             this._samLauncher,
             UnitType.SAMLauncher,
             "sam_launcher",
             this.keybinds["buildSamLauncher"]?.key ?? "6",
           )}
           ${this.renderUnitItem(
-            warshipIcon,
             this._warships,
             UnitType.Warship,
             "warship",
             this.keybinds["buildWarship"]?.key ?? "7",
           )}
           ${this.renderUnitItem(
-            atomBombIcon,
             null,
             UnitType.AtomBomb,
             "atom_bomb",
             this.keybinds["buildAtomBomb"]?.key ?? "8",
           )}
           ${this.renderUnitItem(
-            hydrogenBombIcon,
             null,
             UnitType.HydrogenBomb,
             "hydrogen_bomb",
             this.keybinds["buildHydrogenBomb"]?.key ?? "9",
           )}
           ${this.renderUnitItem(
-            mirvIcon,
             null,
             UnitType.MIRV,
             "mirv",
@@ -219,7 +198,6 @@ export class UnitDisplay extends LitElement implements Controller {
   }
 
   private renderUnitItem(
-    icon: string,
     number: number | null,
     unitType: PlayerBuildableUnitType,
     structureKey: string,
@@ -316,7 +294,14 @@ export class UnitDisplay extends LitElement implements Controller {
             ${displayHotkey}
           </div>`}
           <div class="flex items-center gap-0.5 pt-0.5">
-            <img src=${icon} alt=${structureKey} class="align-middle size-5" />
+            <img
+              src=${unitSkinIconUrl(
+                unitType,
+                this.game.myPlayer()?.cosmetics.unitSkin,
+              )}
+              alt=${structureKey}
+              class="align-middle size-5"
+            />
             ${number !== null
               ? html`<span class="text-xs">${renderNumber(number)}</span>`
               : null}

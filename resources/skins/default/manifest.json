@@ -1,0 +1,6 @@
+{
+  "name": "Default",
+  "source": "https://github.com/openfrontio/OpenFrontIO/tree/420f27a33a0e321a4258062558da38554eea1661",
+  "atlasRow": 2,
+  "description": "Original OpenFront atlases copied unchanged; individual PNGs are exact atlas cell crops."
+}

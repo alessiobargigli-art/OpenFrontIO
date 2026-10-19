@@ -2,6 +2,8 @@ import { LitElement, html, nothing } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import type { PlayerStatsLeaf } from "../../../../core/ApiSchemas";
 import { assetUrl } from "../../../../core/AssetUrls";
+import { UnitType } from "../../../../core/game/Game";
+import { savedUnitSkin, unitSkinIconUrl } from "../../../UnitSkinAssets";
 import { renderNumber, translateText } from "../../../Utils";
 
 type PlayerSummaryMetricKey =
@@ -110,6 +112,17 @@ const UNIT_ICONS = {
   nuke: "sprites/atombomb.png",
   warship: "sprites/warship.png",
   gold: "images/GoldCoinIcon.svg",
+} as const;
+
+const UNIT_TYPES = {
+  city: UnitType.City,
+  port: UnitType.Port,
+  factory: UnitType.Factory,
+  defensePost: UnitType.DefensePost,
+  transport: UnitType.TransportShip,
+  tradeShip: UnitType.TradeShip,
+  nuke: UnitType.AtomBomb,
+  warship: UnitType.Warship,
 } as const;
 
 type UnitIconName = keyof typeof UNIT_ICONS;
@@ -340,7 +353,12 @@ export class PlayerStatsSummary extends LitElement {
         >
           ${value}<img
             data-unit
-            src=${assetUrl(UNIT_ICONS[icon])}
+            src=${icon in UNIT_TYPES
+              ? unitSkinIconUrl(
+                  UNIT_TYPES[icon as keyof typeof UNIT_TYPES],
+                  savedUnitSkin(),
+                )
+              : assetUrl(UNIT_ICONS[icon])}
             style=${iconStyle}
             alt=""
             aria-hidden="true"

@@ -255,6 +255,23 @@ describe("RadialMenuElements", () => {
     });
   });
 
+  it.each(["warcraft", "default"] as const)(
+    "uses the builder's %s pack even when targeting an opponent",
+    (skin) => {
+      mockPlayer.cosmetics = { unitSkin: skin };
+      mockParams.selected = { id: () => "enemy" } as PlayerView;
+      const attacks = attackMenuElement.subMenu!(mockParams);
+      const atom = attacks.find((item) =>
+        item.id.endsWith(`_${UnitType.AtomBomb}`),
+      );
+      expect(atom?.icon).toContain(`/skins/${skin}/atombomb.png`);
+      mockParams.selected = mockPlayer;
+      const builds = buildMenuElement.subMenu!(mockParams);
+      const city = builds.find((item) => item.id.endsWith(`_${UnitType.City}`));
+      expect(city?.icon).toContain(`/skins/${skin}/city.png`);
+    },
+  );
+
   describe("buildMenuElement", () => {
     it("should have correct basic properties", () => {
       expect(buildMenuElement.id).toBe(Slot.Build);

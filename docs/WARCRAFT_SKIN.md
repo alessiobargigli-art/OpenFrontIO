@@ -10,10 +10,10 @@ con la skill ImageGen e lo strumento integrato, non estratto dai giochi Blizzard
 ## Scelta e sincronizzazione
 
 Il selettore è nella lobby dell'host, nella lobby di chi entra e nelle impostazioni
-singleplayer. Mostra le anteprime di Flower Power e Warcraft Fantasy. La scelta
+singleplayer. Mostra le anteprime di Flower Power, Warcraft Fantasy e Default (grafica originale OpenFront). La scelta
 riguarda le unità del giocatore: non sostituisce il tema degli altri partecipanti.
 
-In multiplayer, il server accetta soltanto gli identificativi dei due pacchetti
+In multiplayer, il server accetta soltanto gli identificativi dei tre pacchetti
 integrati e soltanto prima di prestart. Non vengono accettati URL arbitrari. La
 scelta entra nel roster e nei cosmetici del messaggio di avvio; viene quindi
 visualizzata dagli altri client e conservata nel record/replay. Restano valide
@@ -26,10 +26,13 @@ nelle partite successive e dopo una riconnessione. Se lo storage è bloccato, la
 scelta resta disponibile nella sessione. In singleplayer è salvata direttamente.
 La GUI mostra salvataggio, rifiuto durante l'avvio e riprova dopo un timeout.
 
-Le unità senza un proprietario con questa skin, comprese AI e il giocatore God
-condiviso dagli spettatori, mantengono Flower Power. Uno spettatore non possiede
-unità personali: la sua selezione vale quando parteciperà come giocatore.
-Esplosioni, terreno e interfaccia generale mantengono gli effetti esistenti.
+Bot, nazioni e il giocatore God condiviso seguono il pacchetto del visualizzatore:
+la scelta accettata all'avvio per chi gioca, la preferenza salvata per gli spettatori.
+I giocatori umani mantengono ciascuno la propria scelta. Pannelli avversari, barra
+unità, menu costruzioni e radiale usano la stessa skin delle unità rappresentate;
+le intestazioni delle statistiche, l'aiuto e il riepilogo fuori partita seguono
+il tema locale. Le impostazioni di visibilità dei cosmetici restano valide.
+Esplosioni e terreno mantengono gli effetti esistenti.
 
 ## Asset e rigenerazione
 
@@ -60,9 +63,9 @@ richiedono le immagini di lavoro. Il manifest registra i due ordini di colonne.
 | Vagone               | `trainCarriage.png`       | Carrello minerario             |
 | Vagone carico        | `trainCarriageLoaded.png` | Carrello con oro e cristalli   |
 
-Gli atlas condivisi sono `resources/atlases/unit-skins.png` (1536 × 256) e
-`resources/atlases/icon-skins.png` (768 × 256). Riga 0: Flower Power, identica
-pixel per pixel agli atlas originali. Riga 1: Warcraft. Gli slot e gli ingombri
+Gli atlas condivisi sono `resources/atlases/unit-skins.png` (1536 × 384) e
+`resources/atlases/icon-skins.png` (768 × 384). Riga 0: Flower Power, identica
+pixel per pixel agli atlas originali. Riga 1: Warcraft. Riga 2: Default, ricavata dagli atlas originali OpenFront. Gli slot e gli ingombri
 sulla mappa sono conservati. Le dimensioni del buffer per istanza non aumentano:
 l'indice memorizza colonna e riga; lo shader ricava la colonna originale per
 forme, effetti, evidenziazioni e segnali di combattimento. Anche le anteprime di

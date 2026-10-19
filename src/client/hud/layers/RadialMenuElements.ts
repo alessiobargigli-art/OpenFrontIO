@@ -15,6 +15,7 @@ import {
 import { TileRef } from "../../../core/game/GameMap";
 import { Emoji, findClosestBy, flattenedEmojiTable } from "../../../core/Util";
 import { UIState } from "../../UIState";
+import { unitSkinIconUrl } from "../../UnitSkinAssets";
 import { renderNumber, translateText } from "../../Utils";
 import { GameView, PlayerView } from "../../view";
 import { BuildItemDisplay, BuildMenu, flattenedBuildTable } from "./BuildMenu";
@@ -442,7 +443,10 @@ function createMenuElements(
               ? COLORS.attack
               : COLORS.building
             : COLORS.building,
-        icon: item.icon,
+        icon: unitSkinIconUrl(
+          item.unitType,
+          params.myPlayer.cosmetics?.unitSkin,
+        ),
         tooltipItems: [
           { text: translateText(item.key ?? ""), className: "title" },
           {

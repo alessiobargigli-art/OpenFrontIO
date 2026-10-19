@@ -1,6 +1,7 @@
 import { Colord } from "colord";
 import { assetUrl } from "../../core/AssetUrls";
 import { TrainType, UnitType } from "../../core/game/Game";
+import { UNIT_SKIN_IDS } from "../../core/UnitSkins";
 import { Theme } from "../theme/ThemeProvider";
 import { unitSkinIcon } from "../UnitSkinAssets";
 import { UnitView } from "../view";
@@ -47,13 +48,14 @@ export const loadAllSprites = async (): Promise<void> => {
       Carriage: "trainCarriage",
       LoadedCarriage: "trainCarriageLoaded",
     };
-    const variant = trainFiles[type]
-      ? `skins/warcraft/${trainFiles[type]}.png`
-      : unitSkinIcon(type as UnitType, "warcraft");
-    return [
-      [`flower-power:${type}`, url],
-      [`warcraft:${type}`, variant ? assetUrl(variant) : url],
-    ];
+    return UNIT_SKIN_IDS.map((skin) => {
+      const variant = trainFiles[type]
+        ? skin === "flower-power"
+          ? `sprites/${trainFiles[type]}.png`
+          : `skins/${skin}/${trainFiles[type]}.png`
+        : unitSkinIcon(type as UnitType, skin);
+      return [`${skin}:${type}`, variant ? assetUrl(variant) : url];
+    });
   });
   const totalSprites = entries.length;
   let loadedCount = 0;

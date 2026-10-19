@@ -36,6 +36,7 @@ export type ColumnHeaderVisual =
   | {
       readonly kind: "icon";
       readonly src: string;
+      readonly unitType?: UnitType;
       readonly white?: true;
       /** Small icon or text rendered as a superscript on the main icon. */
       readonly superscript?:
@@ -99,7 +100,7 @@ function unitColumn(
   return defineColumn({
     id,
     labelKey,
-    headerVisual: { kind: "icon", src: icon },
+    headerVisual: { kind: "icon", src: icon, unitType },
     align: "center",
     value: (player) => player.totalUnitLevels(unitType),
     cell: (row) => renderNumber(row.value),
@@ -225,6 +226,7 @@ export const COLUMN_DEFS: readonly ColumnDef[] = [
     headerVisual: {
       kind: "icon",
       src: portIcon,
+      unitType: UnitType.Port,
       superscript: { text: "/m" },
     },
     value: (player) => goldRateTracker.shipTradeGoldPerMin(player.smallID()),
@@ -236,6 +238,7 @@ export const COLUMN_DEFS: readonly ColumnDef[] = [
     headerVisual: {
       kind: "icon",
       src: warshipIcon,
+      unitType: UnitType.Warship,
       superscript: { text: "/m" },
     },
     value: (player) => goldRateTracker.piracyGoldPerMin(player.smallID()),
@@ -247,6 +250,7 @@ export const COLUMN_DEFS: readonly ColumnDef[] = [
     headerVisual: {
       kind: "icon",
       src: factoryIcon,
+      unitType: UnitType.Factory,
       superscript: { text: "/m" },
     },
     value: (player) => goldRateTracker.trainTradeGoldPerMin(player.smallID()),
