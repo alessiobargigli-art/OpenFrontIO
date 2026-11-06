@@ -83,7 +83,7 @@ quasi trasparente e li centra in celle uniformi; non richiede strumenti AI in bu
 
 La riga 3 degli atlas condivisi contiene il nuovo pacchetto. Le righe 0–2
 (Flower Power, Warcraft, Default) restano identiche pixel per pixel.
-Dimensioni atlas: unità **1536 × 512**, edifici **768 × 512**. Colonne, ingombri,
+Dimensioni atlas: unità **1536 × 640**, edifici **768 × 640**. Colonne, ingombri,
 buffer e segnali di combattimento mantengono il contratto esistente. Menu,
 pannelli, anteprime, God e replay usano lo stesso identificativo `ff7-mako`.
 

@@ -9,6 +9,14 @@ import { SendUnitSkinEvent, UnitSkinResultEvent } from "../Transport";
 import { savedUnitSkin, saveUnitSkin, unitSkinIcon } from "../UnitSkinAssets";
 import { translateText } from "../Utils";
 
+const SKIN_LABELS: Record<UnitSkin, string> = {
+  "flower-power": "unit_skin.flower_power",
+  warcraft: "unit_skin.warcraft",
+  default: "unit_skin.default",
+  "ff7-mako": "unit_skin.ff7_mako",
+  dragonball: "unit_skin.dragonball",
+};
+
 const PREVIEW_TYPES = [
   UnitType.City,
   UnitType.Port,
@@ -115,15 +123,7 @@ export class UnitSkinPicker extends LitElement {
                 : "border-white/10 hover:border-white/40 bg-black/20"}"
             >
               <span class="font-bold text-sm"
-                >${translateText(
-                  skin === "ff7-mako"
-                    ? "unit_skin.ff7_mako"
-                    : skin === "default"
-                      ? "unit_skin.default"
-                      : skin === "warcraft"
-                        ? "unit_skin.warcraft"
-                        : "unit_skin.flower_power",
-                )}</span
+                >${translateText(SKIN_LABELS[skin])}</span
               >
               <div
                 class="grid grid-cols-6 gap-1 mt-3"

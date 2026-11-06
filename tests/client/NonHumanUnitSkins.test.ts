@@ -11,7 +11,7 @@ afterEach(() => {
 });
 
 describe("AI uses the viewer's base unit pack", () => {
-  it.each(["warcraft", "default", "ff7-mako"] as const)(
+  it.each(["warcraft", "default", "ff7-mako", "dragonball"] as const)(
     "uses accepted %s without replacing human choices or nation flags",
     (skin) => {
       saveUnitSkin("flower-power");

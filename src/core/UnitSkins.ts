@@ -6,19 +6,14 @@ export const UNIT_SKIN_IDS = [
   "warcraft",
   "default",
   "ff7-mako",
+  "dragonball",
 ] as const;
 export const UnitSkinSchema = z.enum(UNIT_SKIN_IDS);
 export type UnitSkin = z.infer<typeof UnitSkinSchema>;
 export const UNIT_SKIN_ROWS = UNIT_SKIN_IDS.length;
 
 export function unitSkinRow(skin: UnitSkin | undefined): number {
-  return skin === "ff7-mako"
-    ? 3
-    : skin === "default"
-      ? 2
-      : skin === "warcraft"
-        ? 1
-        : 0;
+  return skin === undefined ? 0 : Math.max(0, UNIT_SKIN_IDS.indexOf(skin));
 }
 
 export function unitSkinColumn(

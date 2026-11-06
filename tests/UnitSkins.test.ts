@@ -21,13 +21,14 @@ import { ClientMsgRateLimiter } from "../src/server/ClientMsgRateLimiter";
 
 describe("built-in skin contract", () => {
   it("keeps old and absent selections in the exact original atlas row", () => {
-    expect(UNIT_SKIN_ROWS).toBe(4);
+    expect(UNIT_SKIN_ROWS).toBe(5);
     for (let c = 0; c < 12; c++) {
       expect(unitSkinColumn(c, 12)).toBe(c);
       expect(unitSkinColumn(c, 12, "flower-power")).toBe(c);
       expect(unitSkinColumn(c, 12, "warcraft")).toBe(c + 12);
       expect(unitSkinColumn(c, 12, "default")).toBe(c + 24);
       expect(unitSkinColumn(c, 12, "ff7-mako")).toBe(c + 36);
+      expect(unitSkinColumn(c, 12, "dragonball")).toBe(c + 48);
     }
     expect(unitSkinRow("warcraft")).toBe(1);
     expect(unitSkinColumn(5, 6, "warcraft")).toBe(11);
@@ -42,6 +43,9 @@ describe("built-in skin contract", () => {
     localStorage.clear();
   });
   it("maps UI icons to bounded local assets", () => {
+    expect(unitSkinIcon(UnitType.City, "dragonball")).toBe(
+      "skins/dragonball/city.png",
+    );
     expect(unitSkinIcon(UnitType.City, "ff7-mako")).toBe(
       "skins/ff7-mako/city.png",
     );

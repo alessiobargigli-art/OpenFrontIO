@@ -30,7 +30,7 @@ afterEach(() => {
 });
 
 describe("unit skin icons in real HUD templates", () => {
-  it.each(["warcraft", "default", "ff7-mako"] as const)(
+  it.each(["warcraft", "default", "ff7-mako", "dragonball"] as const)(
     "uses accepted %s in the hotbar and build menu",
     (skin) => {
       // A stale local preference must not override what this match accepted.
@@ -100,7 +100,12 @@ describe("unit skin icons in real HUD templates", () => {
     const column = columnById("cities");
     const original = column.headerVisual;
     const root = target();
-    for (const skin of ["warcraft", "default", "ff7-mako"] as const) {
+    for (const skin of [
+      "warcraft",
+      "default",
+      "ff7-mako",
+      "dragonball",
+    ] as const) {
       table.game = game(skin) as never;
       render((table as any).renderHeaderVisual(column, "Cities"), root);
       expect(iconPaths(root)).toEqual([`/skins/${skin}/city.png`]);

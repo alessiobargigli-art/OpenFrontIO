@@ -159,3 +159,13 @@ Rebirth, properties of Square Enix. No game textures, music, logos or extracted
 game sprites are included. This is an unofficial fan adaptation. Sources,
 editable data, exact prompts and asset mapping are in
 [docs/FINAL_FANTASY_VII.md](docs/FINAL_FANTASY_VII.md).
+
+## Dragon Ball fan atlas and Capsule & Ki pack
+
+The terrain, atlas overlays and 18 Capsule & Ki sprites are original assets
+created for this fork; sprite artwork was generated with built-in ImageGen.
+Locations, characters and visual motifs reference Dragon Ball by Akira Toriyama
+and its associated series/films. No franchise textures, logos, music or extracted
+game sprites are included. This is an unofficial fan adaptation. Sources, prompts,
+asset mapping and the distinction between named opponents and numbered RTS
+garrisons are documented in [docs/DRAGON_BALL.md](docs/DRAGON_BALL.md).

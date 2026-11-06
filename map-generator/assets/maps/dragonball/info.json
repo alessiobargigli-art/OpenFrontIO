@@ -1,0 +1,2004 @@
+{
+  "id": "DragonBall",
+  "name": "Dragon Ball",
+  "display_name": "Dragon Ball · World Atlas",
+  "translation_key": "map.dragonball",
+  "categories": ["new", "fictional"],
+  "multiplayer_frequency": 0,
+  "themes": ["dragonball"],
+  "layers": [
+    {
+      "id": "dragonball-biomes",
+      "placement": "land",
+      "nukeable": false,
+      "alpha": 0.65
+    },
+    {
+      "id": "dragonball-atlas",
+      "placement": "water",
+      "nukeable": false
+    }
+  ],
+  "nations": [
+    {
+      "name": "Emperor Pilaf",
+      "coordinates": [205, 512]
+    },
+    {
+      "name": "Commander Red",
+      "coordinates": [205, 708]
+    },
+    {
+      "name": "Colonel Silver",
+      "coordinates": [252, 698]
+    },
+    {
+      "name": "General White",
+      "coordinates": [547, 238]
+    },
+    {
+      "name": "Android 19",
+      "coordinates": [595, 296]
+    },
+    {
+      "name": "Dr. Gero",
+      "coordinates": [547, 287]
+    },
+    {
+      "name": "Mercenary Tao",
+      "coordinates": [406, 777]
+    },
+    {
+      "name": "Super Buu",
+      "coordinates": [429, 737]
+    },
+    {
+      "name": "King Piccolo",
+      "coordinates": [701, 561]
+    },
+    {
+      "name": "Drum",
+      "coordinates": [713, 522]
+    },
+    {
+      "name": "Beerus",
+      "coordinates": [335, 581]
+    },
+    {
+      "name": "Goku Black",
+      "coordinates": [347, 541]
+    },
+    {
+      "name": "Imperfect Cell",
+      "coordinates": [406, 443]
+    },
+    {
+      "name": "Mecha Frieza",
+      "coordinates": [441, 404]
+    },
+    {
+      "name": "Perfect Cell",
+      "coordinates": [595, 453]
+    },
+    {
+      "name": "Vegeta (Saiyan Saga)",
+      "coordinates": [547, 649]
+    },
+    {
+      "name": "Saibaman",
+      "coordinates": [500, 679]
+    },
+    {
+      "name": "Nappa",
+      "coordinates": [1019, 659]
+    },
+    {
+      "name": "Bear Thief",
+      "coordinates": [960, 590]
+    },
+    {
+      "name": "Babidi",
+      "coordinates": [783, 806]
+    },
+    {
+      "name": "Majin Vegeta",
+      "coordinates": [630, 492]
+    },
+    {
+      "name": "Majin Buu",
+      "coordinates": [901, 786]
+    },
+    {
+      "name": "Pirate Robot",
+      "coordinates": [701, 884]
+    },
+    {
+      "name": "Master Shen",
+      "coordinates": [477, 561]
+    },
+    {
+      "name": "Yamcha (Desert Bandit)",
+      "coordinates": [241, 590]
+    },
+    {
+      "name": "Android 18",
+      "coordinates": [1110, 1105]
+    },
+    {
+      "name": "Android 17",
+      "coordinates": [805, 1170]
+    },
+    {
+      "name": "Piccolo Jr.",
+      "coordinates": [565, 1280]
+    },
+    {
+      "name": "Raditz",
+      "coordinates": [865, 1300]
+    },
+    {
+      "name": "Captain Dark",
+      "coordinates": [1035, 1260]
+    },
+    {
+      "name": "General Blue",
+      "coordinates": [1190, 1325]
+    },
+    {
+      "name": "Frieza (First Form)",
+      "coordinates": [1602, 232]
+    },
+    {
+      "name": "Dodoria",
+      "coordinates": [1508, 352]
+    },
+    {
+      "name": "Zarbon",
+      "coordinates": [1535, 272]
+    },
+    {
+      "name": "Captain Ginyu",
+      "coordinates": [1697, 240]
+    },
+    {
+      "name": "Recoome",
+      "coordinates": [1616, 376]
+    },
+    {
+      "name": "Burter",
+      "coordinates": [1724, 364]
+    },
+    {
+      "name": "Jeice",
+      "coordinates": [1670, 420]
+    },
+    {
+      "name": "Guldo",
+      "coordinates": [1535, 408]
+    },
+    {
+      "name": "Frieza (Final Form)",
+      "coordinates": [1724, 300]
+    },
+    {
+      "name": "Moro",
+      "coordinates": [1500, 676]
+    },
+    {
+      "name": "Seven-Three",
+      "coordinates": [1550, 710]
+    },
+    {
+      "name": "Broly (Super)",
+      "coordinates": [1742, 676]
+    },
+    {
+      "name": "Paragus",
+      "coordinates": [1785, 709]
+    },
+    {
+      "name": "Kid Buu",
+      "coordinates": [1498, 974]
+    },
+    {
+      "name": "Evil Buu",
+      "coordinates": [1553, 1015]
+    },
+    {
+      "name": "Cell (Self-Destruct)",
+      "coordinates": [1298, 952]
+    },
+    {
+      "name": "Janemba",
+      "coordinates": [1742, 976]
+    },
+    {
+      "name": "Super Janemba",
+      "coordinates": [1787, 1014]
+    },
+    {
+      "name": "Gomah",
+      "coordinates": [1500, 1256]
+    },
+    {
+      "name": "Degesu",
+      "coordinates": [1548, 1263]
+    },
+    {
+      "name": "Dabura",
+      "coordinates": [1525, 1309]
+    },
+    {
+      "name": "Baby Vegeta",
+      "coordinates": [1752, 1263]
+    },
+    {
+      "name": "Omega Shenron",
+      "coordinates": [1797, 1306]
+    }
+  ],
+  "additionalNations": [
+    {
+      "name": "Mai"
+    },
+    {
+      "name": "Shu"
+    },
+    {
+      "name": "Monster Carrot"
+    },
+    {
+      "name": "Giran"
+    },
+    {
+      "name": "Nam"
+    },
+    {
+      "name": "Bacterian"
+    },
+    {
+      "name": "Ranfan"
+    },
+    {
+      "name": "Man-Wolf"
+    },
+    {
+      "name": "King Chappa"
+    },
+    {
+      "name": "Hasky"
+    },
+    {
+      "name": "Staff Officer Black"
+    },
+    {
+      "name": "Colonel Violet"
+    },
+    {
+      "name": "Captain Yellow"
+    },
+    {
+      "name": "Major Metallitron"
+    },
+    {
+      "name": "Ninja Murasaki"
+    },
+    {
+      "name": "Buyon"
+    },
+    {
+      "name": "Murasaki Brothers"
+    },
+    {
+      "name": "Fortuneteller Baba"
+    },
+    {
+      "name": "Fangs the Vampire"
+    },
+    {
+      "name": "See-Through the Invisible Man"
+    },
+    {
+      "name": "Bandages the Mummy"
+    },
+    {
+      "name": "Spike the Devil Man"
+    },
+    {
+      "name": "Grandpa Gohan (Masked)"
+    },
+    {
+      "name": "Crane Hermit"
+    },
+    {
+      "name": "Tien (22nd Tournament)"
+    },
+    {
+      "name": "Chiaotzu (22nd Tournament)"
+    },
+    {
+      "name": "Cymbal"
+    },
+    {
+      "name": "Tambourine"
+    },
+    {
+      "name": "Piano"
+    },
+    {
+      "name": "King Piccolo (Youth)"
+    },
+    {
+      "name": "Cyborg Tao"
+    },
+    {
+      "name": "Chi-Chi (23rd Tournament)"
+    },
+    {
+      "name": "Great Ape Vegeta"
+    },
+    {
+      "name": "Frieza (Second Form)"
+    },
+    {
+      "name": "Frieza (Third Form)"
+    },
+    {
+      "name": "Frieza (Full Power)"
+    },
+    {
+      "name": "Golden Frieza"
+    },
+    {
+      "name": "Black Frieza"
+    },
+    {
+      "name": "King Cold"
+    },
+    {
+      "name": "Cui"
+    },
+    {
+      "name": "Appule"
+    },
+    {
+      "name": "Orlen"
+    },
+    {
+      "name": "Napple"
+    },
+    {
+      "name": "Raspberry"
+    },
+    {
+      "name": "Blueberry"
+    },
+    {
+      "name": "Malaka"
+    },
+    {
+      "name": "Zarbon (Transformed)"
+    },
+    {
+      "name": "Ginyu (Goku Body)"
+    },
+    {
+      "name": "Tagoma"
+    },
+    {
+      "name": "Shisami"
+    },
+    {
+      "name": "Sorbet"
+    },
+    {
+      "name": "Frieza Soldier"
+    },
+    {
+      "name": "Saibaman (Mature)"
+    },
+    {
+      "name": "Saibaman (Seed)"
+    },
+    {
+      "name": "Frog Ginyu"
+    },
+    {
+      "name": "Frieza (Resurrected)"
+    },
+    {
+      "name": "Android 16"
+    },
+    {
+      "name": "Android 13"
+    },
+    {
+      "name": "Android 14"
+    },
+    {
+      "name": "Android 15"
+    },
+    {
+      "name": "Super Android 13"
+    },
+    {
+      "name": "Android 17 (Future)"
+    },
+    {
+      "name": "Android 18 (Future)"
+    },
+    {
+      "name": "Semi-Perfect Cell"
+    },
+    {
+      "name": "Super Perfect Cell"
+    },
+    {
+      "name": "Cell Junior"
+    },
+    {
+      "name": "Cell (Larva)"
+    },
+    {
+      "name": "Cell (Egg)"
+    },
+    {
+      "name": "Future Cell"
+    },
+    {
+      "name": "Yakon"
+    },
+    {
+      "name": "Pui Pui"
+    },
+    {
+      "name": "Spopovich"
+    },
+    {
+      "name": "Yamu"
+    },
+    {
+      "name": "Bibidi"
+    },
+    {
+      "name": "Super Buu (Gotenks Absorbed)"
+    },
+    {
+      "name": "Super Buu (Gohan Absorbed)"
+    },
+    {
+      "name": "Super Buu (Piccolo Absorbed)"
+    },
+    {
+      "name": "Mighty Mask"
+    },
+    {
+      "name": "Jewel"
+    },
+    {
+      "name": "Killa"
+    },
+    {
+      "name": "Pintar"
+    },
+    {
+      "name": "Idasa"
+    },
+    {
+      "name": "Ikose"
+    },
+    {
+      "name": "King Gurumes"
+    },
+    {
+      "name": "Bongo"
+    },
+    {
+      "name": "Pasta"
+    },
+    {
+      "name": "Lucifer"
+    },
+    {
+      "name": "Ghastel"
+    },
+    {
+      "name": "Garlic Jr."
+    },
+    {
+      "name": "Garlic Jr. (Transformed)"
+    },
+    {
+      "name": "Ginger"
+    },
+    {
+      "name": "Nicky"
+    },
+    {
+      "name": "Sansho"
+    },
+    {
+      "name": "Dr. Wheelo"
+    },
+    {
+      "name": "Dr. Kochin"
+    },
+    {
+      "name": "Kishime"
+    },
+    {
+      "name": "Ebifurya"
+    },
+    {
+      "name": "Misokatsun"
+    },
+    {
+      "name": "Turles"
+    },
+    {
+      "name": "Amond"
+    },
+    {
+      "name": "Cacao"
+    },
+    {
+      "name": "Daiz"
+    },
+    {
+      "name": "Rasin"
+    },
+    {
+      "name": "Lakasei"
+    },
+    {
+      "name": "Lord Slug"
+    },
+    {
+      "name": "Giant Lord Slug"
+    },
+    {
+      "name": "Angila"
+    },
+    {
+      "name": "Medamatcha"
+    },
+    {
+      "name": "Dorodabo"
+    },
+    {
+      "name": "Wings"
+    },
+    {
+      "name": "Cooler"
+    },
+    {
+      "name": "Cooler (Final Form)"
+    },
+    {
+      "name": "Salza"
+    },
+    {
+      "name": "Dore"
+    },
+    {
+      "name": "Neiz"
+    },
+    {
+      "name": "Metal Cooler"
+    },
+    {
+      "name": "Meta-Cooler Core"
+    },
+    {
+      "name": "Broly (Z)"
+    },
+    {
+      "name": "Broly (Legendary Super Saiyan)"
+    },
+    {
+      "name": "Bio-Broly"
+    },
+    {
+      "name": "Bojack"
+    },
+    {
+      "name": "Bojack (Full Power)"
+    },
+    {
+      "name": "Zangya"
+    },
+    {
+      "name": "Bujin"
+    },
+    {
+      "name": "Bido"
+    },
+    {
+      "name": "Kogu"
+    },
+    {
+      "name": "Hirudegarn"
+    },
+    {
+      "name": "Hirudegarn (Final Form)"
+    },
+    {
+      "name": "Hoi"
+    },
+    {
+      "name": "Hatchiyack"
+    },
+    {
+      "name": "Dr. Lychee"
+    },
+    {
+      "name": "Chilled"
+    },
+    {
+      "name": "Abo"
+    },
+    {
+      "name": "Kado"
+    },
+    {
+      "name": "Aka"
+    },
+    {
+      "name": "Lord Jaguar"
+    },
+    {
+      "name": "Men-Men"
+    },
+    {
+      "name": "Bio-Warrior"
+    },
+    {
+      "name": "Dr. Myuu"
+    },
+    {
+      "name": "General Rilldo"
+    },
+    {
+      "name": "Hyper Meta-Rilldo"
+    },
+    {
+      "name": "Meta-Rilldo"
+    },
+    {
+      "name": "Luud"
+    },
+    {
+      "name": "Mutchy"
+    },
+    {
+      "name": "Mutchy Mutchy"
+    },
+    {
+      "name": "Ledgic"
+    },
+    {
+      "name": "Don Kee"
+    },
+    {
+      "name": "Bon Para"
+    },
+    {
+      "name": "Dan Para"
+    },
+    {
+      "name": "Son Para"
+    },
+    {
+      "name": "Commander Nezi"
+    },
+    {
+      "name": "Natt"
+    },
+    {
+      "name": "Ribet"
+    },
+    {
+      "name": "Bisu"
+    },
+    {
+      "name": "Baby"
+    },
+    {
+      "name": "Super Baby 1"
+    },
+    {
+      "name": "Super Baby 2"
+    },
+    {
+      "name": "Great Ape Baby"
+    },
+    {
+      "name": "Super Android 17"
+    },
+    {
+      "name": "Hell Fighter 17"
+    },
+    {
+      "name": "Haze Shenron"
+    },
+    {
+      "name": "Rage Shenron"
+    },
+    {
+      "name": "Oceanus Shenron"
+    },
+    {
+      "name": "Naturon Shenron"
+    },
+    {
+      "name": "Nuova Shenron"
+    },
+    {
+      "name": "Eis Shenron"
+    },
+    {
+      "name": "Syn Shenron"
+    },
+    {
+      "name": "Mamba"
+    },
+    {
+      "name": "Zoonama"
+    },
+    {
+      "name": "Champa"
+    },
+    {
+      "name": "Frost"
+    },
+    {
+      "name": "Frost (Assault Form)"
+    },
+    {
+      "name": "Frost (Final Form)"
+    },
+    {
+      "name": "Hit"
+    },
+    {
+      "name": "Botamo"
+    },
+    {
+      "name": "Magetta"
+    },
+    {
+      "name": "Cabba"
+    },
+    {
+      "name": "Caulifla"
+    },
+    {
+      "name": "Kale"
+    },
+    {
+      "name": "Kefla"
+    },
+    {
+      "name": "Zamasu"
+    },
+    {
+      "name": "Fused Zamasu"
+    },
+    {
+      "name": "Fused Zamasu (Corrupted)"
+    },
+    {
+      "name": "Goku Black (Super Saiyan Rose)"
+    },
+    {
+      "name": "Future Zamasu"
+    },
+    {
+      "name": "Infinite Zamasu"
+    },
+    {
+      "name": "Jiren"
+    },
+    {
+      "name": "Jiren (Full Power)"
+    },
+    {
+      "name": "Toppo"
+    },
+    {
+      "name": "Toppo (God of Destruction)"
+    },
+    {
+      "name": "Dyspo"
+    },
+    {
+      "name": "Basil"
+    },
+    {
+      "name": "Lavender"
+    },
+    {
+      "name": "Bergamo"
+    },
+    {
+      "name": "Ribrianne"
+    },
+    {
+      "name": "Rozie"
+    },
+    {
+      "name": "Kakunsa"
+    },
+    {
+      "name": "Anilaza"
+    },
+    {
+      "name": "Paparoni"
+    },
+    {
+      "name": "Koiceareta"
+    },
+    {
+      "name": "Maji-Kayo"
+    },
+    {
+      "name": "Obuni"
+    },
+    {
+      "name": "Ganos"
+    },
+    {
+      "name": "Murichim"
+    },
+    {
+      "name": "Narirama"
+    },
+    {
+      "name": "Napapa"
+    },
+    {
+      "name": "Shosa"
+    },
+    {
+      "name": "Caway"
+    },
+    {
+      "name": "Dercori"
+    },
+    {
+      "name": "Gamisalas"
+    },
+    {
+      "name": "Damon"
+    },
+    {
+      "name": "Nigrissi"
+    },
+    {
+      "name": "Kunshi"
+    },
+    {
+      "name": "Kahseral"
+    },
+    {
+      "name": "Cocotte"
+    },
+    {
+      "name": "Tupper"
+    },
+    {
+      "name": "Zoiray"
+    },
+    {
+      "name": "Kettle"
+    },
+    {
+      "name": "Rabanra"
+    },
+    {
+      "name": "Zirloin"
+    },
+    {
+      "name": "Zarbuto"
+    },
+    {
+      "name": "Rota"
+    },
+    {
+      "name": "Moro (Youth)"
+    },
+    {
+      "name": "Moro (Seven-Three Absorbed)"
+    },
+    {
+      "name": "Saganbo"
+    },
+    {
+      "name": "Shimorekka"
+    },
+    {
+      "name": "Yunba"
+    },
+    {
+      "name": "Yuzun"
+    },
+    {
+      "name": "Miza"
+    },
+    {
+      "name": "Iwaza"
+    },
+    {
+      "name": "Kikaza"
+    },
+    {
+      "name": "Granolah"
+    },
+    {
+      "name": "Gas"
+    },
+    {
+      "name": "Elec"
+    },
+    {
+      "name": "Oil"
+    },
+    {
+      "name": "Macki"
+    },
+    {
+      "name": "Cell Max"
+    },
+    {
+      "name": "Gamma 1"
+    },
+    {
+      "name": "Gamma 2"
+    },
+    {
+      "name": "Magenta"
+    },
+    {
+      "name": "Carmine"
+    },
+    {
+      "name": "Dr. Hedo"
+    },
+    {
+      "name": "Dr. Arinsu"
+    },
+    {
+      "name": "Majin Kuu"
+    },
+    {
+      "name": "Majin Duu"
+    },
+    {
+      "name": "Tamagami Number One"
+    },
+    {
+      "name": "Tamagami Number Two"
+    },
+    {
+      "name": "Tamagami Number Three"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 01"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 02"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 03"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 04"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 05"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 06"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 07"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 08"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 09"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 10"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 11"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 12"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 13"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 14"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 15"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 16"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 17"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 18"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 19"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 20"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 21"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 22"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 23"
+    },
+    {
+      "name": "Red Ribbon Soldier Squad 24"
+    },
+    {
+      "name": "Frieza Soldier Squad 01"
+    },
+    {
+      "name": "Frieza Soldier Squad 02"
+    },
+    {
+      "name": "Frieza Soldier Squad 03"
+    },
+    {
+      "name": "Frieza Soldier Squad 04"
+    },
+    {
+      "name": "Frieza Soldier Squad 05"
+    },
+    {
+      "name": "Frieza Soldier Squad 06"
+    },
+    {
+      "name": "Frieza Soldier Squad 07"
+    },
+    {
+      "name": "Frieza Soldier Squad 08"
+    },
+    {
+      "name": "Frieza Soldier Squad 09"
+    },
+    {
+      "name": "Frieza Soldier Squad 10"
+    },
+    {
+      "name": "Frieza Soldier Squad 11"
+    },
+    {
+      "name": "Frieza Soldier Squad 12"
+    },
+    {
+      "name": "Frieza Soldier Squad 13"
+    },
+    {
+      "name": "Frieza Soldier Squad 14"
+    },
+    {
+      "name": "Frieza Soldier Squad 15"
+    },
+    {
+      "name": "Frieza Soldier Squad 16"
+    },
+    {
+      "name": "Frieza Soldier Squad 17"
+    },
+    {
+      "name": "Frieza Soldier Squad 18"
+    },
+    {
+      "name": "Frieza Soldier Squad 19"
+    },
+    {
+      "name": "Frieza Soldier Squad 20"
+    },
+    {
+      "name": "Frieza Soldier Squad 21"
+    },
+    {
+      "name": "Frieza Soldier Squad 22"
+    },
+    {
+      "name": "Frieza Soldier Squad 23"
+    },
+    {
+      "name": "Frieza Soldier Squad 24"
+    },
+    {
+      "name": "Saibaman Squad 01"
+    },
+    {
+      "name": "Saibaman Squad 02"
+    },
+    {
+      "name": "Saibaman Squad 03"
+    },
+    {
+      "name": "Saibaman Squad 04"
+    },
+    {
+      "name": "Saibaman Squad 05"
+    },
+    {
+      "name": "Saibaman Squad 06"
+    },
+    {
+      "name": "Saibaman Squad 07"
+    },
+    {
+      "name": "Saibaman Squad 08"
+    },
+    {
+      "name": "Saibaman Squad 09"
+    },
+    {
+      "name": "Saibaman Squad 10"
+    },
+    {
+      "name": "Saibaman Squad 11"
+    },
+    {
+      "name": "Saibaman Squad 12"
+    },
+    {
+      "name": "Saibaman Squad 13"
+    },
+    {
+      "name": "Saibaman Squad 14"
+    },
+    {
+      "name": "Saibaman Squad 15"
+    },
+    {
+      "name": "Saibaman Squad 16"
+    },
+    {
+      "name": "Saibaman Squad 17"
+    },
+    {
+      "name": "Saibaman Squad 18"
+    },
+    {
+      "name": "Saibaman Squad 19"
+    },
+    {
+      "name": "Saibaman Squad 20"
+    },
+    {
+      "name": "Saibaman Squad 21"
+    },
+    {
+      "name": "Saibaman Squad 22"
+    },
+    {
+      "name": "Saibaman Squad 23"
+    },
+    {
+      "name": "Saibaman Squad 24"
+    },
+    {
+      "name": "Cell Junior Squad 01"
+    },
+    {
+      "name": "Cell Junior Squad 02"
+    },
+    {
+      "name": "Cell Junior Squad 03"
+    },
+    {
+      "name": "Cell Junior Squad 04"
+    },
+    {
+      "name": "Cell Junior Squad 05"
+    },
+    {
+      "name": "Cell Junior Squad 06"
+    },
+    {
+      "name": "Cell Junior Squad 07"
+    },
+    {
+      "name": "Cell Junior Squad 08"
+    },
+    {
+      "name": "Cell Junior Squad 09"
+    },
+    {
+      "name": "Cell Junior Squad 10"
+    },
+    {
+      "name": "Cell Junior Squad 11"
+    },
+    {
+      "name": "Cell Junior Squad 12"
+    },
+    {
+      "name": "Cell Junior Squad 13"
+    },
+    {
+      "name": "Cell Junior Squad 14"
+    },
+    {
+      "name": "Cell Junior Squad 15"
+    },
+    {
+      "name": "Cell Junior Squad 16"
+    },
+    {
+      "name": "Cell Junior Squad 17"
+    },
+    {
+      "name": "Cell Junior Squad 18"
+    },
+    {
+      "name": "Cell Junior Squad 19"
+    },
+    {
+      "name": "Cell Junior Squad 20"
+    },
+    {
+      "name": "Cell Junior Squad 21"
+    },
+    {
+      "name": "Cell Junior Squad 22"
+    },
+    {
+      "name": "Cell Junior Squad 23"
+    },
+    {
+      "name": "Cell Junior Squad 24"
+    },
+    {
+      "name": "Metal Cooler Squad 01"
+    },
+    {
+      "name": "Metal Cooler Squad 02"
+    },
+    {
+      "name": "Metal Cooler Squad 03"
+    },
+    {
+      "name": "Metal Cooler Squad 04"
+    },
+    {
+      "name": "Metal Cooler Squad 05"
+    },
+    {
+      "name": "Metal Cooler Squad 06"
+    },
+    {
+      "name": "Metal Cooler Squad 07"
+    },
+    {
+      "name": "Metal Cooler Squad 08"
+    },
+    {
+      "name": "Metal Cooler Squad 09"
+    },
+    {
+      "name": "Metal Cooler Squad 10"
+    },
+    {
+      "name": "Metal Cooler Squad 11"
+    },
+    {
+      "name": "Metal Cooler Squad 12"
+    },
+    {
+      "name": "Metal Cooler Squad 13"
+    },
+    {
+      "name": "Metal Cooler Squad 14"
+    },
+    {
+      "name": "Metal Cooler Squad 15"
+    },
+    {
+      "name": "Metal Cooler Squad 16"
+    },
+    {
+      "name": "Metal Cooler Squad 17"
+    },
+    {
+      "name": "Metal Cooler Squad 18"
+    },
+    {
+      "name": "Metal Cooler Squad 19"
+    },
+    {
+      "name": "Metal Cooler Squad 20"
+    },
+    {
+      "name": "Metal Cooler Squad 21"
+    },
+    {
+      "name": "Metal Cooler Squad 22"
+    },
+    {
+      "name": "Metal Cooler Squad 23"
+    },
+    {
+      "name": "Metal Cooler Squad 24"
+    },
+    {
+      "name": "Bio-Warrior Squad 01"
+    },
+    {
+      "name": "Bio-Warrior Squad 02"
+    },
+    {
+      "name": "Bio-Warrior Squad 03"
+    },
+    {
+      "name": "Bio-Warrior Squad 04"
+    },
+    {
+      "name": "Bio-Warrior Squad 05"
+    },
+    {
+      "name": "Bio-Warrior Squad 06"
+    },
+    {
+      "name": "Bio-Warrior Squad 07"
+    },
+    {
+      "name": "Bio-Warrior Squad 08"
+    },
+    {
+      "name": "Bio-Warrior Squad 09"
+    },
+    {
+      "name": "Bio-Warrior Squad 10"
+    },
+    {
+      "name": "Bio-Warrior Squad 11"
+    },
+    {
+      "name": "Bio-Warrior Squad 12"
+    },
+    {
+      "name": "Bio-Warrior Squad 13"
+    },
+    {
+      "name": "Bio-Warrior Squad 14"
+    },
+    {
+      "name": "Bio-Warrior Squad 15"
+    },
+    {
+      "name": "Bio-Warrior Squad 16"
+    },
+    {
+      "name": "Bio-Warrior Squad 17"
+    },
+    {
+      "name": "Bio-Warrior Squad 18"
+    },
+    {
+      "name": "Bio-Warrior Squad 19"
+    },
+    {
+      "name": "Bio-Warrior Squad 20"
+    },
+    {
+      "name": "Bio-Warrior Squad 21"
+    },
+    {
+      "name": "Bio-Warrior Squad 22"
+    },
+    {
+      "name": "Bio-Warrior Squad 23"
+    },
+    {
+      "name": "Bio-Warrior Squad 24"
+    },
+    {
+      "name": "Babidi Henchman Squad 01"
+    },
+    {
+      "name": "Babidi Henchman Squad 02"
+    },
+    {
+      "name": "Babidi Henchman Squad 03"
+    },
+    {
+      "name": "Babidi Henchman Squad 04"
+    },
+    {
+      "name": "Babidi Henchman Squad 05"
+    },
+    {
+      "name": "Babidi Henchman Squad 06"
+    },
+    {
+      "name": "Babidi Henchman Squad 07"
+    },
+    {
+      "name": "Babidi Henchman Squad 08"
+    },
+    {
+      "name": "Babidi Henchman Squad 09"
+    },
+    {
+      "name": "Babidi Henchman Squad 10"
+    },
+    {
+      "name": "Babidi Henchman Squad 11"
+    },
+    {
+      "name": "Babidi Henchman Squad 12"
+    },
+    {
+      "name": "Babidi Henchman Squad 13"
+    },
+    {
+      "name": "Babidi Henchman Squad 14"
+    },
+    {
+      "name": "Babidi Henchman Squad 15"
+    },
+    {
+      "name": "Babidi Henchman Squad 16"
+    },
+    {
+      "name": "Babidi Henchman Squad 17"
+    },
+    {
+      "name": "Babidi Henchman Squad 18"
+    },
+    {
+      "name": "Babidi Henchman Squad 19"
+    },
+    {
+      "name": "Babidi Henchman Squad 20"
+    },
+    {
+      "name": "Babidi Henchman Squad 21"
+    },
+    {
+      "name": "Babidi Henchman Squad 22"
+    },
+    {
+      "name": "Babidi Henchman Squad 23"
+    },
+    {
+      "name": "Babidi Henchman Squad 24"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 01"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 02"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 03"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 04"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 05"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 06"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 07"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 08"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 09"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 10"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 11"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 12"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 13"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 14"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 15"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 16"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 17"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 18"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 19"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 20"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 21"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 22"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 23"
+    },
+    {
+      "name": "Demon Realm Soldier Squad 24"
+    }
+  ],
+  "custom_tribes": [
+    "Mai",
+    "Shu",
+    "Monster Carrot",
+    "Giran",
+    "Nam",
+    "Bacterian",
+    "Ranfan",
+    "Man-Wolf",
+    "King Chappa",
+    "Hasky",
+    "Staff Officer Black",
+    "Colonel Violet",
+    "Captain Yellow",
+    "Major Metallitron",
+    "Ninja Murasaki",
+    "Buyon",
+    "Murasaki Brothers",
+    "Fortuneteller Baba",
+    "Fangs the Vampire",
+    "See-Through the Invisible Man",
+    "Bandages the Mummy",
+    "Spike the Devil Man",
+    "Grandpa Gohan (Masked)",
+    "Crane Hermit",
+    "Tien (22nd Tournament)",
+    "Chiaotzu (22nd Tournament)",
+    "Cymbal",
+    "Tambourine",
+    "Piano",
+    "King Piccolo (Youth)",
+    "Cyborg Tao",
+    "Chi-Chi (23rd Tournament)",
+    "Great Ape Vegeta",
+    "Frieza (Second Form)",
+    "Frieza (Third Form)",
+    "Frieza (Full Power)",
+    "Golden Frieza",
+    "Black Frieza",
+    "King Cold",
+    "Cui",
+    "Appule",
+    "Orlen",
+    "Napple",
+    "Raspberry",
+    "Blueberry",
+    "Malaka",
+    "Zarbon (Transformed)",
+    "Ginyu (Goku Body)",
+    "Tagoma",
+    "Shisami",
+    "Sorbet",
+    "Frieza Soldier",
+    "Saibaman (Mature)",
+    "Saibaman (Seed)",
+    "Frog Ginyu",
+    "Frieza (Resurrected)",
+    "Android 16",
+    "Android 13",
+    "Android 14",
+    "Android 15",
+    "Super Android 13",
+    "Android 17 (Future)",
+    "Android 18 (Future)",
+    "Semi-Perfect Cell",
+    "Super Perfect Cell",
+    "Cell Junior",
+    "Cell (Larva)",
+    "Cell (Egg)",
+    "Future Cell",
+    "Yakon",
+    "Pui Pui",
+    "Spopovich",
+    "Yamu",
+    "Bibidi",
+    "Super Buu (Gotenks Absorbed)",
+    "Super Buu (Gohan Absorbed)",
+    "Super Buu (Piccolo Absorbed)",
+    "Mighty Mask",
+    "Jewel",
+    "Killa",
+    "Pintar",
+    "Idasa",
+    "Ikose",
+    "King Gurumes",
+    "Bongo",
+    "Pasta",
+    "Lucifer",
+    "Ghastel",
+    "Garlic Jr.",
+    "Garlic Jr. (Transformed)",
+    "Ginger",
+    "Nicky",
+    "Sansho",
+    "Dr. Wheelo",
+    "Dr. Kochin",
+    "Kishime",
+    "Ebifurya",
+    "Misokatsun",
+    "Turles",
+    "Amond",
+    "Cacao",
+    "Daiz",
+    "Rasin",
+    "Lakasei",
+    "Lord Slug",
+    "Giant Lord Slug",
+    "Angila",
+    "Medamatcha",
+    "Dorodabo",
+    "Wings",
+    "Cooler",
+    "Cooler (Final Form)",
+    "Salza",
+    "Dore",
+    "Neiz",
+    "Metal Cooler",
+    "Meta-Cooler Core",
+    "Broly (Z)",
+    "Broly (Legendary Super Saiyan)",
+    "Bio-Broly",
+    "Bojack",
+    "Bojack (Full Power)",
+    "Zangya",
+    "Bujin",
+    "Bido",
+    "Kogu",
+    "Hirudegarn",
+    "Hirudegarn (Final Form)",
+    "Hoi",
+    "Hatchiyack",
+    "Dr. Lychee",
+    "Chilled",
+    "Abo",
+    "Kado",
+    "Aka",
+    "Lord Jaguar",
+    "Men-Men",
+    "Bio-Warrior",
+    "Dr. Myuu",
+    "General Rilldo",
+    "Hyper Meta-Rilldo",
+    "Meta-Rilldo",
+    "Luud",
+    "Mutchy",
+    "Mutchy Mutchy",
+    "Ledgic",
+    "Don Kee",
+    "Bon Para",
+    "Dan Para",
+    "Son Para",
+    "Commander Nezi",
+    "Natt",
+    "Ribet",
+    "Bisu",
+    "Baby",
+    "Super Baby 1",
+    "Super Baby 2",
+    "Great Ape Baby",
+    "Super Android 17",
+    "Hell Fighter 17",
+    "Haze Shenron",
+    "Rage Shenron",
+    "Oceanus Shenron",
+    "Naturon Shenron",
+    "Nuova Shenron",
+    "Eis Shenron",
+    "Syn Shenron",
+    "Mamba",
+    "Zoonama",
+    "Champa",
+    "Frost",
+    "Frost (Assault Form)",
+    "Frost (Final Form)",
+    "Hit",
+    "Botamo",
+    "Magetta",
+    "Cabba",
+    "Caulifla",
+    "Kale",
+    "Kefla",
+    "Zamasu",
+    "Fused Zamasu",
+    "Fused Zamasu (Corrupted)",
+    "Goku Black (Super Saiyan Rose)",
+    "Future Zamasu",
+    "Infinite Zamasu",
+    "Jiren",
+    "Jiren (Full Power)",
+    "Toppo",
+    "Toppo (God of Destruction)",
+    "Dyspo",
+    "Basil",
+    "Lavender",
+    "Bergamo",
+    "Ribrianne",
+    "Rozie",
+    "Kakunsa",
+    "Anilaza",
+    "Paparoni",
+    "Koiceareta",
+    "Maji-Kayo",
+    "Obuni",
+    "Ganos",
+    "Murichim",
+    "Narirama",
+    "Napapa",
+    "Shosa",
+    "Caway",
+    "Dercori",
+    "Gamisalas",
+    "Damon",
+    "Nigrissi",
+    "Kunshi",
+    "Kahseral",
+    "Cocotte",
+    "Tupper",
+    "Zoiray",
+    "Kettle",
+    "Rabanra",
+    "Zirloin",
+    "Zarbuto",
+    "Rota",
+    "Moro (Youth)",
+    "Moro (Seven-Three Absorbed)",
+    "Saganbo",
+    "Shimorekka",
+    "Yunba",
+    "Yuzun",
+    "Miza",
+    "Iwaza",
+    "Kikaza",
+    "Granolah",
+    "Gas",
+    "Elec",
+    "Oil",
+    "Macki",
+    "Cell Max",
+    "Gamma 1",
+    "Gamma 2",
+    "Magenta",
+    "Carmine",
+    "Dr. Hedo",
+    "Dr. Arinsu",
+    "Majin Kuu",
+    "Majin Duu",
+    "Tamagami Number One",
+    "Tamagami Number Two",
+    "Tamagami Number Three",
+    "Red Ribbon Soldier Squad 01",
+    "Red Ribbon Soldier Squad 02",
+    "Red Ribbon Soldier Squad 03",
+    "Red Ribbon Soldier Squad 04",
+    "Red Ribbon Soldier Squad 05",
+    "Red Ribbon Soldier Squad 06",
+    "Red Ribbon Soldier Squad 07",
+    "Red Ribbon Soldier Squad 08",
+    "Red Ribbon Soldier Squad 09",
+    "Red Ribbon Soldier Squad 10",
+    "Red Ribbon Soldier Squad 11",
+    "Red Ribbon Soldier Squad 12",
+    "Red Ribbon Soldier Squad 13",
+    "Red Ribbon Soldier Squad 14",
+    "Red Ribbon Soldier Squad 15",
+    "Red Ribbon Soldier Squad 16",
+    "Red Ribbon Soldier Squad 17",
+    "Red Ribbon Soldier Squad 18",
+    "Red Ribbon Soldier Squad 19",
+    "Red Ribbon Soldier Squad 20",
+    "Red Ribbon Soldier Squad 21",
+    "Red Ribbon Soldier Squad 22",
+    "Red Ribbon Soldier Squad 23",
+    "Red Ribbon Soldier Squad 24",
+    "Frieza Soldier Squad 01",
+    "Frieza Soldier Squad 02",
+    "Frieza Soldier Squad 03",
+    "Frieza Soldier Squad 04",
+    "Frieza Soldier Squad 05",
+    "Frieza Soldier Squad 06",
+    "Frieza Soldier Squad 07",
+    "Frieza Soldier Squad 08",
+    "Frieza Soldier Squad 09",
+    "Frieza Soldier Squad 10",
+    "Frieza Soldier Squad 11",
+    "Frieza Soldier Squad 12",
+    "Frieza Soldier Squad 13",
+    "Frieza Soldier Squad 14",
+    "Frieza Soldier Squad 15",
+    "Frieza Soldier Squad 16",
+    "Frieza Soldier Squad 17",
+    "Frieza Soldier Squad 18",
+    "Frieza Soldier Squad 19",
+    "Frieza Soldier Squad 20",
+    "Frieza Soldier Squad 21",
+    "Frieza Soldier Squad 22",
+    "Frieza Soldier Squad 23",
+    "Frieza Soldier Squad 24",
+    "Saibaman Squad 01",
+    "Saibaman Squad 02",
+    "Saibaman Squad 03",
+    "Saibaman Squad 04",
+    "Saibaman Squad 05",
+    "Saibaman Squad 06",
+    "Saibaman Squad 07",
+    "Saibaman Squad 08",
+    "Saibaman Squad 09",
+    "Saibaman Squad 10",
+    "Saibaman Squad 11",
+    "Saibaman Squad 12",
+    "Saibaman Squad 13",
+    "Saibaman Squad 14",
+    "Saibaman Squad 15",
+    "Saibaman Squad 16",
+    "Saibaman Squad 17",
+    "Saibaman Squad 18",
+    "Saibaman Squad 19",
+    "Saibaman Squad 20",
+    "Saibaman Squad 21",
+    "Saibaman Squad 22",
+    "Saibaman Squad 23",
+    "Saibaman Squad 24",
+    "Cell Junior Squad 01",
+    "Cell Junior Squad 02",
+    "Cell Junior Squad 03",
+    "Cell Junior Squad 04",
+    "Cell Junior Squad 05",
+    "Cell Junior Squad 06",
+    "Cell Junior Squad 07",
+    "Cell Junior Squad 08",
+    "Cell Junior Squad 09",
+    "Cell Junior Squad 10",
+    "Cell Junior Squad 11",
+    "Cell Junior Squad 12",
+    "Cell Junior Squad 13",
+    "Cell Junior Squad 14",
+    "Cell Junior Squad 15",
+    "Cell Junior Squad 16",
+    "Cell Junior Squad 17",
+    "Cell Junior Squad 18",
+    "Cell Junior Squad 19",
+    "Cell Junior Squad 20",
+    "Cell Junior Squad 21",
+    "Cell Junior Squad 22",
+    "Cell Junior Squad 23",
+    "Cell Junior Squad 24",
+    "Metal Cooler Squad 01",
+    "Metal Cooler Squad 02",
+    "Metal Cooler Squad 03",
+    "Metal Cooler Squad 04",
+    "Metal Cooler Squad 05",
+    "Metal Cooler Squad 06",
+    "Metal Cooler Squad 07",
+    "Metal Cooler Squad 08",
+    "Metal Cooler Squad 09",
+    "Metal Cooler Squad 10",
+    "Metal Cooler Squad 11",
+    "Metal Cooler Squad 12",
+    "Metal Cooler Squad 13",
+    "Metal Cooler Squad 14",
+    "Metal Cooler Squad 15",
+    "Metal Cooler Squad 16",
+    "Metal Cooler Squad 17",
+    "Metal Cooler Squad 18",
+    "Metal Cooler Squad 19",
+    "Metal Cooler Squad 20",
+    "Metal Cooler Squad 21",
+    "Metal Cooler Squad 22",
+    "Metal Cooler Squad 23",
+    "Metal Cooler Squad 24",
+    "Bio-Warrior Squad 01",
+    "Bio-Warrior Squad 02",
+    "Bio-Warrior Squad 03",
+    "Bio-Warrior Squad 04",
+    "Bio-Warrior Squad 05",
+    "Bio-Warrior Squad 06",
+    "Bio-Warrior Squad 07",
+    "Bio-Warrior Squad 08",
+    "Bio-Warrior Squad 09",
+    "Bio-Warrior Squad 10",
+    "Bio-Warrior Squad 11",
+    "Bio-Warrior Squad 12",
+    "Bio-Warrior Squad 13",
+    "Bio-Warrior Squad 14",
+    "Bio-Warrior Squad 15",
+    "Bio-Warrior Squad 16",
+    "Bio-Warrior Squad 17",
+    "Bio-Warrior Squad 18",
+    "Bio-Warrior Squad 19",
+    "Bio-Warrior Squad 20",
+    "Bio-Warrior Squad 21",
+    "Bio-Warrior Squad 22",
+    "Bio-Warrior Squad 23",
+    "Bio-Warrior Squad 24",
+    "Babidi Henchman Squad 01",
+    "Babidi Henchman Squad 02",
+    "Babidi Henchman Squad 03",
+    "Babidi Henchman Squad 04",
+    "Babidi Henchman Squad 05",
+    "Babidi Henchman Squad 06",
+    "Babidi Henchman Squad 07",
+    "Babidi Henchman Squad 08",
+    "Babidi Henchman Squad 09",
+    "Babidi Henchman Squad 10",
+    "Babidi Henchman Squad 11",
+    "Babidi Henchman Squad 12",
+    "Babidi Henchman Squad 13",
+    "Babidi Henchman Squad 14",
+    "Babidi Henchman Squad 15",
+    "Babidi Henchman Squad 16",
+    "Babidi Henchman Squad 17",
+    "Babidi Henchman Squad 18",
+    "Babidi Henchman Squad 19",
+    "Babidi Henchman Squad 20",
+    "Babidi Henchman Squad 21",
+    "Babidi Henchman Squad 22",
+    "Babidi Henchman Squad 23",
+    "Babidi Henchman Squad 24",
+    "Demon Realm Soldier Squad 01",
+    "Demon Realm Soldier Squad 02",
+    "Demon Realm Soldier Squad 03",
+    "Demon Realm Soldier Squad 04",
+    "Demon Realm Soldier Squad 05",
+    "Demon Realm Soldier Squad 06",
+    "Demon Realm Soldier Squad 07",
+    "Demon Realm Soldier Squad 08",
+    "Demon Realm Soldier Squad 09",
+    "Demon Realm Soldier Squad 10",
+    "Demon Realm Soldier Squad 11",
+    "Demon Realm Soldier Squad 12",
+    "Demon Realm Soldier Squad 13",
+    "Demon Realm Soldier Squad 14",
+    "Demon Realm Soldier Squad 15",
+    "Demon Realm Soldier Squad 16",
+    "Demon Realm Soldier Squad 17",
+    "Demon Realm Soldier Squad 18",
+    "Demon Realm Soldier Squad 19",
+    "Demon Realm Soldier Squad 20",
+    "Demon Realm Soldier Squad 21",
+    "Demon Realm Soldier Squad 22",
+    "Demon Realm Soldier Squad 23",
+    "Demon Realm Soldier Squad 24"
+  ]
+}

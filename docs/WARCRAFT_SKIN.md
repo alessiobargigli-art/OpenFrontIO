@@ -10,10 +10,10 @@ con la skill ImageGen e lo strumento integrato, non estratto dai giochi Blizzard
 ## Scelta e sincronizzazione
 
 Il selettore è nella lobby dell'host, nella lobby di chi entra e nelle impostazioni
-singleplayer. Mostra le anteprime di Flower Power, Warcraft Fantasy, Default (grafica originale OpenFront) e Final Fantasy VII · Mako. La scelta
+singleplayer. Mostra le anteprime di Flower Power, Warcraft Fantasy, Default (grafica originale OpenFront), Final Fantasy VII · Mako e Dragon Ball · Capsule & Ki. La scelta
 riguarda le unità del giocatore: non sostituisce il tema degli altri partecipanti.
 
-In multiplayer, il server accetta soltanto gli identificativi dei quattro pacchetti
+In multiplayer, il server accetta soltanto gli identificativi dei cinque pacchetti
 integrati e soltanto prima di prestart. Non vengono accettati URL arbitrari. La
 scelta entra nel roster e nei cosmetici del messaggio di avvio; viene quindi
 visualizzata dagli altri client e conservata nel record/replay. Restano valide
@@ -63,9 +63,9 @@ richiedono le immagini di lavoro. Il manifest registra i due ordini di colonne.
 | Vagone               | `trainCarriage.png`       | Carrello minerario             |
 | Vagone carico        | `trainCarriageLoaded.png` | Carrello con oro e cristalli   |
 
-Gli atlas condivisi sono `resources/atlases/unit-skins.png` (1536 × 512) e
-`resources/atlases/icon-skins.png` (768 × 512). Riga 0: Flower Power, identica
-pixel per pixel agli atlas originali. Riga 1: Warcraft. Riga 2: Default, ricavata dagli atlas originali OpenFront. Riga 3: FFVII · Mako. Gli slot e gli ingombri
+Gli atlas condivisi sono `resources/atlases/unit-skins.png` (1536 × 640) e
+`resources/atlases/icon-skins.png` (768 × 640). Riga 0: Flower Power, identica
+pixel per pixel agli atlas originali. Riga 1: Warcraft. Riga 2: Default, ricavata dagli atlas originali OpenFront. Riga 3: FFVII · Mako. Riga 4: Dragon Ball. Gli slot e gli ingombri
 sulla mappa sono conservati. Le dimensioni del buffer per istanza non aumentano:
 l'indice memorizza colonna e riga; lo shader ricava la colonna originale per
 forme, effetti, evidenziazioni e segnali di combattimento. Anche le anteprime di
