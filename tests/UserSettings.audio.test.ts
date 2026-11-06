@@ -39,6 +39,16 @@ const INHERITS_EFFECTS: AudioCategory[] = [
 describe("audio channel volumes", () => {
   beforeEach(resetUserSettingsState);
 
+  it("persists skin sounds immediately and restores their enabled default", () => {
+    const settings = new UserSettings();
+    expect(settings.skinSounds()).toBe(true);
+    settings.setSkinSounds(false);
+    expect(new UserSettings().skinSounds()).toBe(false);
+    expect(localStorage.getItem("settings.audio.skinSounds")).toBe("false");
+    settings.resetAudio();
+    expect(new UserSettings().skinSounds()).toBe(true);
+  });
+
   it("returns the per-channel defaults when nothing is stored", () => {
     const s = new UserSettings();
     // Master is the one platform-dependent default; see the master describe

@@ -105,6 +105,11 @@ afterEach(() => {
 });
 
 describe("background music", () => {
+  it("forwards the emitting owner's skin through the actual event bus", () => {
+    eventBus.emit(new PlaySoundEffectEvent("hydrogen-launch", "dragonball"));
+    expect(find("sounds/skins/dragonball/hydrogen-launch.mp3")).toBeDefined();
+    expect(find("sounds/effects/hydrogen-launch.mp3")).toBeUndefined();
+  });
   it("is a single looping track, not a playlist", () => {
     const music = find("gameplay.mp3");
     expect(music).toBeDefined();
@@ -143,7 +148,7 @@ describe("cue playback", () => {
   it("hands cues to the mixer, which routes them by channel", () => {
     const play = vi.spyOn(mixer, "play");
     eventBus.emit(new PlaySoundEffectEvent("build-city"));
-    expect(play).toHaveBeenCalledWith("build-city");
+    expect(play).toHaveBeenCalledWith("build-city", undefined);
   });
 });
 

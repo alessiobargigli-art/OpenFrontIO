@@ -120,6 +120,7 @@ const AUDIO_RESET_KEYS: readonly string[] = [
   ...AUDIO_CHANNELS.map((category) => `settings.audio.${category}`),
   "settings.audio.muteOnBlur",
   "settings.audio.alertsWhenUnfocused",
+  "settings.audio.skinSounds",
   // The legacy keys too: leaving them would have the read-through hand the
   // old two-slider values straight back, which is not "defaults".
   "settings.backgroundMusicVolume",
@@ -911,6 +912,14 @@ export class UserSettings {
     this.setBool("settings.audio.muteOnBlur", value);
   }
 
+  skinSounds(): boolean {
+    return this.getBool("settings.audio.skinSounds", true);
+  }
+
+  setSkinSounds(value: boolean): void {
+    this.setBool("settings.audio.skinSounds", value);
+  }
+
   alertsWhenUnfocused(): boolean {
     return this.getBool("settings.audio.alertsWhenUnfocused", true);
   }
@@ -936,6 +945,7 @@ export class UserSettings {
       );
     }
     this.emitChange("settings.audio.muteOnBlur", String(this.muteOnBlur()));
+    this.emitChange("settings.audio.skinSounds", String(this.skinSounds()));
     this.emitChange(
       "settings.audio.alertsWhenUnfocused",
       String(this.alertsWhenUnfocused()),

@@ -1,0 +1,40 @@
+{
+  "authoring": "Original procedural synthesis; no sampled franchise audio.",
+  "sampleRate": 44100,
+  "encoding": "MP3 mono 96 kbps",
+  "themes": ["flower-power", "warcraft", "ff7-mako", "dragonball"],
+  "cues": [
+    "atom-launch",
+    "hydrogen-launch",
+    "mirv-launch",
+    "atom-hit",
+    "hydrogen-hit",
+    "build-city",
+    "build-port",
+    "build-defense-post",
+    "build-warship",
+    "sam-built",
+    "silo-built",
+    "build-factory",
+    "build-train-station",
+    "transport-ship"
+  ],
+  "previewTimeline": [
+    {
+      "skin": "flower-power",
+      "startSeconds": 0
+    },
+    {
+      "skin": "warcraft",
+      "startSeconds": 4.52
+    },
+    {
+      "skin": "ff7-mako",
+      "startSeconds": 9.04
+    },
+    {
+      "skin": "dragonball",
+      "startSeconds": 13.56
+    }
+  ]
+}

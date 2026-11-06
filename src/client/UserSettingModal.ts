@@ -572,6 +572,11 @@ export class UserSettingModal extends BaseModal {
     this.requestUpdate();
   }
 
+  private toggleSkinSounds(e: Event) {
+    this.userSettings.setSkinSounds((e.target as HTMLInputElement).checked);
+    this.requestUpdate();
+  }
+
   private toggleAlertsWhenUnfocused(e: Event) {
     this.userSettings.setAlertsWhenUnfocused(
       (e.target as HTMLInputElement).checked,
@@ -685,6 +690,14 @@ export class UserSettingModal extends BaseModal {
     const muteOnBlur = this.userSettings.muteOnBlur();
     return html`
       ${AUDIO_TAB_ORDER.map((category) => this.renderVolumeSlider(category))}
+
+      <setting-toggle
+        label="${translateText("user_setting.audio_skin_sounds")}"
+        description="${translateText("user_setting.audio_skin_sounds_desc")}"
+        id="audio-skin-sounds-toggle"
+        .checked=${this.userSettings.skinSounds()}
+        @change=${this.toggleSkinSounds}
+      ></setting-toggle>
 
       <setting-toggle
         label="${translateText("user_setting.audio_mute_on_blur")}"

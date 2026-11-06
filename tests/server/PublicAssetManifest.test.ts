@@ -172,6 +172,34 @@ describe("PublicAssetManifest", () => {
     );
   });
 
+  test.each(["flower-power", "warcraft", "ff7-mako", "dragonball"])(
+    "publishes the complete %s skin sound pack with hashed MP3s",
+    async (skin) => {
+      const { resourcesDir, outDir } = await createTempResources();
+      const folder = `sounds/skins/${skin}`;
+      const names = await fs.readdir(path.resolve(`resources/${folder}`));
+      expect(names).toHaveLength(14);
+      await fs.mkdir(path.join(resourcesDir, folder), { recursive: true });
+      for (const name of names) {
+        await fs.copyFile(
+          path.resolve(`resources/${folder}/${name}`),
+          path.join(resourcesDir, folder, name),
+        );
+      }
+      const manifest = buildPublicAssetManifest([resourcesDir]);
+      createHashedPublicAssetFiles([resourcesDir], outDir, manifest);
+      for (const name of names) {
+        const key = `${folder}/${name}`;
+        expect(manifest[key]).toMatch(/\.[a-f0-9]+\.mp3$/);
+        expect(
+          await fs.readFile(
+            path.join(outDir, normalizeAssetPath(manifest[key])),
+          ),
+        ).toEqual(await fs.readFile(path.resolve(`resources/${key}`)));
+      }
+    },
+  );
+
   test("rewrites root-relative web manifest icon paths to hashed paths relative to the manifest", async () => {
     const { resourcesDir, outDir } = await createTempResources();
 

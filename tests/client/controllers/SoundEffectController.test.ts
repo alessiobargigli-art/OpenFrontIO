@@ -113,6 +113,28 @@ describe("SoundEffectController", () => {
     expect(played).toEqual(["conquered", "ka-ching", "ka-ching"]);
   });
 
+  it("throttles simultaneous launches across skins without suppressing warnings", () => {
+    game.myPlayer = () => ({ smallID: () => 7 });
+    const unitsToCreate = Array.from({ length: 30 }, (_, i) =>
+      makeCreatedUnit(i, UnitType.MIRV, {
+        cosmetics: { unitSkin: "dragonball" },
+      }),
+    );
+    tickWithUnits(...unitsToCreate);
+    expect(played).toEqual(["mirv-launch"]);
+    game.updatesSinceLastTick = () => ({
+      [GameUpdateType.UnitIncoming]: [
+        { playerID: 7, messageType: MessageType.MIRV_INBOUND },
+      ],
+    });
+    controller.tick();
+    expect(played).toEqual(["mirv-launch", "nuke-warning"]);
+    tickWithUnits(makeCreatedUnit(40, UnitType.AtomBomb, {}));
+    expect(played).toHaveLength(2);
+    tickWithUnits(makeCreatedUnit(41, UnitType.HydrogenBomb, {}));
+    expect(played[played.length - 1]).toBe("hydrogen-launch");
+  });
+
   it("plays game-start when the spawn phase ends", () => {
     game.updatesSinceLastTick = () => ({
       [GameUpdateType.SpawnPhaseEnd]: [{ startTick: 10 }],

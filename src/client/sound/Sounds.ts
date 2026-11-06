@@ -1,6 +1,7 @@
 import { assetUrl } from "../../core/AssetUrls";
 import { GameEvent } from "../../core/EventBus";
 import { AudioCategory } from "../../core/game/UserSettings";
+import type { UnitSkin } from "../../core/UnitSkins";
 
 export type SoundEffect =
   | "ka-ching"
@@ -81,7 +82,10 @@ export const ambienceUrls: ReadonlyMap<AmbienceTrack, string> = new Map([
 ]);
 
 export class PlaySoundEffectEvent implements GameEvent {
-  constructor(public readonly effect: SoundEffect) {}
+  constructor(
+    public readonly effect: SoundEffect,
+    public readonly unitSkin?: UnitSkin,
+  ) {}
 }
 
 /**
