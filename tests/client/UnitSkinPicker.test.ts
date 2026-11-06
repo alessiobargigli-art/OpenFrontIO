@@ -40,9 +40,9 @@ describe("unit skin picker", () => {
     await picker.updateComplete;
     return { picker, bus, sent };
   }
-  it("shows all three previews and applies the server-confirmed selection", async () => {
+  it("shows all four previews and applies the server-confirmed selection", async () => {
     const { picker, bus, sent } = await setup();
-    expect(picker.querySelectorAll("img")).toHaveLength(18);
+    expect(picker.querySelectorAll("img")).toHaveLength(24);
     (
       picker.querySelector('[data-unit-skin="warcraft"]') as HTMLButtonElement
     ).click();
@@ -67,21 +67,24 @@ describe("unit skin picker", () => {
     expect(savedUnitSkin()).toBe("warcraft");
     expect(sent).not.toHaveBeenCalled();
   });
-  it("selects the original Default pack with server acknowledgement", async () => {
-    const { picker, bus, sent } = await setup();
-    const button = picker.querySelector<HTMLButtonElement>(
-      '[data-unit-skin="default"]',
-    )!;
-    expect(button.querySelectorAll("img")).toHaveLength(6);
-    expect(button.querySelector("img")?.getAttribute("src")).toContain(
-      "/skins/default/city.png",
-    );
-    button.click();
-    expect(sent).toHaveBeenCalledWith(new SendUnitSkinEvent("default"));
-    bus.emit(new UnitSkinResultEvent(true, "default"));
-    await picker.updateComplete;
-    expect(button.getAttribute("aria-pressed")).toBe("true");
-  });
+  it.each(["default", "ff7-mako"] as const)(
+    "selects %s with server acknowledgement",
+    async (skin) => {
+      const { picker, bus, sent } = await setup();
+      const button = picker.querySelector<HTMLButtonElement>(
+        `[data-unit-skin="${skin}"]`,
+      )!;
+      expect(button.querySelectorAll("img")).toHaveLength(6);
+      expect(button.querySelector("img")?.getAttribute("src")).toContain(
+        `/skins/${skin}/city.png`,
+      );
+      button.click();
+      expect(sent).toHaveBeenCalledWith(new SendUnitSkinEvent(skin));
+      bus.emit(new UnitSkinResultEvent(true, skin));
+      await picker.updateComplete;
+      expect(button.getAttribute("aria-pressed")).toBe("true");
+    },
+  );
   it("displays a start-race rejection without changing the active pack", async () => {
     const { picker, bus } = await setup();
     (

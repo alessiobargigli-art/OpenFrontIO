@@ -1417,6 +1417,7 @@
     "faroeislands": "Faroe Islands",
     "favorites": "Favourites",
     "featured": "Featured",
+    "finalfantasyvii": "Final Fantasy VII · The Planet",
     "fingerlakes": "Finger Lakes",
     "fourislands": "Four Islands",
     "france": "France",
@@ -1536,6 +1537,8 @@
   "map_layers": {
     "azeroth-atlas": "Azeroth atlas labels",
     "azeroth-biomes": "Azeroth region colors",
+    "ff7-atlas": "FFVII world atlas labels",
+    "ff7-biomes": "FFVII region colors and Midgar landmark",
     "label": "label"
   },
   "marketing_consent": {
@@ -2208,6 +2211,19 @@
     },
     "title": "Tutorial"
   },
+  "unit_skin": {
+    "default": "Default (original OpenFront)",
+    "ff7_mako": "Final Fantasy VII · Mako",
+    "flower_power": "Flower Power",
+    "hint": "Choose how your units and buildings look. Other players see your choice. Bots and nations follow your theme on your screen.",
+    "preview": "Skin preview",
+    "retry": "No response. Please try again.",
+    "saved": "Skin selected.",
+    "saving": "Applying skin…",
+    "title": "Unit skin",
+    "unavailable": "The game is starting. You can change skin in the next lobby.",
+    "warcraft": "Warcraft Fantasy"
+  },
   "unit_type": {
     "atom_bomb": "Atom Bomb",
     "boat": "Boat",
@@ -2460,17 +2476,5 @@
     "you_won": "You Won!",
     "your_team": "Your team won!",
     "youtube_tutorial": "Need some help?"
-  },
-  "unit_skin": {
-    "title": "Unit skin",
-    "hint": "Choose how your units and buildings look. Other players see your choice. Bots and nations follow your theme on your screen.",
-    "flower_power": "Flower Power",
-    "default": "Default (original OpenFront)",
-    "warcraft": "Warcraft Fantasy",
-    "saving": "Applying skin…",
-    "saved": "Skin selected.",
-    "unavailable": "The game is starting. You can change skin in the next lobby.",
-    "retry": "No response. Please try again.",
-    "preview": "Skin preview"
   }
 }

@@ -41,21 +41,26 @@ func build(base, output string, names []string, sizes []int) {
 	if original.Bounds().Dx() != len(names)*cell || original.Bounds().Dy() != cell {
 		panic("unexpected original atlas dimensions")
 	}
-	atlas := image.NewNRGBA(image.Rect(0, 0, len(names)*cell, cell*3))
+	atlas := image.NewNRGBA(image.Rect(0, 0, len(names)*cell, cell*4))
 	draw.Draw(atlas, original.Bounds(), original, original.Bounds().Min, draw.Src)
-	for i, name := range names {
-		src := read(filepath.Join("resources/skins/warcraft", name+".png"))
-		if src.Bounds().Dx() != cell || src.Bounds().Dy() != cell {
-			panic("unexpected sprite dimensions: " + name)
-		}
-		size := cell
-		if sizes != nil {
-			size = cell * sizes[i] / 13
-		}
-		x0, y0 := i*cell+(cell-size)/2, cell+(cell-size)/2
-		for y := 0; y < size; y++ {
-			for x := 0; x < size; x++ {
-				atlas.Set(x0+x, y0+y, src.At(x*cell/size, y*cell/size))
+	for _, pack := range []struct {
+		name string
+		row  int
+	}{{"warcraft", 1}, {"ff7-mako", 3}} {
+		for i, name := range names {
+			src := read(filepath.Join("resources/skins", pack.name, name+".png"))
+			if src.Bounds().Dx() != cell || src.Bounds().Dy() != cell {
+				panic("unexpected sprite dimensions: " + name)
+			}
+			size := cell
+			if sizes != nil {
+				size = cell * sizes[i] / 13
+			}
+			x0, y0 := i*cell+(cell-size)/2, pack.row*cell+(cell-size)/2
+			for y := 0; y < size; y++ {
+				for x := 0; x < size; x++ {
+					atlas.Set(x0+x, y0+y, src.At(x*cell/size, y*cell/size))
+				}
 			}
 		}
 	}

@@ -6,6 +6,7 @@ describe("per-owner atlas selection in real render passes", () => {
   it.each([
     ["warcraft", 14],
     ["default", 26],
+    ["ff7-mako", 38],
   ] as const)(
     "packs %s into unit instances without changing positions, owner, or flags",
     (skin, column) => {
@@ -56,6 +57,7 @@ describe("per-owner atlas selection in real render passes", () => {
   it.each([
     ["warcraft", 6],
     ["default", 12],
+    ["ff7-mako", 18],
   ] as const)(
     "packs %s structures while preserving construction and deletion indicators",
     (skin, column) => {

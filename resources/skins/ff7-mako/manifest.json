@@ -1,0 +1,30 @@
+{
+  "id": "ff7-mako",
+  "name": "Final Fantasy VII · Mako",
+  "atlasRow": 3,
+  "cellSize": 128,
+  "artwork": "Original fan artwork generated with built-in ImageGen; no extracted game assets.",
+  "prompts": "docs/ff7-image-prompts.json",
+  "buildings": [
+    "city",
+    "port",
+    "factory",
+    "defensePost",
+    "samLauncher",
+    "missileSilo"
+  ],
+  "units": [
+    "transportship",
+    "tradeship",
+    "warship",
+    "atombomb",
+    "hydrogenbomb",
+    "mirv2",
+    "samMissile",
+    "shell",
+    "mirvWarhead",
+    "trainEngine",
+    "trainCarriage",
+    "trainCarriageLoaded"
+  ]
+}
