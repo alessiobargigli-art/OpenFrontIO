@@ -1409,6 +1409,7 @@
     "deglaciatedantarctica": "Deglaciated Antarctica",
     "didier": "Didier",
     "didierfrance": "Didier (France)",
+    "dragonball": "Dragon Ball · World Atlas",
     "dyslexdria": "Dyslexdria",
     "eastasia": "East Asia",
     "europe": "Europe",
@@ -1537,6 +1538,8 @@
   "map_layers": {
     "azeroth-atlas": "Azeroth atlas labels",
     "azeroth-biomes": "Azeroth region colors",
+    "dragonball-atlas": "Dragon Ball atlas labels",
+    "dragonball-biomes": "Dragon Ball worlds and Capsule landmark",
     "ff7-atlas": "FFVII world atlas labels",
     "ff7-biomes": "FFVII region colors and Midgar landmark",
     "label": "label"
@@ -2213,6 +2216,7 @@
   },
   "unit_skin": {
     "default": "Default (original OpenFront)",
+    "dragonball": "Dragon Ball · Capsule & Ki",
     "ff7_mako": "Final Fantasy VII · Mako",
     "flower_power": "Flower Power",
     "hint": "Choose how your units and buildings look. Other players see your choice. Bots and nations follow your theme on your screen.",

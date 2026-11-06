@@ -98,7 +98,7 @@ describe("PublicAssetManifest", () => {
     }
   });
 
-  test.each(["warcraft", "default", "ff7-mako"])(
+  test.each(["warcraft", "default", "ff7-mako", "dragonball"])(
     "publishes %s skin sprites with hashed files",
     async (skin) => {
       const { resourcesDir, outDir } = await createTempResources();

@@ -40,9 +40,9 @@ describe("unit skin picker", () => {
     await picker.updateComplete;
     return { picker, bus, sent };
   }
-  it("shows all four previews and applies the server-confirmed selection", async () => {
+  it("shows all five previews and applies the server-confirmed selection", async () => {
     const { picker, bus, sent } = await setup();
-    expect(picker.querySelectorAll("img")).toHaveLength(24);
+    expect(picker.querySelectorAll("img")).toHaveLength(30);
     (
       picker.querySelector('[data-unit-skin="warcraft"]') as HTMLButtonElement
     ).click();
@@ -67,7 +67,7 @@ describe("unit skin picker", () => {
     expect(savedUnitSkin()).toBe("warcraft");
     expect(sent).not.toHaveBeenCalled();
   });
-  it.each(["default", "ff7-mako"] as const)(
+  it.each(["default", "ff7-mako", "dragonball"] as const)(
     "selects %s with server acknowledgement",
     async (skin) => {
       const { picker, bus, sent } = await setup();

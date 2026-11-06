@@ -41,12 +41,12 @@ func build(base, output string, names []string, sizes []int) {
 	if original.Bounds().Dx() != len(names)*cell || original.Bounds().Dy() != cell {
 		panic("unexpected original atlas dimensions")
 	}
-	atlas := image.NewNRGBA(image.Rect(0, 0, len(names)*cell, cell*4))
+	atlas := image.NewNRGBA(image.Rect(0, 0, len(names)*cell, cell*5))
 	draw.Draw(atlas, original.Bounds(), original, original.Bounds().Min, draw.Src)
 	for _, pack := range []struct {
 		name string
 		row  int
-	}{{"warcraft", 1}, {"ff7-mako", 3}} {
+	}{{"warcraft", 1}, {"ff7-mako", 3}, {"dragonball", 4}} {
 		for i, name := range names {
 			src := read(filepath.Join("resources/skins", pack.name, name+".png"))
 			if src.Bounds().Dx() != cell || src.Bounds().Dy() != cell {

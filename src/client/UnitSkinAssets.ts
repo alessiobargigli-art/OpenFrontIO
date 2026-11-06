@@ -54,7 +54,12 @@ export function unitSkinIcon(
 ): string | undefined {
   const file = files[type];
   if (!file) return undefined;
-  if (skin === "warcraft" || skin === "default" || skin === "ff7-mako")
+  if (
+    skin === "warcraft" ||
+    skin === "default" ||
+    skin === "ff7-mako" ||
+    skin === "dragonball"
+  )
     return `skins/${skin}/${file}.png`;
   return buildings.has(type)
     ? `images/flower-power/${file}.png`

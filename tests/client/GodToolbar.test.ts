@@ -43,7 +43,7 @@ describe("God spectator controls", () => {
     expect(launch).toHaveBeenCalledOnce();
   });
 
-  it.each(["warcraft", "default", "ff7-mako"] as const)(
+  it.each(["warcraft", "default", "ff7-mako", "dragonball"] as const)(
     "uses the spectator's %s pack before and after God units appear",
     async (skin) => {
       Object.assign(toolbar.game, { nonHumanUnitSkin: () => skin });

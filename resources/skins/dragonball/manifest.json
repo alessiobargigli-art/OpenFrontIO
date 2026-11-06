@@ -1,0 +1,30 @@
+{
+  "id": "dragonball",
+  "name": "Dragon Ball · Capsule & Ki",
+  "atlasRow": 4,
+  "cellSize": 128,
+  "artwork": "Original fan artwork generated with built-in ImageGen; no extracted franchise assets.",
+  "prompts": "docs/dragonball-image-prompts.json",
+  "buildings": [
+    "city",
+    "port",
+    "factory",
+    "defensePost",
+    "samLauncher",
+    "missileSilo"
+  ],
+  "units": [
+    "transportship",
+    "tradeship",
+    "warship",
+    "atombomb",
+    "hydrogenbomb",
+    "mirv2",
+    "samMissile",
+    "shell",
+    "mirvWarhead",
+    "trainEngine",
+    "trainCarriage",
+    "trainCarriageLoaded"
+  ]
+}
