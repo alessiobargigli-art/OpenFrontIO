@@ -100,7 +100,7 @@ export class UnitSkinPicker extends LitElement {
         ${translateText("unit_skin.title")}
       </h3>
       <p class="text-xs text-white/60">${translateText("unit_skin.hint")}</p>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         ${UNIT_SKIN_IDS.map(
           (skin) =>
             html`<button
@@ -116,11 +116,13 @@ export class UnitSkinPicker extends LitElement {
             >
               <span class="font-bold text-sm"
                 >${translateText(
-                  skin === "default"
-                    ? "unit_skin.default"
-                    : skin === "warcraft"
-                      ? "unit_skin.warcraft"
-                      : "unit_skin.flower_power",
+                  skin === "ff7-mako"
+                    ? "unit_skin.ff7_mako"
+                    : skin === "default"
+                      ? "unit_skin.default"
+                      : skin === "warcraft"
+                        ? "unit_skin.warcraft"
+                        : "unit_skin.flower_power",
                 )}</span
               >
               <div

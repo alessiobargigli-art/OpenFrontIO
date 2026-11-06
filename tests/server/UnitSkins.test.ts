@@ -24,7 +24,7 @@ describe("built-in unit skins in the lobby", () => {
     mockWsOf(player).send.mockClear();
     return { game, host, player };
   }
-  it.each(["warcraft", "default"] as const)(
+  it.each(["warcraft", "default", "ff7-mako"] as const)(
     "broadcasts %s only for the sender without changing account cosmetics",
     async (skin) => {
       const { game, host, player } = setup();

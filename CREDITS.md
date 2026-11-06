@@ -149,3 +149,13 @@ The two source atlases are copied unchanged into `resources/skins/default/`;
 individual icons are exact cell crops. Shared atlases scale those cells with
 nearest-neighbour sampling. Existing source credits and license notices remain
 applicable. `manifest.json` records the source revision.
+
+## Final Fantasy VII fan map and Mako unit pack
+
+The map geometry, terrain, overlays and 18 Mako-themed sprites are original
+assets created for this fork. Sprite artwork was generated with built-in
+ImageGen. Geography and enemy names reference Final Fantasy VII, Remake and
+Rebirth, properties of Square Enix. No game textures, music, logos or extracted
+game sprites are included. This is an unofficial fan adaptation. Sources,
+editable data, exact prompts and asset mapping are in
+[docs/FINAL_FANTASY_VII.md](docs/FINAL_FANTASY_VII.md).
