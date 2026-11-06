@@ -1,6 +1,7 @@
 import { EventBus } from "../../core/EventBus";
 import { MessageType, PlayerType, UnitType } from "../../core/game/Game";
 import { GameUpdateType } from "../../core/game/GameUpdates";
+import type { UnitSkin } from "../../core/UnitSkins";
 import { Controller } from "../Controller";
 import { PlaySoundEffectEvent, SoundEffect } from "../sound/Sounds";
 import { SendSpawnIntentEvent } from "../Transport";
@@ -9,6 +10,7 @@ import { GameView, UnitView } from "../view";
 // A MIRV rains hundreds of warheads over a few seconds; playing a boom per
 // warhead churns the audio pipeline. Play at most one warhead boom per interval.
 const MIRV_HIT_SOUND_INTERVAL_TICKS = 5;
+const LAUNCH_SOUND_INTERVAL_TICKS = 2;
 
 // Several nukes can be announced inbound on the same tick (multiple silos,
 // multiple attackers); don't stack the alarm and evict other cues.
@@ -40,6 +42,7 @@ const NUKE_INBOUND_MESSAGES = new Set<MessageType>([
 
 export class SoundEffectController implements Controller {
   private lastMirvHitSoundTick = -Infinity;
+  private lastLaunchSoundTick = -Infinity;
   private lastNukeWarningSoundTick = -Infinity;
   private lastTrainStationSoundTick = -Infinity;
   // A train station is a flag on an existing structure, not a unit — play the
@@ -138,44 +141,44 @@ export class SoundEffectController implements Controller {
       return;
     }
     this.lastMirvHitSoundTick = tick;
-    this.emit("atom-hit");
+    this.emit("atom-hit", unit);
   }
 
   private onCreated(unit: UnitView): void {
     const myPlayer = this.game.myPlayer();
     switch (unit.type()) {
       case UnitType.AtomBomb:
-        this.emit("atom-launch");
+        this.emitLaunch("atom-launch", unit);
         break;
       case UnitType.HydrogenBomb:
-        this.emit("hydrogen-launch");
+        this.emitLaunch("hydrogen-launch", unit);
         break;
       case UnitType.MIRV:
-        this.emit("mirv-launch");
+        this.emitLaunch("mirv-launch", unit);
         break;
       case UnitType.Warship:
-        if (unit.owner() === myPlayer) this.emit("build-warship");
+        if (unit.owner() === myPlayer) this.emit("build-warship", unit);
         break;
       case UnitType.City:
-        if (unit.owner() === myPlayer) this.emit("build-city");
+        if (unit.owner() === myPlayer) this.emit("build-city", unit);
         break;
       case UnitType.Port:
-        if (unit.owner() === myPlayer) this.emit("build-port");
+        if (unit.owner() === myPlayer) this.emit("build-port", unit);
         break;
       case UnitType.DefensePost:
-        if (unit.owner() === myPlayer) this.emit("build-defense-post");
+        if (unit.owner() === myPlayer) this.emit("build-defense-post", unit);
         break;
       case UnitType.SAMLauncher:
-        if (unit.owner() === myPlayer) this.emit("sam-built");
+        if (unit.owner() === myPlayer) this.emit("sam-built", unit);
         break;
       case UnitType.MissileSilo:
-        if (unit.owner() === myPlayer) this.emit("silo-built");
+        if (unit.owner() === myPlayer) this.emit("silo-built", unit);
         break;
       case UnitType.Factory:
-        if (unit.owner() === myPlayer) this.emit("build-factory");
+        if (unit.owner() === myPlayer) this.emit("build-factory", unit);
         break;
       case UnitType.TransportShip:
-        if (unit.owner() === myPlayer) this.emit("transport-ship");
+        if (unit.owner() === myPlayer) this.emit("transport-ship", unit);
         break;
     }
   }
@@ -226,7 +229,7 @@ export class SoundEffectController implements Controller {
         TRAIN_STATION_SOUND_INTERVAL_TICKS
       ) {
         this.lastTrainStationSoundTick = tick;
-        this.emit("build-train-station");
+        this.emit("build-train-station", unit);
       }
     }
     this.hadTrainStation.set(unit.id(), hasStation);
@@ -235,10 +238,22 @@ export class SoundEffectController implements Controller {
   private onNukeDetonation(unit: UnitView, sound: SoundEffect): void {
     if (unit.isActive()) return;
     if (!unit.reachedTarget()) return;
-    this.emit(sound);
+    this.emit(sound, unit);
   }
 
-  private emit(sound: SoundEffect): void {
-    this.eventBus.emit(new PlaySoundEffectEvent(sound));
+  private emitLaunch(sound: SoundEffect, unit: UnitView): void {
+    const tick = this.game.ticks();
+    if (tick - this.lastLaunchSoundTick < LAUNCH_SOUND_INTERVAL_TICKS) return;
+    this.lastLaunchSoundTick = tick;
+    this.emit(sound, unit);
+  }
+
+  private emit(sound: SoundEffect, unit?: UnitView): void {
+    // Read the same visible cosmetics as the renderer, including the local
+    // theme for bots/God and the hide-cosmetics preference for human owners.
+    const skin: UnitSkin | undefined = unit
+      ? (unit.owner().cosmetics?.unitSkin ?? "flower-power")
+      : undefined;
+    this.eventBus.emit(new PlaySoundEffectEvent(sound, skin));
   }
 }

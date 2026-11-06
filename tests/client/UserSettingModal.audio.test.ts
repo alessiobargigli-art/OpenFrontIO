@@ -137,6 +137,19 @@ describe("user-setting audio tab", () => {
     );
   });
 
+  it("switches skin sounds immediately and resets them with audio defaults", async () => {
+    const el = await mountAudioTab();
+    const id = "audio-skin-sounds-toggle";
+    expect(checkbox(el, id).checked).toBe(true);
+    toggle(el, id, false);
+    await el.updateComplete;
+    expect(new UserSettings().skinSounds()).toBe(false);
+    expect(checkbox(el, id).checked).toBe(false);
+    (el.querySelector("#audio-reset") as HTMLButtonElement).click();
+    await el.updateComplete;
+    expect(checkbox(el, id).checked).toBe(true);
+  });
+
   it("shows each stored value as a bare 0-100 number, with no percent sign", async () => {
     new UserSettings().setAudioVolume("ambience", 0.35);
     const el = await mountAudioTab();

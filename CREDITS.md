@@ -1,5 +1,12 @@
 # Credits
 
+## Skin sound packs
+
+The Flower Power, Warcraft, FFVII Mako and Dragon Ball sound packs contain
+original procedural synthesis from `scripts/skins/build_sounds.py`. No audio
+samples, voices or music were extracted from franchise media. See
+[skin sound documentation](docs/SKIN_SOUNDS.md) for playback and regeneration.
+
 ## Code
 
 OpenFront is licensed under AGPL-3.0.  

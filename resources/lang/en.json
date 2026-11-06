@@ -2280,6 +2280,8 @@
     "audio_mute_on_blur": "Mute when the window is not focused",
     "audio_mute_on_blur_desc": "Silence the game while you are working in another window.",
     "audio_reset": "Reset to defaults",
+    "audio_skin_sounds": "Skin sound effects",
+    "audio_skin_sounds_desc": "Match launches, impacts and construction sounds to the visible unit skin. Turn off to use standard effects.",
     "audio_test": "Test",
     "audio_test_master_muted": "Turn the master volume up to hear test sounds.",
     "audio_test_muted": "Turn this category up to hear the test sound.",

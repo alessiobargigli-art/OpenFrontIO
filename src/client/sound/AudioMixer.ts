@@ -1,10 +1,12 @@
 import { Howl, Howler } from "howler";
+import type { UnitSkin } from "../../core/UnitSkins";
 import {
   AudioCategory,
   USER_SETTINGS_CHANGED_EVENT,
   UserSettings,
 } from "../../core/game/UserSettings";
 import { setAudioControls, setCuePlayer } from "./CuePlayer";
+import { skinSoundUrl } from "./SkinSounds";
 import {
   AmbienceTrack,
   categoryOf,
@@ -121,7 +123,8 @@ export class AudioMixer {
   private ambienceEnvelope = 1;
   /** Loops (music, ambience) whose volume must follow their channel. */
   private registered = new Map<Howl, PlayableCategory>();
-  private cache = new Map<SoundEffect, Howl>();
+  private cache = new Map<string, Howl>();
+  private failedSkinSounds = new Set<string>();
   private active: ActiveSound[] = [];
   private disposers: (() => void)[] = [];
   private changeListeners = new Set<(category: PlayableCategory) => void>();
@@ -200,6 +203,7 @@ export class AudioMixer {
       this.safely("unload cue", () => howl.unload()),
     );
     this.cache.clear();
+    this.failedSkinSounds.clear();
     this.registered.clear();
     this.changeListeners.clear();
     this.active = [];
@@ -328,7 +332,7 @@ export class AudioMixer {
   // -------------------------------------------------------------- one-shots
 
   /** Plays a cue on its own channel, within that channel's budget. */
-  play(name: SoundEffect): void {
+  play(name: SoundEffect, skin?: UnitSkin): void {
     const category = categoryOf(name);
     this.safely(`play sound ${name}`, () => {
       const inCategory = this.active.filter((s) => s.category === category);
@@ -356,7 +360,7 @@ export class AudioMixer {
         this.forget(oldest.id);
       }
 
-      const howl = this.load(name);
+      const howl = this.load(name, skin);
       if (howl === null) return;
       const id = howl.play();
       howl.volume(this.volumeFor(category), id);
@@ -423,10 +427,15 @@ export class AudioMixer {
     howl.once("playerror", release, id);
   }
 
-  private load(name: SoundEffect): Howl | null {
-    const cached = this.cache.get(name);
+  private load(name: SoundEffect, skin?: UnitSkin): Howl | null {
+    const variant = this.userSettings.skinSounds()
+      ? skinSoundUrl(name, skin)
+      : undefined;
+    const themed = variant !== undefined && !this.failedSkinSounds.has(variant);
+    const key = themed ? variant : name;
+    const cached = this.cache.get(key);
     if (cached) return cached;
-    const src = soundEffectUrls.get(name);
+    const src = themed ? variant : soundEffectUrls.get(name);
     if (!src) return null;
     try {
       // Silent until play() sets the channel level on the id it is starting.
@@ -438,16 +447,29 @@ export class AudioMixer {
       // player had the slider. Starting from zero turns that into a couple of
       // silent milliseconds instead, which is the better way to be wrong.
       const howl = new Howl({ src: [src], volume: 0 });
-      this.cache.set(name, howl);
+      this.cache.set(key, howl);
       // Bound without an id on purpose. Howler emits loaderror with a null id
       // for everything except a media-element error -- no codec, a failed
       // fetch, a failed decode -- and _emit only dispatches to an id-bound
       // listener when the ids match, so an id-bound one would be dead code
       // for exactly the cases that matter.
-      howl.once("loaderror", () => this.discard(name, howl));
+      howl.once("loaderror", () => {
+        const pending = this.active.some((sound) => sound.howl === howl);
+        this.discard(key, howl);
+        if (themed) {
+          this.failedSkinSounds.add(key);
+          // One fallback for the failed group, only while it still had a
+          // pending voice. Never re-request a missing variant this session.
+          if (pending) this.play(name);
+        }
+      });
       return howl;
     } catch (err) {
       console.warn(`AudioMixer: failed to load sound ${name}`, err);
+      if (themed) {
+        this.failedSkinSounds.add(key);
+        return this.load(name);
+      }
       return null;
     }
   }
@@ -475,7 +497,7 @@ export class AudioMixer {
    * is wasted work but bounded by how often the cue fires and self-cleaning
    * each time.
    */
-  private discard(name: SoundEffect, howl: Howl): void {
+  private discard(name: string, howl: Howl): void {
     const stranded = this.active.filter((sound) => sound.howl === howl);
     this.active = this.active.filter((sound) => sound.howl !== howl);
     if (this.cache.get(name) === howl) this.cache.delete(name);

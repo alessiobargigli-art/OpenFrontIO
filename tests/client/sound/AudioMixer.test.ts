@@ -204,6 +204,85 @@ describe("channel volumes", () => {
 });
 
 describe("per-channel budgets", () => {
+  it("separates skin caches, follows the live toggle, and keeps Default standard", () => {
+    build({ effects: 0.5 });
+    mixer.play("build-city", "dragonball");
+    mixer.play("build-city", "warcraft");
+    mixer.play("build-city", "default");
+    expect(howlInstances.map((h) => h.src)).toEqual([
+      expect.stringContaining("sounds/skins/dragonball/build-city.mp3"),
+      expect.stringContaining("sounds/skins/warcraft/build-city.mp3"),
+      expect.stringContaining("sounds/effects/build-city.mp3"),
+    ]);
+    for (const h of howlInstances)
+      expect(h.volumes[h.volumes.length - 1]).toBeCloseTo(0.25);
+    settings.setSkinSounds(false);
+    mixer.play("build-city", "dragonball");
+    expect(howlInstances[2].play).toHaveBeenCalledTimes(2);
+    settings.setSkinSounds(true);
+    mixer.play("build-city", "dragonball");
+    expect(howlInstances[0].play).toHaveBeenCalledTimes(2);
+    expect(howlInstances).toHaveLength(3);
+  });
+
+  it("uses standard alerts and interface cues even when given a skin", () => {
+    build();
+    mixer.play("nuke-warning", "dragonball");
+    mixer.play("click", "ff7-mako");
+    expect(howlInstances.every((h) => h.src.includes("sounds/effects/"))).toBe(
+      true,
+    );
+  });
+
+  it("shares one effect budget across all skins without evicting alerts", () => {
+    build({ effects: 1, alerts: 1 });
+    mixer.play("nuke-warning");
+    const alert = howlInstances[0];
+    const skins = [
+      "dragonball",
+      "warcraft",
+      "ff7-mako",
+      "flower-power",
+    ] as const;
+    for (let i = 0; i < 7; i++)
+      mixer.play("atom-launch", skins[i % skins.length]);
+    const first = howlInstances[1];
+    expect(first.fade).toHaveBeenCalledTimes(1);
+    expect(alert.fade).not.toHaveBeenCalled();
+    expect(alert.stop).not.toHaveBeenCalled();
+  });
+
+  it("falls back once after a missing skin asset and avoids retrying that URL", () => {
+    build();
+    mixer.play("atom-hit", "dragonball");
+    mixer.play("atom-hit", "dragonball");
+    const broken = howlInstances[0];
+    broken._fire("loaderror", -1);
+    expect(broken.unload).toHaveBeenCalledTimes(1);
+    expect(howlInstances).toHaveLength(2);
+    const fallback = howlInstances[1];
+    expect(fallback.src).toContain("sounds/effects/atom-hit.mp3");
+    expect(fallback.play).toHaveBeenCalledTimes(1);
+    mixer.play("atom-hit", "dragonball");
+    expect(howlInstances).toHaveLength(2);
+    expect(fallback.play).toHaveBeenCalledTimes(2);
+    mixer.play("atom-hit", "warcraft");
+    expect(howlInstances[2].src).toContain(
+      "sounds/skins/warcraft/atom-hit.mp3",
+    );
+  });
+
+  it("does not revive a failed skin cue whose pending voice was already evicted", () => {
+    build({ effects: 0 });
+    mixer.play("atom-hit", "dragonball");
+    const broken = howlInstances[0];
+    for (let i = 0; i < 6; i++) mixer.play("build-city");
+    broken._fire("loaderror", -1);
+    expect(
+      howlInstances.some((h) => h.src.includes("sounds/effects/atom-hit")),
+    ).toBe(false);
+  });
+
   it("steals the oldest effect rather than an alert", () => {
     build({ effects: 1, alerts: 1 });
     mixer.play("nuke-warning");
